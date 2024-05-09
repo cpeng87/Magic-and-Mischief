@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 422071187694835766}
   - component: {fileID: 5550105529862662864}
   - component: {fileID: 7979353161137987572}
+  - component: {fileID: 6756845755446373674}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -181,7 +182,6 @@ MonoBehaviour:
   numToolbarSlots: 8
   numHealth: 180
   numMana: 200
-  tileSelector: {fileID: 8909252912170869525}
 --- !u!61 &5088619752715103857
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -273,6 +273,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2573c829c24e5e42af59ee366bd15bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6756845755446373674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3504270924955410760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88cc2fe2095045a4fa76756c814c1578, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tileSelector: {fileID: 8909252912170869525}
+  inventory: {fileID: 422071187694835766}
 --- !u!1 &4655463460278499981
 GameObject:
   m_ObjectHideFlags: 0

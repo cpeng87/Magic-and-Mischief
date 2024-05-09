@@ -47,7 +47,7 @@ public class Inventory
             count++;
             InventoryEventHandler.TriggerInventoryChangedEvent();
         }
-        public void AddItems(string itemName, string description, Sprite icon, int maxAllowed, int quantity)
+        public void AddItem(string itemName, string description, Sprite icon, int maxAllowed, int quantity)
         {
             this.itemName = itemName;
             this.itemDescription = description;
@@ -65,10 +65,6 @@ public class Inventory
         }
         public void RemoveItem()
         {
-            if (GameManager.instance.itemManager.GetItemByName(itemName) is KeyItem)
-            {
-                return;
-            }
             if(count > 0)
             {
                 count--;
@@ -80,12 +76,8 @@ public class Inventory
                 InventoryEventHandler.TriggerInventoryChangedEvent();
             }
         }
-        public void RemoveItems(int numToBeRemoved)
+        public void RemoveItem(int numToBeRemoved)
         {
-            if (GameManager.instance.itemManager.GetItemByName(itemName) is KeyItem)
-            {
-                return;
-            }
             if(count > 0 && count >= numToBeRemoved)
             {
                 count -= numToBeRemoved;
@@ -128,7 +120,6 @@ public class Inventory
             if (slot.itemName == item.data.itemName && slot.CanAddItem(item.data.itemName))
             {
                 slot.AddItem(item);
-                // InventoryEventHandler.TriggerInventoryChangedEvent();
                 return;
             }
         }
@@ -138,7 +129,6 @@ public class Inventory
             if(slot.itemName == "")
             {
                 slot.AddItem(item);
-                // InventoryEventHandler.TriggerInventoryChangedEvent();
                 return;
             }
         }
@@ -147,13 +137,21 @@ public class Inventory
     public void Remove(int index)
     {
         slots[index].RemoveItem();
-        // InventoryEventHandler.TriggerInventoryChangedEvent();
+    }
+    public void Remove(int index, int numToBeRemoved)
+    {
+        if (slots[index].count >= numToBeRemoved)
+        {
+            for (int i = 0; i < numToBeRemoved; i++)
+            {
+                Remove(index);
+            }
+        }
     }
 
     public void Clear(int index)
     {
         slots[index].ClearItem();
-        // InventoryEventHandler.TriggerInventoryChangedEvent();
     }
 
     public bool CheckInventoryForItemAndQuantity(string nameToFind, int quantity)
@@ -186,13 +184,13 @@ public class Inventory
             {
                 if (counter - slot.count <= 0)
                 {
-                    slot.RemoveItems(counter);
+                    slot.RemoveItem(counter);
                     return;
                 }
                 else
                 {
                     counter -= slot.count;
-                    slot.RemoveItems(slot.count);
+                    slot.RemoveItem(slot.count);
                 }
             }
         }
@@ -222,8 +220,8 @@ public class Inventory
 
         if (toSlot.IsEmpty() || toSlot.CanAddItem(fromSlot.itemName))
         {
-            toSlot.AddItems(fromSlot.itemName, fromSlot.itemDescription, fromSlot.icon, fromSlot.maxAllowed, quantity);
-            fromSlot.RemoveItems(quantity);
+            toSlot.AddItem(fromSlot.itemName, fromSlot.itemDescription, fromSlot.icon, fromSlot.maxAllowed, quantity);
+            fromSlot.RemoveItem(quantity);
         }
         // InventoryEventHandler.TriggerInventoryChangedEvent();
     }
