@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 9a9495a13db25dd4fb5449bed9ca8c22
+guid: 4b1e45690d0e2ad4da9bcd0175c73cf3
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -69,7 +69,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 64
+    maxTextureSize: 256
     resizeAlgorithm: 1
     textureFormat: -1
     textureCompression: 0
@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: grass tiles_0
+      name: dirt tiles-export-export_0
       rect:
         serializedVersion: 2
         x: 0
@@ -124,14 +124,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 61d0207a4bedb6d4b99b8461dcdac2ab
-      internalID: 1150003368
+      spriteID: 9c7b73f4edfcbba49b6f25494f3c2e4d
+      internalID: -1193845078
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: grass tiles_1
+      name: dirt tiles-export-export_1
       rect:
         serializedVersion: 2
         x: 64
@@ -145,14 +145,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9f9b6c44270296e449dab4b05dcb7f6a
-      internalID: 1897585702
+      spriteID: eafe0831cd9a1ab4f96b7869abbd4ffb
+      internalID: -1007157949
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: grass tiles_2
+      name: dirt tiles-export-export_2
       rect:
         serializedVersion: 2
         x: 128
@@ -166,14 +166,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1471e9fd7c38c8f4ba4334e5eae10d39
-      internalID: 1052003387
+      spriteID: 4aef41c4ad780504d8b2b6ef4d401be0
+      internalID: 659475755
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: grass tiles_3
+      name: dirt tiles-export-export_3
       rect:
         serializedVersion: 2
         x: 0
@@ -187,14 +187,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 96029d706a79d854db2be4ea79507f21
-      internalID: 345891445
+      spriteID: 97cdf647e4c48704497090289aaba7cc
+      internalID: 1038142358
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: grass tiles_4
+      name: dirt tiles-export-export_4
       rect:
         serializedVersion: 2
         x: 64
@@ -208,14 +208,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 191e8912104f551409ece7fcfbd47f50
-      internalID: -905491917
+      spriteID: 91b5ae31ce932b5439f98e23c4065d30
+      internalID: -1020695294
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: grass tiles_5
+      name: dirt tiles-export-export_5
       rect:
         serializedVersion: 2
         x: 128
@@ -229,14 +229,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bdfeb1fec91484043826f1f62f843dd2
-      internalID: 201705510
+      spriteID: 5f433350cd1cf7b46a467ba6da1e359d
+      internalID: -309088626
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: grass tiles_6
+      name: dirt tiles-export-export_6
       rect:
         serializedVersion: 2
         x: 0
@@ -250,14 +250,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0d83963d5cb2d1140a49a89d2de0d177
-      internalID: 1958788591
+      spriteID: 53b12133c4ecb264d8e93ff6f335923e
+      internalID: -548571269
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: grass tiles_7
+      name: dirt tiles-export-export_7
       rect:
         serializedVersion: 2
         x: 64
@@ -271,14 +271,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 39eac6bf5014c064b948b3199291cc3a
-      internalID: -368326092
+      spriteID: 0ebd95c7e962ef949ac519e52e63da1f
+      internalID: -1635452575
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: grass tiles_8
+      name: dirt tiles-export-export_8
       rect:
         serializedVersion: 2
         x: 128
@@ -292,8 +292,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dfce41e3ade720d4aabe37469bd3a12f
-      internalID: 1105806608
+      spriteID: 89bc73bec157a834d8020a7e5113be29
+      internalID: -2089726832
       vertices: []
       indices: 
       edges: []
@@ -309,15 +309,15 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      grass tiles_0: 1150003368
-      grass tiles_1: 1897585702
-      grass tiles_2: 1052003387
-      grass tiles_3: 345891445
-      grass tiles_4: -905491917
-      grass tiles_5: 201705510
-      grass tiles_6: 1958788591
-      grass tiles_7: -368326092
-      grass tiles_8: 1105806608
+      dirt tiles-export-export_0: -1193845078
+      dirt tiles-export-export_1: -1007157949
+      dirt tiles-export-export_2: 659475755
+      dirt tiles-export-export_3: 1038142358
+      dirt tiles-export-export_4: -1020695294
+      dirt tiles-export-export_5: -309088626
+      dirt tiles-export-export_6: -548571269
+      dirt tiles-export-export_7: -1635452575
+      dirt tiles-export-export_8: -2089726832
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -6,7 +6,7 @@ public class ToolbarUI : MonoBehaviour
 {
     [SerializeField] private List<SlotUI> toolbarSlots = new List<SlotUI>();
     public GameObject selector;
-    public Inventory inventory;
+    private Inventory inventory;
     public string inventoryName;
 
     private void Start()
@@ -36,6 +36,7 @@ public class ToolbarUI : MonoBehaviour
                 selectedSlot.inventory.Remove(selectedSlot.slotID);
             }
             inventory.SelectSlot(selectedSlot.slotID);
+            InventoryEventHandler.TriggerSelectedSlotChangedEvent();
         }
     }
 

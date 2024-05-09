@@ -19,9 +19,6 @@ public class Player : MonoBehaviour
     public int numHealth;
     public int numMana;
 
-    [SerializeField] private GameObject tileSelector;
-    private TileManager tileManager;
-
     private void Awake()
     {
         inventory = GetComponent<InventoryManager>();
@@ -30,41 +27,6 @@ public class Player : MonoBehaviour
         pa = GetComponent<PlayerAnimation>();
         health = new StatusBar(numHealth, healthbar);
         mana = new StatusBar(numMana, manabar);
-        tileManager = GameManager.instance.tileManager;
-    }
-
-    private void Update()
-    {   
-        Vector3Int tilePos = new Vector3Int((int)Mathf.Round(transform.position.x), (int)Mathf.Round(transform.position.y), 0);
-
-        if (inventory.backpack.selectedSlot != null && inventory.backpack.selectedSlot.itemName == "Shovel")
-        {
-            tileSelector.SetActive(true);
-            tileSelector.transform.position = tilePos;
-        }
-        else 
-        {
-            tileSelector.SetActive(false);
-        }
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            if (tileManager != null)
-            {
-                Vector3Int position = tilePos;
-                string tileName = tileManager.GetTileName(tilePos);
-                if (!string.IsNullOrWhiteSpace(tileName))
-                {
-                    if (tileName == "Interactable" && inventory.backpack.selectedSlot.itemName == "Shovel")
-                    {
-                        tileManager.SetInteracted(tilePos);
-                    }
-                    // else if (tileName == "Interactable" && inventory.backpack.selectedSlot.itemName)   //get item type
-                    // {
-                    //     tileManager.SetI
-                    // }
-                }
-            }
-        }
     }
 
     public void DropItem(Item item)

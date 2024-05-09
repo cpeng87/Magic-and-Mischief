@@ -13,6 +13,11 @@ MonoBehaviour:
   m_Name: Mint Seeds
   m_EditorClassIdentifier: 
   itemName: Mint Seed
-  description: 'A package of mint seeds. Takes 4 days to grow. '
+  description: 'A package of mint seeds. Takes 3 days to grow. '
   icon: {fileID: 21300000, guid: 2f56ccc4b39aaf740aee577ae986a00f, type: 3}
-  growthTime: 4
+  harvestItemName: Mint
+  growthTime: 3
+  growthTiles:
+  - {fileID: 11400000, guid: 547b0a26fa6d97a4aa5452348b3490b3, type: 2}
+  - {fileID: 11400000, guid: 248e938e84b28414ab2402e8bedbc0b9, type: 2}
+  - {fileID: 11400000, guid: 6a29b396700a6cd4a9472323826a9f09, type: 2}

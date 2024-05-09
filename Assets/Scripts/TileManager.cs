@@ -5,7 +5,9 @@ using UnityEngine.Tilemaps;
 
 public class TileManager : MonoBehaviour
 {
+    [SerializeField] private Plantable[] plantables;
     [SerializeField] private Tilemap interactableMap;
+    [SerializeField] private Tilemap plantablesMap;
     [SerializeField] private Tile hiddenInteractableTile;
     [SerializeField] private Tile plowedTile;
 
@@ -40,6 +42,14 @@ public class TileManager : MonoBehaviour
     public void SetInteracted(Vector3Int position)
     {
         interactableMap.SetTile(position, plowedTile);
+    }
+    public void SetPlantablesTile(Vector3Int position, Tile newTile)
+    {
+        plantablesMap.SetTile(position, newTile);
+    }
+    public void SetPlantablesTileNull(Vector3Int position)
+    {
+        plantablesMap.SetTile(position, null);
     }
     public string GetTileName(Vector3Int position)
     {
