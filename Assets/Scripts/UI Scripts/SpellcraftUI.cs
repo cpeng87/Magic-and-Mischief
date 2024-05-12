@@ -68,7 +68,7 @@ public class SpellcraftUI : InteractUI
         {
             ToggleUI();
         }
-        else if (Input.GetKeyDown("z"))
+        else if (Input.GetMouseButtonDown(0))
         {
             if (CheckNecessaryMaterials(spells[currIndex].ingredients))
             {

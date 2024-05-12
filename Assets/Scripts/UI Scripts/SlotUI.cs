@@ -26,21 +26,25 @@ public class SlotUI : MonoBehaviour
         itemIcon.color = new Color(1,1,1,0);
         quantityText.text = "";
     }
-    public bool CheckItemIcon(SlotUI slotui1)
-    {
-        if (slotui1.itemIcon == itemIcon)
-        {
-            Debug.Log("icon same");
-            return true;
-        }
-        return false;
-    }
+    // public bool CheckItemIcon(SlotUI slotui1)
+    // {
+    //     if (slotui1.itemIcon == itemIcon)
+    //     {
+    //         Debug.Log("icon same");
+    //         return true;
+    //     }
+    //     return false;
+    // }
     public void SetMoveBorderActive()
     {
         moveBorder.enabled = true;
     }
     public void SetMoveBorderInactive()
     {
+        if (moveBorder == null)
+        {
+            return;
+        }
         moveBorder.enabled = false;
     }
 }

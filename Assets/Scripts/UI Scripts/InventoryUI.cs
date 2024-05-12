@@ -14,7 +14,7 @@ public class InventoryUI : MonoBehaviour
     public List<SlotUI> slots = new List<SlotUI>();
     public ToolbarUI toolbarUI;
 
-    public GameObject selector;
+    // public GameObject selector;
     public int selectorSlotID;
 
     // private int maxCol = 8;
@@ -157,6 +157,10 @@ public class InventoryUI : MonoBehaviour
 
     public void Remove()
     {
+        if (draggedSlot == null)
+        {
+            return;
+        }
         Item itemToDrop = GameManager.instance.itemManager.GetItemByName(inventory.slots[draggedSlot.slotID].itemName);
         
         if (itemToDrop != null) {
@@ -320,5 +324,10 @@ public class InventoryUI : MonoBehaviour
         SetAllMoveBorderInactive();
         slot.SetMoveBorderActive();
         UpdateItemText(slot);
+    }
+
+    private void OnDestroy()
+    {
+        InventoryEventHandler.OnInventoryChanged -= Refresh;
     }
 }

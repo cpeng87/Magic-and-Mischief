@@ -70,6 +70,7 @@ MonoBehaviour:
   - {fileID: 8457386048211817098, guid: 4a7789b866dd26146a0718e277a56858, type: 3}
   - {fileID: 6800602978498021203, guid: ef2fffac44ddf49438048ef7b158e44a, type: 3}
   - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &6832150540631673449
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -82,7 +83,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d217ab6ce2f9d44d8b1af8ff323a033, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  plantables:
+  - {fileID: 0}
   interactableMap: {fileID: 0}
+  plantablesMap: {fileID: 0}
   hiddenInteractableTile: {fileID: 11400000, guid: 09a4f4ed7338d1b488bb64ba839d8166, type: 2}
   plowedTile: {fileID: 11400000, guid: 2e780a1c14a94684791560f63b519a3c, type: 2}
 --- !u!114 &6812367768547924074
@@ -100,4 +104,4 @@ MonoBehaviour:
   minutes: 0
   hours: 0
   currDay: Monday
-  minutesPerSecond: 1
+  minutesPerSecond: 0.01

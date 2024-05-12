@@ -38,8 +38,20 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Terrain
+  - name: Ground
     uniqueID: 1491892043
+    locked: 0
+  - name: Water
+    uniqueID: 1237302037
+    locked: 0
+  - name: Grass
+    uniqueID: 1888404365
+    locked: 0
+  - name: Wall
+    uniqueID: 1114688265
+    locked: 0
+  - name: Terrain Decorations
+    uniqueID: 3273328783
     locked: 0
   - name: Default
     uniqueID: 0

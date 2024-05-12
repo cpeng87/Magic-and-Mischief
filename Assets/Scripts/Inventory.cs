@@ -230,7 +230,13 @@ public class Inventory
         if (slots != null && slots.Count > 0)
         {
             selectedSlot = slots[index];
-            // InventoryEventHandler.TriggerSelectedSlotChangedEvent();
+            InventoryEventHandler.TriggerSelectedSlotChangedEvent();
         }
+    }
+
+    public void SetInventorySlots(List<Slot> slots)
+    {
+        this.slots = slots;
+        InventoryEventHandler.TriggerInventoryChangedEvent();
     }
 }

@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2725278271829074586
 RectTransform:
   m_ObjectHideFlags: 0
@@ -269,8 +269,20 @@ MonoBehaviour:
   spellImage: {fileID: 1455631881031763863}
   inventory:
     slots: []
+    selectedSlot:
+      count: 0
+      maxAllowed: 999
+      itemName: 
+      itemDescription: 
+      icon: {fileID: 0}
   toolbar:
     slots: []
+    selectedSlot:
+      count: 0
+      maxAllowed: 999
+      itemName: 
+      itemDescription: 
+      icon: {fileID: 0}
   spells:
   - {fileID: 11400000, guid: e17a9b7a3bf323f4fa927ed725290681, type: 2}
 --- !u!114 &4164571519917893476
@@ -930,7 +942,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: z to craft
+  m_text: space to craft
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3335600407576424d981e808b80387f9, type: 2}
   m_sharedMaterial: {fileID: 3767916104089683573, guid: 3335600407576424d981e808b80387f9, type: 2}
@@ -993,7 +1005,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 1.0473022, w: -6.7402344}
+  m_margin: {x: -166.1477, y: 0, z: 1.0473022, w: -6.7402344}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

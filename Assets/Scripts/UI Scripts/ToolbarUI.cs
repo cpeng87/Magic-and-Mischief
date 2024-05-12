@@ -9,6 +9,8 @@ public class ToolbarUI : MonoBehaviour
     private Inventory inventory;
     public string inventoryName;
 
+    private SlotUI selectedSlot;
+
     private void Start()
     {
         inventory = GameManager.instance.player.inventory.GetInventoryByName(inventoryName);
@@ -23,21 +25,31 @@ public class ToolbarUI : MonoBehaviour
     {
         if (toolbarSlots.Count == 8)
         {
-            SlotUI selectedSlot = toolbarSlots[index];
+            selectedSlot = toolbarSlots[index];
             MoveSelector(index);
-            if (selectedSlot.inventory.slots[selectedSlot.slotID].IsEmpty())
-            {
-                inventory.SelectSlot(selectedSlot.slotID);
-                return;
-            }
-            bool result = GameManager.instance.itemManager.GetItemByName(inventory.slots[selectedSlot.slotID].itemName).Use();
-            if (result)
-            {
-                selectedSlot.inventory.Remove(selectedSlot.slotID);
-            }
+
             inventory.SelectSlot(selectedSlot.slotID);
             InventoryEventHandler.TriggerSelectedSlotChangedEvent();
         }
+    }
+
+    public void UseItemSelectedInToolbar()
+    {
+        if (GameManager.instance.PeekActiveMenu() != null)
+        {
+            return;
+        }
+        else if (selectedSlot == null || inventory.slots[selectedSlot.slotID] == null || inventory.slots[selectedSlot.slotID].itemName == "")
+        {
+            return;
+        }
+        bool result = GameManager.instance.itemManager.GetItemByName(inventory.slots[selectedSlot.slotID].itemName).Use();
+        if (result)
+        {
+            selectedSlot.inventory.Remove(selectedSlot.slotID);
+            InventoryEventHandler.TriggerSelectedSlotChangedEvent();
+        }
+
     }
 
     private void CheckAlphaNumericKeys()

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class GameManager : MonoBehaviour
 
     public int activeMenuCount;
     private Stack<GameObject> activeMenus = new Stack<GameObject>();
+
+    private List<Inventory.Slot> savedSlots;
 
     private void Awake()
     {
@@ -32,7 +35,27 @@ public class GameManager : MonoBehaviour
         timeManager = GetComponent<TimeManager>();
 
         player = FindObjectOfType<Player>();
-        
+
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // itemManager = GetComponent<ItemManager>();
+        // tileManager = GetComponent<TileManager>();
+        // timeManager = GetComponent<TimeManager>();
+
+        player = FindObjectOfType<Player>();
+        if (savedSlots != null)
+        {
+            player.inventory.GetInventoryByName("Backpack").SetInventorySlots(savedSlots);
+        }
+    }
+
+    public void SceneSwap(string sceneName)
+    {
+        savedSlots = player.inventory.GetInventoryByName("Backpack").slots;
+        SceneManager.LoadScene(sceneName);
     }
 
     public void PushActiveMenu(GameObject newMenu)

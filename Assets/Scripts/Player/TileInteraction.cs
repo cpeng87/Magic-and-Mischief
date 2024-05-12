@@ -16,6 +16,7 @@ public class TileInteraction : MonoBehaviour
     {
         inventory = GetComponent<InventoryManager>();
         tileManager = GameManager.instance.tileManager;
+        // tileSelector = GameManager.instance.player.
         tileSelector.SetActive(false);
         tilePos = new Vector3Int((int) Mathf.Round(transform.position.x), (int)Mathf.Round(transform.position.y), 0);
     }
@@ -33,7 +34,7 @@ public class TileInteraction : MonoBehaviour
         tilePos = new Vector3Int((int) Mathf.Round(transform.position.x), (int)Mathf.Round(transform.position.y), 0);
         tileSelector.transform.position = tilePos;
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetMouseButtonDown(0))
         {
             if (tileManager != null)
             {
@@ -109,5 +110,11 @@ public class TileInteraction : MonoBehaviour
     {
         Item plant = GameManager.instance.itemManager.GetItemByName(plantableGrowth.harvestItemName);
         Item harvestItem = Instantiate(plant, plantableGrowth.position, Quaternion.identity);
+    }
+
+    void OnDestroy() {
+        InventoryEventHandler.OnInventoryChanged -= UpdateTileSelectorPos;
+        InventoryEventHandler.OnSelectedSlotChanged -= UpdateTileSelectorPos;
+        TimeEventHandler.OnDayChanged -= UpdateDayCounters;
     }
 }

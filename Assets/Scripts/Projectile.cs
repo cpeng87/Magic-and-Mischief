@@ -8,6 +8,7 @@ public class Projectile : MonoBehaviour
     public float duration;
     public float speed;
     public Vector3 direction;
+    // public Vector3 rotation;
     private float timer;
     private SpriteRenderer spriteRenderer;
     // Start is called before the first frame update
@@ -31,26 +32,9 @@ public class Projectile : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    public void SetDirection()
+    public void SetDirection(Vector3 mousePos)
     {
         transform.position = GameManager.instance.player.transform.position;
-        direction = GameManager.instance.player.pm.currDirection;
-
-        spriteRenderer.flipX = direction.x > 0;
-        if (direction.y > 0)
-        {
-            spriteRenderer.transform.rotation = Quaternion.Euler(0f, 0f, -90f);
-        }
-        // Rotate the image -90 degrees if moving down
-        else if (direction.y < 0)
-        {
-            spriteRenderer.transform.rotation = Quaternion.Euler(0f, 0f, 90f);
-        }
-        else
-        {
-            // Reset rotation if not moving in any significant direction
-            spriteRenderer.transform.rotation = Quaternion.identity;
-        }
-
+        direction = (mousePos - transform.position).normalized;
     }
 }
