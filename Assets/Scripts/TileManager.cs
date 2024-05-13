@@ -70,4 +70,8 @@ public class TileManager : MonoBehaviour
         }
         return null;
     }
+    public void LoadPlantablesMap()
+    {
+        GameManager.instance.player.GetComponent<TileInteraction>().SetPlantableGrowthDict(GameManager.instance.tileSave.GetSavedMapTile(SceneManager.GetActiveScene().name));
+    }
 }

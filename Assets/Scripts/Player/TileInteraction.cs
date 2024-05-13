@@ -40,7 +40,7 @@ public class TileInteraction : MonoBehaviour
             {
                 Vector3Int position = tilePos;
                 string tileName = tileManager.GetTileName(tilePos);
-                if (!string.IsNullOrWhiteSpace(tileName))
+                if (!string.IsNullOrWhiteSpace(tileName) && inventory.backpack.selectedSlot != null)
                 {
                     CheckItemSelected(tileName, inventory.backpack.selectedSlot.itemName);
                 }
@@ -104,6 +104,7 @@ public class TileInteraction : MonoBehaviour
         {
             plantableGrowthDict[pos].IncrementDay();
         }
+        GameManager.instance.tileSave.IncrementDayOffMap();
     }
 
     private void HarvestCrop(PlantableGrowth plantableGrowth)
@@ -116,5 +117,20 @@ public class TileInteraction : MonoBehaviour
         InventoryEventHandler.OnInventoryChanged -= UpdateTileSelectorPos;
         InventoryEventHandler.OnSelectedSlotChanged -= UpdateTileSelectorPos;
         TimeEventHandler.OnDayChanged -= UpdateDayCounters;
+    }
+
+    public void SetPlantableGrowthDict(Dictionary<Vector3Int, PlantableGrowth> newDict)
+    {
+        plantableGrowthDict = newDict;
+        foreach (Vector3Int pos in plantableGrowthDict.Keys)
+        {
+            tileManager.SetDigTile(pos);
+            plantableGrowthDict[pos].UpdateTileDisplay();
+        }
+    }
+
+    public Dictionary<Vector3Int, PlantableGrowth> GetPlantableGrowthsDict()
+    {
+        return plantableGrowthDict;
     }
 }

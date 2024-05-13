@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public ItemManager itemManager;
     public TileManager tileManager;
     public TimeManager timeManager;
+    public TileSave tileSave;
 
     public Player player;
 
@@ -34,6 +35,7 @@ public class GameManager : MonoBehaviour
         itemManager = GetComponent<ItemManager>();
         tileManager = GetComponent<TileManager>();
         timeManager = GetComponent<TimeManager>();
+        tileSave = GetComponent<TileSave>();
 
         player = FindObjectOfType<Player>();
 
@@ -55,12 +57,14 @@ public class GameManager : MonoBehaviour
         {
             player.transform.position = sm.GetPositionByName(nextSpawnpoint);
         }
+        tileManager.LoadPlantablesMap();
     }
 
     public void SceneSwap(string sceneName, string spawnpointName)
     {
         savedSlots = player.inventory.GetInventoryByName("Backpack").slots;
         SceneManager.LoadScene(sceneName);
+        tileSave.AddMapPlantables(SceneManager.GetActiveScene().name, player.ti.GetPlantableGrowthsDict());
 
         nextSpawnpoint = spawnpointName;
     }

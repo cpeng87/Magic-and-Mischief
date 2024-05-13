@@ -33,6 +33,20 @@ public class ToolbarUI : MonoBehaviour
         }
     }
 
+    public void SelectSlot(SlotUI slotui)
+    {
+        Debug.Log(slotui);
+        int index = slotui.slotID;
+        if (toolbarSlots.Count == 8)
+        {
+            selectedSlot = toolbarSlots[index];
+            MoveSelector(index);
+
+            inventory.SelectSlot(selectedSlot.slotID);
+            InventoryEventHandler.TriggerSelectedSlotChangedEvent();
+        }
+    }
+
     public void UseItemSelectedInToolbar()
     {
         if (GameManager.instance.PeekActiveMenu() != null)

@@ -57,4 +57,9 @@ public class PlantableGrowth
         dayCounter++;
         CheckAndUpdateGrowth();
     }
+
+    public void UpdateTileDisplay()
+    {
+        tileManager.SetPlantablesTile(position, tiles[tileCounter]);
+    }
 }

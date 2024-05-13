@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     public PlayerSpell ps;
     public PlayerMovement pm;
     public PlayerAnimation pa;
+    public TileInteraction ti;
 
     public StatusBar health;
     public StatusBar mana;
@@ -25,6 +26,7 @@ public class Player : MonoBehaviour
         ps = GetComponent<PlayerSpell>();
         pm = GetComponent<PlayerMovement>();
         pa = GetComponent<PlayerAnimation>();
+        ti = GetComponent<TileInteraction>();
         health = new StatusBar(numHealth, healthbar);
         mana = new StatusBar(numMana, manabar);
     }
