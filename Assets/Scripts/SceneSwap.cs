@@ -7,6 +7,7 @@ public class SceneSwap : MonoBehaviour
 {
     // Specify the name of the scene you want to switch to
     public string sceneToLoad;
+    public string spawnpointName;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -15,7 +16,7 @@ public class SceneSwap : MonoBehaviour
         {
             // Load the specified scene
             // SceneManager.LoadScene(sceneToLoad);
-            GameManager.instance.SceneSwap(sceneToLoad);
+            GameManager.instance.SceneSwap(sceneToLoad, spawnpointName);
         }
     }
 }

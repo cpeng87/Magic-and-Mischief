@@ -52,7 +52,7 @@ public class TileInteraction : MonoBehaviour
     {
         if (tileName == "Interactable" && itemName == "Shovel")
         {
-            tileManager.SetInteracted(tilePos);
+            tileManager.SetDigTile(tilePos);
             return;
         }
         Item selectedItem = GameManager.instance.itemManager.GetItemByName(inventory.backpack.selectedSlot.itemName);

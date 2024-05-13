@@ -2,33 +2,40 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.SceneManagement;
 
 public class TileManager : MonoBehaviour
 {
-    [SerializeField] private Plantable[] plantables;
-    [SerializeField] private Tilemap interactableMap;
-    [SerializeField] private Tilemap plantablesMap;
+    // [SerializeField] private Plantable[] plantables;
+    private Tilemap digMap;
+    private Tilemap plantablesMap;
     [SerializeField] private Tile hiddenInteractableTile;
     [SerializeField] private Tile plowedTile;
 
     // Start is called before the first frame update
-    void Start()
+    public void SetDiggableTiles()
     {
-        // set interactable tiles to invisible one
-        foreach(var position in interactableMap.cellBounds.allPositionsWithin)
+        digMap = GameObject.Find("Dig Map").GetComponent<Tilemap>();
+        plantablesMap = GameObject.Find("Plantables Map").GetComponent<Tilemap>();
+        if (digMap == null)
         {
-            TileBase tile = interactableMap.GetTile(position);
+            return;
+        }
+        // set interactable tiles to invisible one
+        foreach(var position in digMap.cellBounds.allPositionsWithin)
+        {
+            TileBase tile = digMap.GetTile(position);
 
             if (tile != null && tile.name == "Interactable_Visible")
             {
-                interactableMap.SetTile(position, hiddenInteractableTile);
+                digMap.SetTile(position, hiddenInteractableTile);
             }
         }
     }
 
-    public bool IsInteractable(Vector3Int position)
+    public bool IsDiggable(Vector3Int position)
     {
-        TileBase tile = interactableMap.GetTile(position);
+        TileBase tile = digMap.GetTile(position);
         if (tile != null)
         {
             if (tile.name == "Interactable")
@@ -39,9 +46,9 @@ public class TileManager : MonoBehaviour
         return false;
     }
 
-    public void SetInteracted(Vector3Int position)
+    public void SetDigTile(Vector3Int position)
     {
-        interactableMap.SetTile(position, plowedTile);
+        digMap.SetTile(position, plowedTile);
     }
     public void SetPlantablesTile(Vector3Int position, Tile newTile)
     {
@@ -53,9 +60,9 @@ public class TileManager : MonoBehaviour
     }
     public string GetTileName(Vector3Int position)
     {
-        if (interactableMap != null)
+        if (digMap != null)
         {
-            TileBase tile = interactableMap.GetTile(position);
+            TileBase tile = digMap.GetTile(position);
             if (tile != null)
             {
                 return tile.name;

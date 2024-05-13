@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     private Stack<GameObject> activeMenus = new Stack<GameObject>();
 
     private List<Inventory.Slot> savedSlots;
+    private string nextSpawnpoint;
 
     private void Awake()
     {
@@ -41,21 +42,27 @@ public class GameManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // itemManager = GetComponent<ItemManager>();
-        // tileManager = GetComponent<TileManager>();
-        // timeManager = GetComponent<TimeManager>();
-
         player = FindObjectOfType<Player>();
         if (savedSlots != null)
         {
             player.inventory.GetInventoryByName("Backpack").SetInventorySlots(savedSlots);
         }
+        tileManager.SetDiggableTiles();
+
+        SpawnpointManager sm = FindObjectOfType<SpawnpointManager>();
+        sm.OrganizeSpawnpoint();
+        if (sm.CheckContainsKey(nextSpawnpoint))
+        {
+            player.transform.position = sm.GetPositionByName(nextSpawnpoint);
+        }
     }
 
-    public void SceneSwap(string sceneName)
+    public void SceneSwap(string sceneName, string spawnpointName)
     {
         savedSlots = player.inventory.GetInventoryByName("Backpack").slots;
         SceneManager.LoadScene(sceneName);
+
+        nextSpawnpoint = spawnpointName;
     }
 
     public void PushActiveMenu(GameObject newMenu)

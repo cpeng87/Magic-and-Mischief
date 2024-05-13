@@ -9,7 +9,7 @@ public class ToolbarUI : MonoBehaviour
     private Inventory inventory;
     public string inventoryName;
 
-    private SlotUI selectedSlot;
+    public SlotUI selectedSlot;
 
     private void Start()
     {
