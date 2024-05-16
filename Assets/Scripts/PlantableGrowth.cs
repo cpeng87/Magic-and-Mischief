@@ -16,8 +16,9 @@ public class PlantableGrowth
     public string harvestItemName;
     public Tile activeTile;
     public bool isFullyGrown = false;
+    public bool isWatered;
 
-    private int dayCounter;
+    private int growthCounter;
     private int tileCounter = 0;
 
     // Start is called before the first frame update
@@ -39,7 +40,7 @@ public class PlantableGrowth
         {
             return;
         }
-        if (dayCounter >= timeBetweenGrowth)  //update tile
+        if (growthCounter >= timeBetweenGrowth)  //update tile
         {
             tileCounter++;
             if (tileCounter + 1 >= tiles.Length)
@@ -49,12 +50,16 @@ public class PlantableGrowth
 
             tileManager.SetPlantablesTile(position, tiles[tileCounter]); // set at 0 for just seeds so far
             activeTile = tiles[tileCounter];
-            dayCounter = 0;
+            growthCounter = 0;
         }
     }
     public void IncrementDay()
     {
-        dayCounter++;
+        if (isWatered)
+        {
+            growthCounter++;
+        }
+        isWatered = false;
         CheckAndUpdateGrowth();
     }
 

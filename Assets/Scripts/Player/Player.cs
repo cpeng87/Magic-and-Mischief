@@ -20,6 +20,9 @@ public class Player : MonoBehaviour
     public int numHealth;
     public int numMana;
 
+    public int currency;
+    private int maxCurrency = 999999;
+
     private void Awake()
     {
         inventory = GetComponent<InventoryManager>();
@@ -46,5 +49,27 @@ public class Player : MonoBehaviour
         {
             DropItem(item);
         }
+    }
+
+    public bool AddCurrency(int addedVal)
+    {
+        if (currency + addedVal > maxCurrency)
+        {
+            return false;
+        }
+        currency += addedVal;
+        CurrencyEventHandler.TriggerCurrencyChangedEvent();
+        return true;
+    }
+
+    public bool SubtractCurrency(int subtractedVal)
+    {
+        if (currency < subtractedVal)
+        {
+            return false;
+        }
+        currency -= subtractedVal;
+        CurrencyEventHandler.TriggerCurrencyChangedEvent();
+        return true;
     }
 }

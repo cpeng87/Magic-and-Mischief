@@ -53,11 +53,14 @@ public class ToolbarUI : MonoBehaviour
         {
             return;
         }
-        else if (selectedSlot == null || inventory.slots[selectedSlot.slotID] == null || inventory.slots[selectedSlot.slotID].itemName == "")
+        GameManager.instance.player.ti.CheckHarvestable();
+        if (selectedSlot == null || inventory.slots[selectedSlot.slotID] == null || inventory.slots[selectedSlot.slotID].itemName == "")
         {
             return;
         }
         bool result = GameManager.instance.itemManager.GetItemByName(inventory.slots[selectedSlot.slotID].itemName).Use();
+        GameManager.instance.player.ti.UseItemOnTile();
+        //true if item is consumed on usage
         if (result)
         {
             selectedSlot.inventory.Remove(selectedSlot.slotID);

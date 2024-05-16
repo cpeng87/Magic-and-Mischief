@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3404472aebeba9e438784fc363421189, type: 3}
-  m_Name: Shovel
+  m_Name: Fern
   m_EditorClassIdentifier: 
-  itemName: Shovel
-  description: A basic shovel used to move dirt.
-  icon: {fileID: 21300000, guid: 597f44a7857016c4b8c582455f1abf9b, type: 3}
+  itemName: Fern
+  description: There are some spores underneath the leaves.
+  icon: {fileID: 21300000, guid: c7ecf697a29787a4d8e6688d71b8856b, type: 3}

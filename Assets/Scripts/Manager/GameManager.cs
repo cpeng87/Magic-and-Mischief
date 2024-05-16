@@ -45,11 +45,21 @@ public class GameManager : MonoBehaviour
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         player = FindObjectOfType<Player>();
+        MapManager mapManager = FindObjectOfType<MapManager>();
+
+        if (mapManager != null)
+        {
+            mapManager.SpawnCollectibles();
+        }
         if (savedSlots != null)
         {
             player.inventory.GetInventoryByName("Backpack").SetInventorySlots(savedSlots);
         }
-        tileManager.SetDiggableTiles();
+        if (tileManager != null)
+        {
+            tileManager.SetDiggableTiles();
+            tileManager.LoadPlantablesMap();
+        }
 
         SpawnpointManager sm = FindObjectOfType<SpawnpointManager>();
         sm.OrganizeSpawnpoint();
@@ -57,7 +67,6 @@ public class GameManager : MonoBehaviour
         {
             player.transform.position = sm.GetPositionByName(nextSpawnpoint);
         }
-        tileManager.LoadPlantablesMap();
     }
 
     public void SceneSwap(string sceneName, string spawnpointName)

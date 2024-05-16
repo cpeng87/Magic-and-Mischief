@@ -33,17 +33,40 @@ public class TileInteraction : MonoBehaviour
     {
         tilePos = new Vector3Int((int) Mathf.Round(transform.position.x), (int)Mathf.Round(transform.position.y), 0);
         tileSelector.transform.position = tilePos;
+    }
 
-        if (Input.GetMouseButtonDown(0))
+    public void UseItemOnTile()
+    {
+        if (tileManager != null)
         {
-            if (tileManager != null)
+            Vector3Int position = tilePos;
+            string tileName = tileManager.GetTileName(tilePos);
+            if (!string.IsNullOrWhiteSpace(tileName) && inventory.backpack.selectedSlot != null)
             {
-                Vector3Int position = tilePos;
-                string tileName = tileManager.GetTileName(tilePos);
-                if (!string.IsNullOrWhiteSpace(tileName) && inventory.backpack.selectedSlot != null)
-                {
-                    CheckItemSelected(tileName, inventory.backpack.selectedSlot.itemName);
-                }
+                CheckItemSelected(tileName, inventory.backpack.selectedSlot.itemName);
+            }
+
+            // if (plantableGrowthDict.ContainsKey(tilePos))
+            // {
+            //     if (plantableGrowthDict[tilePos].isFullyGrown)
+            //     {
+            //         HarvestCrop(plantableGrowthDict[tilePos]);
+            //         plantableGrowthDict.Remove(tilePos);
+            //         tileManager.SetPlantablesTileNull(tilePos);
+            //     }
+            // }
+        }
+    }
+
+    public void CheckHarvestable()
+    {
+        if (plantableGrowthDict.ContainsKey(tilePos))
+        {
+            if (plantableGrowthDict[tilePos].isFullyGrown)
+            {
+                HarvestCrop(plantableGrowthDict[tilePos]);
+                plantableGrowthDict.Remove(tilePos);
+                tileManager.SetPlantablesTileNull(tilePos);
             }
         }
     }
@@ -56,7 +79,7 @@ public class TileInteraction : MonoBehaviour
             return;
         }
         Item selectedItem = GameManager.instance.itemManager.GetItemByName(inventory.backpack.selectedSlot.itemName);
-        if (tileName == "Interacted_Tile" && selectedItem is Plantable)   //get item type
+        if ((tileName == "dugTile") && selectedItem is Plantable)   //get item type
         {
             Plantable plantable = (Plantable) selectedItem;
             PlantableGrowth newPlant = new PlantableGrowth(tilePos, itemName, plantable.plantableData.growthTiles, plantable.plantableData.growthTime, plantable.plantableData.harvestItemName);
@@ -66,15 +89,34 @@ public class TileInteraction : MonoBehaviour
                 inventory.backpack.selectedSlot.RemoveItem();
             }
         }
-        if (plantableGrowthDict.ContainsKey(tilePos))
+        else if ((tileName == "wateredTile") && selectedItem is Plantable)   //get item type
         {
-            if (plantableGrowthDict[tilePos].isFullyGrown)
+            Plantable plantable = (Plantable) selectedItem;
+            PlantableGrowth newPlant = new PlantableGrowth(tilePos, itemName, plantable.plantableData.growthTiles, plantable.plantableData.growthTime, plantable.plantableData.harvestItemName);
+            if (!plantableGrowthDict.ContainsKey(tilePos))
             {
-                HarvestCrop(plantableGrowthDict[tilePos]);
-                plantableGrowthDict.Remove(tilePos);
-                tileManager.SetPlantablesTileNull(tilePos);
+                newPlant.isWatered = true;
+                plantableGrowthDict.Add(tilePos, newPlant);
+                inventory.backpack.selectedSlot.RemoveItem();
             }
         }
+        else if (tileName == "dugTile" && itemName == "Watering Can")
+        {
+            tileManager.SetWateredTile(tilePos);
+            if (plantableGrowthDict.ContainsKey(tilePos))
+            {
+                plantableGrowthDict[tilePos].isWatered = true;
+            }
+        }
+        // if (plantableGrowthDict.ContainsKey(tilePos))
+        // {
+        //     if (plantableGrowthDict[tilePos].isFullyGrown)
+        //     {
+        //         HarvestCrop(plantableGrowthDict[tilePos]);
+        //         plantableGrowthDict.Remove(tilePos);
+        //         tileManager.SetPlantablesTileNull(tilePos);
+        //     }
+        // }
     }
 
     private void UpdateTileSelectorPos()
@@ -86,7 +128,7 @@ public class TileInteraction : MonoBehaviour
             tileSelector.SetActive(false);
             return;
         }
-        else if (inventory.backpack.selectedSlot.itemName == "Shovel" || GameManager.instance.itemManager.GetItemByName(inventory.backpack.selectedSlot.itemName) is Plantable)
+        else if (inventory.backpack.selectedSlot.itemName == "Shovel" || inventory.backpack.selectedSlot.itemName == "Watering Can" || GameManager.instance.itemManager.GetItemByName(inventory.backpack.selectedSlot.itemName) is Plantable)
         {
             tileSelector.SetActive(true);
             return;
@@ -103,6 +145,7 @@ public class TileInteraction : MonoBehaviour
         foreach (Vector3Int pos in plantableGrowthDict.Keys)
         {
             plantableGrowthDict[pos].IncrementDay();
+            tileManager.SetDigTile(pos);
         }
         GameManager.instance.tileSave.IncrementDayOffMap();
     }

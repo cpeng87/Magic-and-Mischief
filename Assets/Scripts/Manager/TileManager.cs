@@ -11,6 +11,7 @@ public class TileManager : MonoBehaviour
     private Tilemap plantablesMap;
     [SerializeField] private Tile hiddenInteractableTile;
     [SerializeField] private Tile plowedTile;
+    [SerializeField] private Tile wateredTile;
 
     // Start is called before the first frame update
     public void SetDiggableTiles()
@@ -49,6 +50,10 @@ public class TileManager : MonoBehaviour
     public void SetDigTile(Vector3Int position)
     {
         digMap.SetTile(position, plowedTile);
+    }
+    public void SetWateredTile(Vector3Int position)
+    {
+        digMap.SetTile(position, wateredTile);
     }
     public void SetPlantablesTile(Vector3Int position, Tile newTile)
     {
