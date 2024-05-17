@@ -128,10 +128,18 @@ public class TileInteraction : MonoBehaviour
             tileSelector.SetActive(false);
             return;
         }
-        else if (inventory.backpack.selectedSlot.itemName == "Shovel" || inventory.backpack.selectedSlot.itemName == "Watering Can" || GameManager.instance.itemManager.GetItemByName(inventory.backpack.selectedSlot.itemName) is Plantable)
+        Item selectedItem = GameManager.instance.itemManager.GetItemByName(inventory.backpack.selectedSlot.itemName);
+        Debug.Log(selectedItem);
+        if (inventory.backpack.selectedSlot.itemName == "Shovel" || inventory.backpack.selectedSlot.itemName == "Watering Can" || selectedItem is Plantable)
         {
+            tileSelector.transform.localScale = new Vector2(1,1);
             tileSelector.SetActive(true);
             return;
+        }
+        else if (selectedItem is Placeable)
+        {
+            tileSelector.SetActive(true);
+            tileSelector.transform.localScale = ((Placeable) selectedItem).placeableData.size;
         }
         else
         {
@@ -175,5 +183,28 @@ public class TileInteraction : MonoBehaviour
     public Dictionary<Vector3Int, PlantableGrowth> GetPlantableGrowthsDict()
     {
         return plantableGrowthDict;
+    }
+
+    public bool PlaceItem(GameObject placedItem, Vector2 size)
+    {
+        if (GameManager.instance.tileManager.CheckPlaceable(tilePos, size))
+        {
+            Debug.Log("its placeable!");
+            //place the item
+            Vector3 calcedPos = new Vector3(tilePos.x + size.x/2, tilePos.y + size.y/2, 0);
+            Instantiate(placedItem, calcedPos, Quaternion.identity);
+            GameManager.instance.tileManager.Place(tilePos, size);
+
+            Item selectedItem = GameManager.instance.itemManager.GetItemByName(inventory.backpack.selectedSlot.itemName);
+            if (selectedItem is Chest)
+            {
+                GameManager.instance.player.inventory.AddChest(tilePos);
+            }
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }

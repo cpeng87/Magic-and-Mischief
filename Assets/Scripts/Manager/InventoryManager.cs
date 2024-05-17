@@ -9,6 +9,7 @@ public class InventoryManager : MonoBehaviour
     [Header("Backpack")]
     public Inventory backpack;
     public int backpackSlotCount;
+    public Dictionary<Vector3Int, Inventory> chests = new Dictionary<Vector3Int, Inventory>();
 
     private void Awake()
     {
@@ -33,5 +34,11 @@ public class InventoryManager : MonoBehaviour
         }
 
         return null;
+    }
+    public void AddChest(Vector3Int position)
+    {
+        Inventory chest = new Inventory(24);
+        chests.Add(position, chest);
+        // chests.Add(chest);
     }
 }

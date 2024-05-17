@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08225a78750c40543bf64b7aef78c435, type: 3}
+  m_Name: Chest
+  m_EditorClassIdentifier: 
+  itemName: Chest
+  description: A large wooden chest. Items can be placed inside.
+  icon: {fileID: 21300000, guid: f1cafb8e25810344cb2b2ed36241ecf6, type: 3}
+  size: {x: 1, y: 1}
+  placedItem: {fileID: 3467273913824665915, guid: 07e23b51096fb894d97ec1429cb99677, type: 3}

@@ -9,6 +9,7 @@ public class TileManager : MonoBehaviour
     // [SerializeField] private Plantable[] plantables;
     private Tilemap digMap;
     private Tilemap plantablesMap;
+    private Tilemap unplaceableMap;
     [SerializeField] private Tile hiddenInteractableTile;
     [SerializeField] private Tile plowedTile;
     [SerializeField] private Tile wateredTile;
@@ -18,6 +19,8 @@ public class TileManager : MonoBehaviour
     {
         digMap = GameObject.Find("Dig Map").GetComponent<Tilemap>();
         plantablesMap = GameObject.Find("Plantables Map").GetComponent<Tilemap>();
+        unplaceableMap = GameObject.Find("Unplaceable Map").GetComponent<Tilemap>();
+
         if (digMap == null)
         {
             return;
@@ -78,5 +81,32 @@ public class TileManager : MonoBehaviour
     public void LoadPlantablesMap()
     {
         GameManager.instance.player.GetComponent<TileInteraction>().SetPlantableGrowthDict(GameManager.instance.tileSave.GetSavedMapTile(SceneManager.GetActiveScene().name));
+    }
+    public bool CheckPlaceable(Vector3Int position, Vector2 size)
+    {
+        for (int i = position.x - (int) size.x - 1; i <= position.x; i++)
+        {
+            for (int j = position.y - (int) size.y - 1; j <= position.y; j++)
+            {
+                Vector3Int currPos = new Vector3Int(i, j, 0);
+                if (unplaceableMap.GetTile(currPos) != null)
+                {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public void Place(Vector3Int position, Vector2 size)
+    {
+        for (int i = position.x - (int) size.x - 1; i <= position.x; i++)
+        {
+            for (int j = position.y - (int) size.y - 1; j <= position.y; j++)
+            {
+                Vector3Int currPos = new Vector3Int(i, j, 0);
+                unplaceableMap.SetTile(position, plowedTile);
+            }
+        }
     }
 }
