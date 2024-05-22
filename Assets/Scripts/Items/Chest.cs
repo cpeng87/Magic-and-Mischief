@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Chest : Placeable
 {
+    private void Awake()
+    {
+        
+    }
     public override bool Use()
     {
         //goes to the right and up for the selector

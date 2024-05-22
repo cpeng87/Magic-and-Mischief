@@ -4,37 +4,45 @@ using UnityEngine;
 
 public class ChestUI : InteractUI
 {
-    public Inventory chest;
-    public GameObject chestUI;
+    public InventoryUI inventoryUI;
+    public InventoryUI chestUI;
+    public GameObject display;
 
-    // Start is called before the first frame update
-    void Awake()
+
+    void Start()
     {
-        chestUI.SetActive(false);
+        display.SetActive(false);
     }
 
+    // Update is called once per frame
     public override void ToggleUI()
     {
-        if (!chestUI.activeSelf)
+        if (!display.activeSelf)
         {
-            chestUI.SetActive(true);
+            // display.SetActive(true);
+            LoadChest();
+            // if (chestUI.inventory == null)
+            // {
+            //     return;
+            // }
+            display.SetActive(true);
             Time.timeScale = 0f;
             GameManager.instance.PushActiveMenu(this.gameObject);
-            LoadChest();
         }
         else
         {   
-            chestUI.SetActive(false);
+            display.SetActive(false);
             GameManager.instance.PopActiveMenu();
             if (GameManager.instance.activeMenuCount == 0)
             {
                 Time.timeScale = 1f;
             }
+            
         }
     }
 
-    public void LoadChest()
+    private void LoadChest()
     {
-        Inventory currChest = GameManager.instance.player.inventory.chests[position];
+        chestUI.SetInventory(pos);
     }
 }

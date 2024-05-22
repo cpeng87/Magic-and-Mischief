@@ -16,4 +16,4 @@ MonoBehaviour:
   description: A large wooden chest. Items can be placed inside.
   icon: {fileID: 21300000, guid: f1cafb8e25810344cb2b2ed36241ecf6, type: 3}
   size: {x: 1, y: 1}
-  placedItem: {fileID: 3467273913824665915, guid: 07e23b51096fb894d97ec1429cb99677, type: 3}
+  placedItem: {fileID: 6868270778958593015, guid: 07e23b51096fb894d97ec1429cb99677, type: 3}

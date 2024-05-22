@@ -16,7 +16,6 @@ public class TileInteraction : MonoBehaviour
     {
         inventory = GetComponent<InventoryManager>();
         tileManager = GameManager.instance.tileManager;
-        // tileSelector = GameManager.instance.player.
         tileSelector.SetActive(false);
         tilePos = new Vector3Int((int) Mathf.Round(transform.position.x), (int)Mathf.Round(transform.position.y), 0);
     }
@@ -41,20 +40,12 @@ public class TileInteraction : MonoBehaviour
         {
             Vector3Int position = tilePos;
             string tileName = tileManager.GetTileName(tilePos);
-            if (!string.IsNullOrWhiteSpace(tileName) && inventory.backpack.selectedSlot != null)
+            if (!string.IsNullOrWhiteSpace(tileName) && inventory.GetInventory("Toolbar").selectedSlot != null)
             {
-                CheckItemSelected(tileName, inventory.backpack.selectedSlot.itemName);
+                // CheckItemSelected(tileName, inventory.toolbar.selectedSlot.itemName);
+                Debug.Log(inventory.GetInventory("Toolbar").selectedSlot.itemName);
+                CheckItemSelected(tileName, GameManager.instance.itemManager.GetItemByName(inventory.GetInventory("Toolbar").selectedSlot.itemName));
             }
-
-            // if (plantableGrowthDict.ContainsKey(tilePos))
-            // {
-            //     if (plantableGrowthDict[tilePos].isFullyGrown)
-            //     {
-            //         HarvestCrop(plantableGrowthDict[tilePos]);
-            //         plantableGrowthDict.Remove(tilePos);
-            //         tileManager.SetPlantablesTileNull(tilePos);
-            //     }
-            // }
         }
     }
 
@@ -71,66 +62,64 @@ public class TileInteraction : MonoBehaviour
         }
     }
 
-    private void CheckItemSelected(string tileName, string itemName)
+    private void CheckItemSelected(string tileName, Item selectedItem)
     {
-        if (tileName == "Interactable" && itemName == "Shovel")
+        if (selectedItem == null)
+        {
+            Debug.Log("Selected Item is null");
+            return;
+        }
+        if (tileName == "Interactable" && selectedItem.data.itemName == "Shovel")
         {
             tileManager.SetDigTile(tilePos);
             return;
         }
-        Item selectedItem = GameManager.instance.itemManager.GetItemByName(inventory.backpack.selectedSlot.itemName);
-        if ((tileName == "dugTile") && selectedItem is Plantable)   //get item type
+        if ((tileName == "dugTile"))   //get item type
         {
-            Plantable plantable = (Plantable) selectedItem;
-            PlantableGrowth newPlant = new PlantableGrowth(tilePos, itemName, plantable.plantableData.growthTiles, plantable.plantableData.growthTime, plantable.plantableData.harvestItemName);
-            if (!plantableGrowthDict.ContainsKey(tilePos))
+            if (selectedItem is Plantable)
             {
-                plantableGrowthDict.Add(tilePos, newPlant);
-                inventory.backpack.selectedSlot.RemoveItem();
+                Plantable plantable = (Plantable) selectedItem;
+                PlantableGrowth newPlant = new PlantableGrowth(tilePos, selectedItem.data.itemName, plantable.plantableData.growthTiles, plantable.plantableData.growthTime, plantable.plantableData.harvestItemName);
+                if (!plantableGrowthDict.ContainsKey(tilePos))
+                {
+                    plantableGrowthDict.Add(tilePos, newPlant);
+                    inventory.GetInventory("Toolbar").selectedSlot.RemoveItem();
+                }
             }
+            else if (selectedItem.data.itemName == "Watering Can")
+            {
+                tileManager.SetWateredTile(tilePos);
+                if (plantableGrowthDict.ContainsKey(tilePos))
+                {
+                    plantableGrowthDict[tilePos].isWatered = true;
+                }
+            }
+
         }
         else if ((tileName == "wateredTile") && selectedItem is Plantable)   //get item type
         {
             Plantable plantable = (Plantable) selectedItem;
-            PlantableGrowth newPlant = new PlantableGrowth(tilePos, itemName, plantable.plantableData.growthTiles, plantable.plantableData.growthTime, plantable.plantableData.harvestItemName);
+            PlantableGrowth newPlant = new PlantableGrowth(tilePos, selectedItem.data.itemName, plantable.plantableData.growthTiles, plantable.plantableData.growthTime, plantable.plantableData.harvestItemName);
             if (!plantableGrowthDict.ContainsKey(tilePos))
             {
                 newPlant.isWatered = true;
                 plantableGrowthDict.Add(tilePos, newPlant);
-                inventory.backpack.selectedSlot.RemoveItem();
+                inventory.GetInventory("Toolbar").selectedSlot.RemoveItem();
             }
         }
-        else if (tileName == "dugTile" && itemName == "Watering Can")
-        {
-            tileManager.SetWateredTile(tilePos);
-            if (plantableGrowthDict.ContainsKey(tilePos))
-            {
-                plantableGrowthDict[tilePos].isWatered = true;
-            }
-        }
-        // if (plantableGrowthDict.ContainsKey(tilePos))
-        // {
-        //     if (plantableGrowthDict[tilePos].isFullyGrown)
-        //     {
-        //         HarvestCrop(plantableGrowthDict[tilePos]);
-        //         plantableGrowthDict.Remove(tilePos);
-        //         tileManager.SetPlantablesTileNull(tilePos);
-        //     }
-        // }
     }
 
     private void UpdateTileSelectorPos()
     {
         Vector3Int tilePos = new Vector3Int((int) Mathf.Round(transform.position.x), (int)Mathf.Round(transform.position.y), 0);
 
-        if (inventory.backpack.selectedSlot == null)
+        if (inventory.GetInventory("Toolbar").selectedSlot == null)
         {
             tileSelector.SetActive(false);
             return;
         }
-        Item selectedItem = GameManager.instance.itemManager.GetItemByName(inventory.backpack.selectedSlot.itemName);
-        Debug.Log(selectedItem);
-        if (inventory.backpack.selectedSlot.itemName == "Shovel" || inventory.backpack.selectedSlot.itemName == "Watering Can" || selectedItem is Plantable)
+        Item selectedItem = GameManager.instance.itemManager.GetItemByName(inventory.GetInventory("Toolbar").selectedSlot.itemName);
+        if (inventory.GetInventory("Toolbar").selectedSlot.itemName == "Shovel" || inventory.GetInventory("Toolbar").selectedSlot.itemName == "Watering Can" || selectedItem is Plantable)
         {
             tileSelector.transform.localScale = new Vector2(1,1);
             tileSelector.SetActive(true);
@@ -189,13 +178,12 @@ public class TileInteraction : MonoBehaviour
     {
         if (GameManager.instance.tileManager.CheckPlaceable(tilePos, size))
         {
-            Debug.Log("its placeable!");
             //place the item
-            Vector3 calcedPos = new Vector3(tilePos.x + size.x/2, tilePos.y + size.y/2, 0);
-            Instantiate(placedItem, calcedPos, Quaternion.identity);
+            Vector3 calcedPos = new Vector3((tilePos.x + size.x/2), (tilePos.y + size.y/2), 0);
+            Instantiate(placedItem, tilePos, Quaternion.identity);
             GameManager.instance.tileManager.Place(tilePos, size);
 
-            Item selectedItem = GameManager.instance.itemManager.GetItemByName(inventory.backpack.selectedSlot.itemName);
+            Item selectedItem = GameManager.instance.itemManager.GetItemByName(inventory.GetInventory("Toolbar").selectedSlot.itemName);
             if (selectedItem is Chest)
             {
                 GameManager.instance.player.inventory.AddChest(tilePos);

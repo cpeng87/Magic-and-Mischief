@@ -31,8 +31,8 @@ public class SpellcraftUI : InteractUI
         {
             Debug.Log("Player inventory is null");
         }
-        inventory = GameManager.instance.player.inventory.GetInventoryByName("Backpack");
-        toolbar = GameManager.instance.player.inventory.GetInventoryByName("Toolbar");
+        inventory = GameManager.instance.player.inventory.GetInventory("Backpack");
+        toolbar = GameManager.instance.player.inventory.GetInventory("Toolbar");
     }
 
     // Start is called before the first frame update

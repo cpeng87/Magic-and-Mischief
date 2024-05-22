@@ -15,7 +15,6 @@ public class Inventory
         public string itemDescription;
 
         public Sprite icon;
-        public Slot selectedSlot = null;
 
         public Slot()
         {

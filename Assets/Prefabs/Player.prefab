@@ -106,7 +106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0f803cc3ad26d840a0b8123dcb784f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 3
+  moveSpeed: 4
   isMoving: 0
   currDirection: {x: 0, y: 0, z: 0}
   layerMask:
@@ -176,12 +176,14 @@ MonoBehaviour:
   ps: {fileID: 0}
   pm: {fileID: 0}
   pa: {fileID: 0}
+  ti: {fileID: 0}
   healthbar: {fileID: 0}
   manabar: {fileID: 0}
   numInventorySlots: 32
   numToolbarSlots: 8
   numHealth: 180
   numMana: 200
+  currency: 0
 --- !u!61 &5088619752715103857
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -239,6 +241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f504ea04ffe0d142a1d56347d43d19f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  chestPrefab: {fileID: 6868270778958593015, guid: 07e23b51096fb894d97ec1429cb99677, type: 3}
   backpack:
     slots: []
     selectedSlot:
@@ -248,6 +251,15 @@ MonoBehaviour:
       itemDescription: 
       icon: {fileID: 0}
   backpackSlotCount: 32
+  toolbar:
+    slots: []
+    selectedSlot:
+      count: 0
+      maxAllowed: 999
+      itemName: 
+      itemDescription: 
+      icon: {fileID: 0}
+  toolbarSlotCount: 8
 --- !u!114 &5550105529862662864
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -386,7 +398,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8682191235226930542
 Transform:
   m_ObjectHideFlags: 0
@@ -396,7 +408,7 @@ Transform:
   m_GameObject: {fileID: 8909252912170869525}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -3.806318}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

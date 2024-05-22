@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class InteractUI : MonoBehaviour
 {
-    public Vector3Int position;
+    public Vector3Int pos;
     public abstract void ToggleUI();
 }
 

@@ -15,16 +15,39 @@ public class TileManager : MonoBehaviour
     [SerializeField] private Tile wateredTile;
 
     // Start is called before the first frame update
+    public void SetMaps()
+    {
+        if (GameObject.Find("Dig Map") != null)
+        {
+            digMap = GameObject.Find("Dig Map").GetComponent<Tilemap>();
+        }
+        if (GameObject.Find("Plantables Map") != null)
+        {
+            plantablesMap = GameObject.Find("Plantables Map").GetComponent<Tilemap>();
+        }
+        if (GameObject.Find("Unplaceable Map") != null)
+        {
+            unplaceableMap = GameObject.Find("Unplaceable Map").GetComponent<Tilemap>();
+        }
+        // plantablesMap = GameObject.Find("Plantables Map").GetComponent<Tilemap>();
+        // unplaceableMap = GameObject.Find("Unplaceable Map").GetComponent<Tilemap>();
+        // digMap = GameObject.Find("Dig Map").GetComponent<Tilemap>();
+    }
+
     public void SetDiggableTiles()
     {
-        digMap = GameObject.Find("Dig Map").GetComponent<Tilemap>();
-        plantablesMap = GameObject.Find("Plantables Map").GetComponent<Tilemap>();
-        unplaceableMap = GameObject.Find("Unplaceable Map").GetComponent<Tilemap>();
-
-        if (digMap == null)
+        if (GameObject.Find("Dig Map") == null)
         {
             return;
         }
+        plantablesMap = GameObject.Find("Plantables Map").GetComponent<Tilemap>();
+        unplaceableMap = GameObject.Find("Unplaceable Map").GetComponent<Tilemap>();
+        digMap = GameObject.Find("Dig Map").GetComponent<Tilemap>();
+
+        // if (digMap == null)
+        // {
+        //     return;
+        // }
         // set interactable tiles to invisible one
         foreach(var position in digMap.cellBounds.allPositionsWithin)
         {
