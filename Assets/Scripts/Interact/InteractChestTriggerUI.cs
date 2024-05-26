@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class InteractChestTriggerUI: MonoBehaviour, Interactable
 {
-    public InteractUI ui;
+    public ChestUI ui;
     void Start()
     {
         ui = FindObjectOfType<ChestUI>();
