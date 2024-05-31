@@ -114,6 +114,11 @@ public class Inventory
 
     public void Add(Item item)
     {
+        if (item == null)
+        {
+            Debug.Log("Item to add is null in Inventory");
+            return;
+        }
         foreach(Slot slot in slots)
         {
             if (slot.itemName == item.data.itemName && slot.CanAddItem(item.data.itemName))

@@ -15,3 +15,4 @@ MonoBehaviour:
   itemName: Bird Feather
   description: A soft, light bird's feather.
   icon: {fileID: 21300000, guid: 660ce3e8497f3d74a9b1e12b7ab7a8f2, type: 3}
+  sellPrice: 20

@@ -15,3 +15,4 @@ MonoBehaviour:
   itemName: Wood
   description: A sturdy piece of wood.
   icon: {fileID: 21300000, guid: f81dbcea6d1402e49b76a83a30f2508c, type: 3}
+  sellPrice: 5

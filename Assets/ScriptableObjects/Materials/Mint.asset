@@ -15,3 +15,4 @@ MonoBehaviour:
   itemName: Mint
   description: A herb known for its refreshing taste.
   icon: {fileID: 21300000, guid: d8258d5f0d5271242adaf48cfda57858, type: 3}
+  sellPrice: 28

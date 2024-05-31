@@ -15,3 +15,4 @@ MonoBehaviour:
   itemName: Mushroom
   description: A common mushroom found in the wilderness.
   icon: {fileID: 21300000, guid: 485690588ef0ec74f8a4d91f1f31c81e, type: 3}
+  sellPrice: 10

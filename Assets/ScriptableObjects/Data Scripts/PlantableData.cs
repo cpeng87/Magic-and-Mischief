@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 
 [CreateAssetMenu(fileName = "New Plantable", menuName = "Inventory/PlantableData")]
-public class PlantableData : ItemData
+public class PlantableData : SellableItemData
 {
     public string harvestItemName;
     public int growthTime; //in days

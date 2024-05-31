@@ -91,6 +91,10 @@ public class InventoryUI : MonoBehaviour
                 slots[i].SetEmpty();
             }
         }
+        if (selectorSlotID >= 0 && selectorSlotID < slots.Count)
+        {
+            UpdateItemText(slots[selectorSlotID]);
+        }
     }
 
     public void Remove()

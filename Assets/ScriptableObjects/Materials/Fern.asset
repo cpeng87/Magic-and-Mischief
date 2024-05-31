@@ -15,3 +15,4 @@ MonoBehaviour:
   itemName: Fern
   description: There are some spores underneath the leaves.
   icon: {fileID: 21300000, guid: c7ecf697a29787a4d8e6688d71b8856b, type: 3}
+  sellPrice: 15

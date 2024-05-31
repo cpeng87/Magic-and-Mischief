@@ -79,7 +79,9 @@ public class TileInteraction : MonoBehaviour
             if (selectedItem is Plantable)
             {
                 Plantable plantable = (Plantable) selectedItem;
-                PlantableGrowth newPlant = new PlantableGrowth(tilePos, selectedItem.data.itemName, plantable.plantableData.growthTiles, plantable.plantableData.growthTime, plantable.plantableData.harvestItemName);
+                PlantableData castedPlantableData = (PlantableData) plantable.data;
+                PlantableGrowth newPlant = new PlantableGrowth(tilePos, selectedItem.data.itemName, castedPlantableData.growthTiles, castedPlantableData.growthTime, castedPlantableData.harvestItemName);
+                // PlantableGrowth newPlant = new PlantableGrowth(tilePos, selectedItem.data.itemName, plantable.plantableData.growthTiles, plantable.plantableData.growthTime, plantable.plantableData.harvestItemName);
                 if (!plantableGrowthDict.ContainsKey(tilePos))
                 {
                     plantableGrowthDict.Add(tilePos, newPlant);
@@ -99,7 +101,8 @@ public class TileInteraction : MonoBehaviour
         else if ((tileName == "wateredTile") && selectedItem is Plantable)   //get item type
         {
             Plantable plantable = (Plantable) selectedItem;
-            PlantableGrowth newPlant = new PlantableGrowth(tilePos, selectedItem.data.itemName, plantable.plantableData.growthTiles, plantable.plantableData.growthTime, plantable.plantableData.harvestItemName);
+            PlantableData castedPlantableData = (PlantableData) plantable.data;
+            PlantableGrowth newPlant = new PlantableGrowth(tilePos, selectedItem.data.itemName, castedPlantableData.growthTiles, castedPlantableData.growthTime, castedPlantableData.harvestItemName);
             if (!plantableGrowthDict.ContainsKey(tilePos))
             {
                 newPlant.isWatered = true;
@@ -128,7 +131,7 @@ public class TileInteraction : MonoBehaviour
         else if (selectedItem is Placeable)
         {
             tileSelector.SetActive(true);
-            tileSelector.transform.localScale = ((Placeable) selectedItem).placeableData.size;
+            tileSelector.transform.localScale = ((PlaceableData)(selectedItem).data).size;
         }
         else
         {
