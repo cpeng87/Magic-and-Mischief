@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
 
     private Inventory savedBackpack;
     private Inventory savedToolbar;
+    private int savedHealth;
+    private int savedMana;
     public Dictionary<string, Dictionary<Vector3Int, Inventory>> savedChests = new Dictionary<string, Dictionary<Vector3Int, Inventory>>();
     private string nextSpawnpoint;
 
@@ -42,6 +44,8 @@ public class GameManager : MonoBehaviour
         uiManager = GetComponent<UIManager>();
 
         player = FindObjectOfType<Player>();
+        savedHealth = -1;
+        savedMana = -1;
 
         // SceneManager.sceneLoaded += OnSceneLoaded;
     }
@@ -60,6 +64,14 @@ public class GameManager : MonoBehaviour
         player = FindObjectOfType<Player>();
         MapManager mapManager = FindObjectOfType<MapManager>();
 
+        if (savedHealth >= 0)
+        {
+            player.health.SetVal(savedHealth);
+        }
+        if (savedMana >= 0)
+        {
+            player.mana.SetVal(savedMana);
+        }
         if (mapManager != null)
         {
             mapManager.SpawnCollectibles();
@@ -96,6 +108,8 @@ public class GameManager : MonoBehaviour
     {
         savedBackpack = player.inventory.GetInventory("Backpack");
         savedToolbar = player.inventory.GetInventory("Toolbar");
+        savedHealth = player.health.currVal;
+        savedMana = player.mana.currVal;
         SceneManager.LoadScene(sceneName);
         tileSave.AddMapPlantables(SceneManager.GetActiveScene().name, player.ti.GetPlantableGrowthsDict());
         if (savedChests.ContainsKey(SceneManager.GetActiveScene().name))
