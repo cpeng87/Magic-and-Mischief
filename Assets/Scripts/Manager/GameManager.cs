@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public TimeManager timeManager;
     public TileSave tileSave;
     public UIManager uiManager;
+    public DialogueManager dialogueManager;
 
     public Player player;
 
@@ -42,6 +43,7 @@ public class GameManager : MonoBehaviour
         timeManager = GetComponent<TimeManager>();
         tileSave = GetComponent<TileSave>();
         uiManager = GetComponent<UIManager>();
+        dialogueManager = GetComponent<DialogueManager>();
 
         player = FindObjectOfType<Player>();
         savedHealth = -1;

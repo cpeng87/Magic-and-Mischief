@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 6832150540631673449}
   - component: {fileID: 6812367768547924074}
   - component: {fileID: 2496436673471304812}
+  - component: {fileID: 7575893812390883642}
+  - component: {fileID: 5751654569210164471}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -52,6 +54,8 @@ MonoBehaviour:
   tileManager: {fileID: 0}
   timeManager: {fileID: 0}
   tileSave: {fileID: 0}
+  uiManager: {fileID: 0}
+  dialogueManager: {fileID: 0}
   player: {fileID: 0}
   activeMenuCount: 0
 --- !u!114 &2403646835798976025
@@ -74,6 +78,9 @@ MonoBehaviour:
   - {fileID: 162282889713695715, guid: 57402b003d3b6c548a8fbd302b7df43d, type: 3}
   - {fileID: 2118267142830564550, guid: f89d237e725226a4c9e54379458d7216, type: 3}
   - {fileID: 6265130077936949058, guid: 757d62fdd7f0de749ab5a8112bdd4bed, type: 3}
+  - {fileID: 2745696493747098466, guid: 1cc1c2154e233e047a798c5dbb8743d6, type: 3}
+  - {fileID: 121566760820234098, guid: 98d085cd0a4ce694da61a529a29c2a32, type: 3}
+  - {fileID: 5245755905437332797, guid: bb8ab4ac6c258a4439785bee4ef1a99a, type: 3}
 --- !u!114 &6832150540631673449
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -87,7 +94,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hiddenInteractableTile: {fileID: 11400000, guid: 09a4f4ed7338d1b488bb64ba839d8166, type: 2}
-  plowedTile: {fileID: 11400000, guid: 2e780a1c14a94684791560f63b519a3c, type: 2}
+  plowedTile: {fileID: 11400000, guid: 6f3c6928a1a8d2b409015535c2bcbb25, type: 2}
+  wateredTile: {fileID: 11400000, guid: e2e5ed8c98ae24b41b8f83e0c841f86c, type: 2}
 --- !u!114 &6812367768547924074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -114,5 +122,34 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0579ec2f276b870498a6fa5a3cc12ae5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7575893812390883642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6290406138041701571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a70a50c9ddc541848ac132488e907021, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventoryUIs:
+  - {fileID: 0}
+  - {fileID: 0}
+  draggedSlot: {fileID: 0}
+  draggedIcon: {fileID: 0}
+--- !u!114 &5751654569210164471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6290406138041701571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74a484c614006d147b1ec5b4fa1a8e0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

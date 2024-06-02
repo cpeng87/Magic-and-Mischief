@@ -1,0 +1,13 @@
+[BeginDialogue]
+Hello, I am a representative of the Association.
+My name is Rain.
+[EndDialogue]
+
+[BeginDialogue]
+Oh, hello. Out gathering materials for your spellcrafting?
+[EndDialogue]
+
+[BeginDialogue]
+Greetings. I am on a walk to recharge my mana. Would you care to join me?
+[EndDialogue]
+

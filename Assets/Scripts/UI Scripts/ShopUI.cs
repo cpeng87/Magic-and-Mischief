@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 public class ShopUI : MonoBehaviour
 {
     public GameObject display;
-    public ShopData shopData;
+    private ShopData shopData;
     public List<ShopSlotUI> slots = new List<ShopSlotUI>();
     public GameObject slotParent;
     public GameObject inventorySlotParent;

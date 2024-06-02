@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class ChestUI : InteractUI
 {
+    public Vector3Int pos;
     public InventoryUI inventoryUI;
     public InventoryUI chestUI;
     public GameObject display;
-
 
     void Start()
     {
@@ -39,6 +39,11 @@ public class ChestUI : InteractUI
             }
             
         }
+    }
+
+    public void SetPosition(Vector3Int newPosition)
+    {
+        pos = newPosition;
     }
 
     private void LoadChest()
