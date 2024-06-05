@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 9e7b23fe6174a6a4f848ae0fdff7c382
+guid: fd2c7624a4c58b4429c023828e072b67
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: rowina-Sheet_0
+      name: rowina2sheet-export_0
       rect:
         serializedVersion: 2
         x: 0
@@ -124,14 +124,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 01fd305574a63fc40b6fdc5404b61e1e
-      internalID: 432870943
+      spriteID: 37598ffc4ccdb3748a1e69d14d0a6a21
+      internalID: 604544647
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: rowina-Sheet_1
+      name: rowina2sheet-export_1
       rect:
         serializedVersion: 2
         x: 64
@@ -145,14 +145,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 47f6530473b084e4dbce19cba8364c05
-      internalID: 1522708872
+      spriteID: ba36dd842725fa44bb0e34b8676c61a7
+      internalID: 811470316
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: rowina-Sheet_2
+      name: rowina2sheet-export_2
       rect:
         serializedVersion: 2
         x: 128
@@ -166,14 +166,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8e4c3787ae7f22048a71cc49f7e7ef24
-      internalID: 2142775445
+      spriteID: 4308f915de2c4144db6afabafa265d64
+      internalID: -1199683257
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: rowina-Sheet_3
+      name: rowina2sheet-export_3
       rect:
         serializedVersion: 2
         x: 192
@@ -187,14 +187,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cc76c23bb6aa66a4fb6743dd68fcbd48
-      internalID: 412868066
+      spriteID: 26a3d87079915ee4a899f655b112f3aa
+      internalID: 1295026748
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: rowina-Sheet_4
+      name: rowina2sheet-export_4
       rect:
         serializedVersion: 2
         x: 0
@@ -208,14 +208,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dc3e0cfa7c20eff4f871a3f1f9bd5390
-      internalID: 1775956250
+      spriteID: 51763fb9013be994d83379cec30b576d
+      internalID: 1273347516
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: rowina-Sheet_5
+      name: rowina2sheet-export_5
       rect:
         serializedVersion: 2
         x: 64
@@ -229,14 +229,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 25972b7e84deebb449fc2c5f93f34076
-      internalID: 1379004079
+      spriteID: 07bbfb163a355f04bbdebdf4c635ed9a
+      internalID: -810727888
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: rowina-Sheet_6
+      name: rowina2sheet-export_6
       rect:
         serializedVersion: 2
         x: 128
@@ -250,14 +250,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e85a8369c2160dc4fae4210a42972313
-      internalID: 146711421
+      spriteID: b55499f8681fbcb4db672e511609ee41
+      internalID: 452366073
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: rowina-Sheet_7
+      name: rowina2sheet-export_7
       rect:
         serializedVersion: 2
         x: 192
@@ -271,14 +271,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4bc1b05184c7b9846b12f4f193a13349
-      internalID: -1068457349
+      spriteID: 714819f525b4e254ba6921e6a58d76ca
+      internalID: 1363848300
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: rowina-Sheet_8
+      name: rowina2sheet-export_8
       rect:
         serializedVersion: 2
         x: 0
@@ -292,14 +292,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 308da5bc9d377eb47b9b4e0fec045607
-      internalID: 1342093267
+      spriteID: 4b15c49262a9a924db030759448bb16e
+      internalID: 490041279
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: rowina-Sheet_9
+      name: rowina2sheet-export_9
       rect:
         serializedVersion: 2
         x: 64
@@ -313,14 +313,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3a0807ab174cabb4e9c44d0b5072ca5f
-      internalID: -1204537051
+      spriteID: e9944b99374c11e458c28566c4effcfb
+      internalID: 1193560872
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: rowina-Sheet_10
+      name: rowina2sheet-export_10
       rect:
         serializedVersion: 2
         x: 128
@@ -334,14 +334,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4882d390d29c298459f79c6b9acf32ce
-      internalID: -552961223
+      spriteID: 952ce1864a36a1c4ebee5d327abb7312
+      internalID: -881019696
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: rowina-Sheet_11
+      name: rowina2sheet-export_11
       rect:
         serializedVersion: 2
         x: 192
@@ -355,14 +355,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: da37dc69507006c48bbfb17f96b32f98
-      internalID: -384868739
+      spriteID: 76f7f9231c2d9e04fb4736b633a357d7
+      internalID: 310998426
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: rowina-Sheet_12
+      name: rowina2sheet-export_12
       rect:
         serializedVersion: 2
         x: 0
@@ -376,14 +376,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a7ed77d9d4f8bee4b934848f68c9f2ed
-      internalID: -1318128434
+      spriteID: 7342b626a56a3984fa48df8955261b69
+      internalID: 166075935
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: rowina-Sheet_13
+      name: rowina2sheet-export_13
       rect:
         serializedVersion: 2
         x: 64
@@ -397,14 +397,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dabdef08857538b4896c4d5294c5c8e2
-      internalID: 132746696
+      spriteID: 1de07db13e6b1ac46981edc529dad947
+      internalID: 1525295906
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: rowina-Sheet_14
+      name: rowina2sheet-export_14
       rect:
         serializedVersion: 2
         x: 128
@@ -418,14 +418,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f543544c4cf7dd04d8cc5577bf00cc89
-      internalID: -200489067
+      spriteID: ae0911425f78704448b10fec6abd74a1
+      internalID: 241473605
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: rowina-Sheet_15
+      name: rowina2sheet-export_15
       rect:
         serializedVersion: 2
         x: 192
@@ -439,8 +439,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: efdcfef9444c6934c9c38ff9bced7522
-      internalID: 246684837
+      spriteID: 6c53236ca2e626345b28079a3ac2edd6
+      internalID: 1865955790
       vertices: []
       indices: 
       edges: []
@@ -456,22 +456,22 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      rowina-Sheet_0: 432870943
-      rowina-Sheet_1: 1522708872
-      rowina-Sheet_10: -552961223
-      rowina-Sheet_11: -384868739
-      rowina-Sheet_12: -1318128434
-      rowina-Sheet_13: 132746696
-      rowina-Sheet_14: -200489067
-      rowina-Sheet_15: 246684837
-      rowina-Sheet_2: 2142775445
-      rowina-Sheet_3: 412868066
-      rowina-Sheet_4: 1775956250
-      rowina-Sheet_5: 1379004079
-      rowina-Sheet_6: 146711421
-      rowina-Sheet_7: -1068457349
-      rowina-Sheet_8: 1342093267
-      rowina-Sheet_9: -1204537051
+      rowina2sheet-export_0: 604544647
+      rowina2sheet-export_1: 811470316
+      rowina2sheet-export_10: -881019696
+      rowina2sheet-export_11: 310998426
+      rowina2sheet-export_12: 166075935
+      rowina2sheet-export_13: 1525295906
+      rowina2sheet-export_14: 241473605
+      rowina2sheet-export_15: 1865955790
+      rowina2sheet-export_2: -1199683257
+      rowina2sheet-export_3: 1295026748
+      rowina2sheet-export_4: 1273347516
+      rowina2sheet-export_5: -810727888
+      rowina2sheet-export_6: 452366073
+      rowina2sheet-export_7: 1363848300
+      rowina2sheet-export_8: 490041279
+      rowina2sheet-export_9: 1193560872
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

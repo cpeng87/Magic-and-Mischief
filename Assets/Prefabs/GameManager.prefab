@@ -81,6 +81,11 @@ MonoBehaviour:
   - {fileID: 2745696493747098466, guid: 1cc1c2154e233e047a798c5dbb8743d6, type: 3}
   - {fileID: 121566760820234098, guid: 98d085cd0a4ce694da61a529a29c2a32, type: 3}
   - {fileID: 5245755905437332797, guid: bb8ab4ac6c258a4439785bee4ef1a99a, type: 3}
+  - {fileID: 5083928092500463470, guid: e58bf7658b6985c459aab6617b2ec362, type: 3}
+  - {fileID: 1298265614884899227, guid: 27bcdeae76f09f34abf9353d34a68f82, type: 3}
+  - {fileID: 4219935365533788910, guid: d5c573e1eab7f564f866e100db96ee91, type: 3}
+  - {fileID: 4959118277155003029, guid: 2555c68d251a0d54da029e7d80dc2d1f, type: 3}
+  - {fileID: 4959118277155003029, guid: 2555c68d251a0d54da029e7d80dc2d1f, type: 3}
 --- !u!114 &6832150540631673449
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,11 +141,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a70a50c9ddc541848ac132488e907021, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventoryUIs:
-  - {fileID: 0}
-  - {fileID: 0}
   draggedSlot: {fileID: 0}
   draggedIcon: {fileID: 0}
+  dragSingle: 0
 --- !u!114 &5751654569210164471
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,3 +156,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74a484c614006d147b1ec5b4fa1a8e0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isActive: 0

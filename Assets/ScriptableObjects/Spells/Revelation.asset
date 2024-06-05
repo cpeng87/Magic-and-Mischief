@@ -12,13 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d7e5de1ef8551e41a5b9915322be2be, type: 3}
   m_Name: Revelation
   m_EditorClassIdentifier: 
-  itemName: Item Name
-  description: A spell that reveals magically hidden objects for a short period of
-    time.
-  icon: {fileID: 0}
+  itemName: Revelation
+  description: A spell that reveals magic traces for a period of time.
+  icon: {fileID: 21300000, guid: ac57b265e8c4f2a45900be72961d9576, type: 3}
   spellDamage: 0
   spellManaCost: 20
   ingredients:
-  - listingData: {fileID: 0}
+  - listingData: {fileID: 11400000, guid: cb83ba5f3029dd74c8ed81aa4f6a8d1c, type: 2}
     quantity: 1
+  - listingData: {fileID: 11400000, guid: 478a06e04b46ef3478c15d7fab64a4d5, type: 2}
+    quantity: 3
   spellType: 2

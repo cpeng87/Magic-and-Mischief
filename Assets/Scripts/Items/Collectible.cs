@@ -13,7 +13,6 @@ public class Collectible : MonoBehaviour
         {
             Item item = GetComponent<Item>(); // Get the Item component attached to this GameObject
             player.inventory.Add("Backpack", item);
-            player.AddCurrency(1);
             Destroy(this.gameObject);
         }
     }

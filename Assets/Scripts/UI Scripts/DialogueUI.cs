@@ -29,7 +29,6 @@ public class DialogueUI : InteractUI
     {
         if (!panel.activeSelf)
         {
-            SetIndicator(true);
             panel.SetActive(true);
             Time.timeScale = 0f;
             GameManager.instance.PushActiveMenu(this.gameObject);
@@ -72,7 +71,6 @@ public class DialogueUI : InteractUI
 
     public void UpdateDisplay(string newText)
     {
-        // textbox.text = newText;
         StartCoroutine(TypeText(newText));
     }
 
@@ -100,7 +98,5 @@ public class DialogueUI : InteractUI
         {
             Time.timeScale = 1f;
         }
-
     }
-
 }

@@ -8,10 +8,12 @@ public class DialogueManager : MonoBehaviour
     private int currentTextLine;
     private DialogueUI dialogueUI;
     private List<string> selectedDialogue;
+    public bool isActive;
 
-    private void Start()
+    public void Load()
     {
         dialogueUI = FindObjectOfType<DialogueUI>();
+        isActive = false;
     }
     public void PushText()
     {
@@ -23,11 +25,8 @@ public class DialogueManager : MonoBehaviour
         else
         {
             dialogueUI.UpdateDisplay(selectedDialogue[currentTextLine]);
-            Debug.Log("SelectedDialogue's count - 1: " + (selectedDialogue.Count - 1));
-            Debug.Log("Current text line: " + currentTextLine);
             if (selectedDialogue.Count - 1 == currentTextLine)
             {
-                Debug.Log("indicator set to false");
                 dialogueUI.SetIndicator(false);
             }
         }
@@ -40,10 +39,19 @@ public class DialogueManager : MonoBehaviour
 
         dialogueUI.UpdateDisplay(newName, portrait);
         dialogueUI.UpdateDisplay(selectedDialogue[currentTextLine]);
+        if (selectedDialogue.Count - 1 == currentTextLine)
+        {
+            dialogueUI.SetIndicator(false);
+        }
+        else{
+            dialogueUI.SetIndicator(true);
+        }
+        isActive = true;
     }
 
     private void Conclude()
     {
+        isActive = false;
         dialogueUI.EndDialogue();
     }
 

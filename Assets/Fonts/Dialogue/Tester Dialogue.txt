@@ -1,6 +1,5 @@
 [BeginDialogue]
-Hello, I am a representative of the Association.
-My name is Rain.
+How are you today? 
 [EndDialogue]
 
 [BeginDialogue]
@@ -8,6 +7,26 @@ Oh, hello. Out gathering materials for your spellcrafting?
 [EndDialogue]
 
 [BeginDialogue]
-Greetings. I am on a walk to recharge my mana. Would you care to join me?
+Greetings. I am on a walk to recharge my mana.
+Would you care to join me?
+[EndDialogue]
+
+[BeginDialogue]
+Ah, the witch from the tower in the forest. How have you been faring?
+Me? Well, my family's being... difficult, but 
+[EndDialogue]
+
+[BeginDialogue]
+How have your magical studies been?
+If you ever need any sort of assistance, feel free to ask me.
+[EndDialogue]
+
+[BeginDialogue]
+...
+...
+...
+Ah!
+Sorry, I was communing with my familiar.
+Now if you would excuse me...
 [EndDialogue]
 

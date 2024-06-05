@@ -97,6 +97,10 @@ public class GameManager : MonoBehaviour
             player.inventory.chests = savedChests[SceneManager.GetActiveScene().name];
             player.inventory.LoadChests();
         }
+        if (dialogueManager != null)
+        {
+            dialogueManager.Load();
+        }
 
         SpawnpointManager sm = FindObjectOfType<SpawnpointManager>();
         sm.OrganizeSpawnpoint();

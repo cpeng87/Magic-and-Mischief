@@ -176,7 +176,14 @@ public class InventoryUI : MonoBehaviour
 
     public void SlotDrop(SlotUI slot)
     {
-        uiManager.draggedSlot.inventory.MoveSlot(uiManager.draggedSlot.slotID, slot.slotID, slot.inventory, uiManager.draggedSlot.inventory.slots[uiManager.draggedSlot.slotID].count);
+        if (uiManager.dragSingle)
+        {
+            uiManager.draggedSlot.inventory.MoveSlot(uiManager.draggedSlot.slotID, slot.slotID, slot.inventory, 1);
+        }
+        else
+        {
+            uiManager.draggedSlot.inventory.MoveSlot(uiManager.draggedSlot.slotID, slot.slotID, slot.inventory, uiManager.draggedSlot.inventory.slots[uiManager.draggedSlot.slotID].count);
+        }
     }
 
     private void SetAllMoveBorderInactive() 

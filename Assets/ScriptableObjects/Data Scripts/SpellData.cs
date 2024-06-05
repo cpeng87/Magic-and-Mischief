@@ -7,7 +7,7 @@ public enum SpellType
 {
     Projectile,
     AOE,
-    Buff
+    Unique
 }
 
 [CreateAssetMenu(fileName = "New Spell", menuName = "Inventory/SpellData")]
