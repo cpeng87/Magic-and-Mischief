@@ -23,6 +23,8 @@ public class Player : MonoBehaviour
     public int currency;
     private int maxCurrency = 999999;
 
+    public GameObject mailCrow;
+
     private void Awake()
     {
         inventory = GetComponent<InventoryManager>();
@@ -32,6 +34,14 @@ public class Player : MonoBehaviour
         ti = GetComponent<TileInteraction>();
         health = new StatusBar(numHealth, healthbar);
         mana = new StatusBar(numMana, manabar);
+
+        MailEventHandler.OnMailChanged += MailAnimation;
+        mailCrow.SetActive(false);
+    }
+
+    private void MailAnimation()
+    {
+        mailCrow.SetActive(true);
     }
 
     public void DropItem(Item item)

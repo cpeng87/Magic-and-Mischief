@@ -5,11 +5,18 @@ public class TimeManager : MonoBehaviour
     public int minutes = 0;
     public int hours = 0;
     public string currDay = "Mon";
+    public string currSeason = "Spr";
+    public int year = 1;
+    public Date date = new Date();
+
     public float minutesPerSecond = 1.0f;
 
     private string[] days = {"Mon", "Tue", "Wed", "Thr", "Fri", "Sat", "Sun"};
     private float elapsedTime = 0.0f;
-    private int dayCounter = 0;
+    public int dayCounter = 0;
+
+    private string[] seasons = {"Spr", "Sum", "Fall", "Win"};
+    public int seasonCounter;
 
     void Update()
     {
@@ -33,11 +40,32 @@ public class TimeManager : MonoBehaviour
             if (hours >= 23)
             {
                 hours = 0;
-                dayCounter = (dayCounter + 1) % 7;
-                currDay = days[dayCounter];
+                dayCounter += 1;
+                currDay = days[(dayCounter) % 7];
+                UpdateDate();
                 TimeEventHandler.TriggerDayChangedEvent();
+
+                if (dayCounter > 2)
+                {
+                    dayCounter = 0;
+                    seasonCounter += 1;
+                    currSeason = seasons[seasonCounter];
+                    TimeEventHandler.TriggerSeasonChangedEvent();
+
+                    if (seasonCounter > 4)
+                    {
+                        seasonCounter = 0;
+                        year += 1;
+                        TimeEventHandler.TriggerYearChangedEvent();
+                    }
+                }
             }
         }
+    }
+
+    private void UpdateDate()
+    {
+        this.date = new Date(seasonCounter, dayCounter, year);
     }
 }
 

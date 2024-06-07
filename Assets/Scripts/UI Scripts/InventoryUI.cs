@@ -25,7 +25,24 @@ public class InventoryUI : MonoBehaviour
 
     private void Awake()
     {
-        canvas = FindObjectOfType<Canvas>();
+        canvas = FindCanvas();
+    }
+
+    public Canvas FindCanvas()
+    {
+        Transform current = this.gameObject.transform.parent;
+
+        while (current != null)
+        {
+            Canvas canvas = current.GetComponent<Canvas>();
+            if (canvas != null)
+            {
+                return canvas;
+            }
+            current = current.parent;
+        }
+
+        return null;
     }
 
     public void Start()

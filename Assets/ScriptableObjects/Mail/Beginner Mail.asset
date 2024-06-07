@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd07cfd4f2b36d749aad6644e133eb12, type: 3}
+  m_Name: Beginner Mail
+  m_EditorClassIdentifier: 
+  day: 2
+  season: 0
+  year: 1
+  sender: 
+  content: 'Hello!
+
+
+    How have you been sweetie? Settling in? Hopefully you actually
+    recieve this mail. If I can''t contact you anymore I''ll be so sad :('
+  hasGift: 0
+  gift: {fileID: 0}
+  hasMoney: 1
+  money: 100

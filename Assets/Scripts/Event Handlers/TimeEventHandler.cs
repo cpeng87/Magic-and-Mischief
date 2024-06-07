@@ -5,6 +5,8 @@ public static class TimeEventHandler
     public static event Action OnMinuteChanged;
     public static event Action OnHourChanged;
     public static event Action OnDayChanged;
+    public static event Action OnSeasonChanged;
+    public static event Action OnYearChanged;
 
     public static void TriggerMinuteChangedEvent()
     {
@@ -17,5 +19,13 @@ public static class TimeEventHandler
     public static void TriggerDayChangedEvent()
     {
         OnDayChanged?.Invoke();
+    }
+    public static void TriggerSeasonChangedEvent()
+    {
+        OnSeasonChanged?.Invoke();
+    }
+    public static void TriggerYearChangedEvent()
+    {
+        OnYearChanged?.Invoke();
     }
 }

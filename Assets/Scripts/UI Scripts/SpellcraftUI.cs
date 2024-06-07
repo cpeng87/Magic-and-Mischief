@@ -33,6 +33,7 @@ public class SpellcraftUI : InteractUI
         }
         inventory = GameManager.instance.player.inventory.GetInventory("Backpack");
         toolbar = GameManager.instance.player.inventory.GetInventory("Toolbar");
+        currIndex = 0;
     }
 
     // Start is called before the first frame update
@@ -68,20 +69,43 @@ public class SpellcraftUI : InteractUI
         {
             ToggleUI();
         }
-        else if (Input.GetMouseButtonDown(0))
+        // else if (Input.GetMouseButtonDown(0))
+        // {
+        //     if (CheckNecessaryMaterials(spells[currIndex].ingredients))
+        //     {
+        //         CraftSpell(spells[currIndex].ingredients);
+        //     }
+        // }
+    }
+    public void Craft()
+    {
+        if (CheckNecessaryMaterials(spells[currIndex].ingredients))
         {
-            if (CheckNecessaryMaterials(spells[currIndex].ingredients))
-            {
-                CraftSpell(spells[currIndex].ingredients);
-            }
-
+            CraftSpell(spells[currIndex].ingredients);
+        }
+    }
+    public void NextPage()
+    {
+        if (spells.Count - 1 > currIndex)
+        {
+            Debug.Log("To the next page!!!");
+            currIndex += 1;
+            LoadPage();
+        }
+    }
+    public void PreviousPage()
+    {
+        if (currIndex > 0)
+        {
+            currIndex -= 1;
+            LoadPage();
         }
     }
     private void LoadPage()
     {
         if (spells.Count > 0)
         {
-            currIndex = 0;
+            // currIndex = 0;
             spellnameText.text = spells[currIndex].itemName;
             spellDescriptionText.text = spells[currIndex].description;
             spellImage.sprite = spells[currIndex].icon;

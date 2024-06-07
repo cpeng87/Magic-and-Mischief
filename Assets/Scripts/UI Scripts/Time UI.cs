@@ -8,6 +8,7 @@ public class TimeUI : MonoBehaviour
     public TextMeshProUGUI hourText;
     public TextMeshProUGUI minuteText;
     public TextMeshProUGUI dayText;
+    public TextMeshProUGUI seasonText;
     private TimeManager tm;
 
     // Start is called before the first frame update
@@ -16,12 +17,14 @@ public class TimeUI : MonoBehaviour
         TimeEventHandler.OnMinuteChanged += RefreshMinute;
         TimeEventHandler.OnHourChanged += RefreshHour;
         TimeEventHandler.OnDayChanged += RefreshDay;
+        TimeEventHandler.OnSeasonChanged += RefreshSeason;
         tm = GameManager.instance.timeManager;
 
         // Initialize time UI
         RefreshMinute();
         RefreshHour();
         RefreshDay();
+        RefreshSeason();
     }
 
     private void RefreshMinute()
@@ -37,5 +40,9 @@ public class TimeUI : MonoBehaviour
     private void RefreshDay()
     {
         dayText.text = tm.currDay;
+    }
+    private void RefreshSeason()
+    {
+        seasonText.text = tm.currSeason;
     }
 }
