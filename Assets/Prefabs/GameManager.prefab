@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 2496436673471304812}
   - component: {fileID: 7575893812390883642}
   - component: {fileID: 5751654569210164471}
+  - component: {fileID: 8850291174931374994}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -56,6 +57,7 @@ MonoBehaviour:
   tileSave: {fileID: 0}
   uiManager: {fileID: 0}
   dialogueManager: {fileID: 0}
+  mailManager: {fileID: 0}
   player: {fileID: 0}
   activeMenuCount: 0
 --- !u!114 &2403646835798976025
@@ -117,10 +119,10 @@ MonoBehaviour:
   hours: 0
   currDay: Mon
   currSeason: Spr
+  year: 1
   minutesPerSecond: 0.01
-  season: 0
-  year: 0
   dayCounter: 0
+  seasonCounter: 0
 --- !u!114 &2496436673471304812
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,3 +163,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isActive: 0
+--- !u!114 &8850291174931374994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6290406138041701571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18ffa15ac2037584b8233edaa029e805, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mails:
+  - {fileID: 11400000, guid: fb7ad2d9dd191584284f2061e44fe258, type: 2}

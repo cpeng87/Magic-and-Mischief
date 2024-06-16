@@ -24,6 +24,7 @@ public class Player : MonoBehaviour
     private int maxCurrency = 999999;
 
     public GameObject mailCrow;
+    private Animator mailCrowAnimator;
 
     private void Awake()
     {
@@ -36,12 +37,13 @@ public class Player : MonoBehaviour
         mana = new StatusBar(numMana, manabar);
 
         MailEventHandler.OnMailChanged += MailAnimation;
-        mailCrow.SetActive(false);
+        mailCrowAnimator = mailCrow.GetComponent<Animator>();
     }
 
     private void MailAnimation()
     {
         mailCrow.SetActive(true);
+        mailCrowAnimator.SetTrigger("New Mail");
     }
 
     public void DropItem(Item item)
@@ -81,5 +83,10 @@ public class Player : MonoBehaviour
         currency -= subtractedVal;
         CurrencyEventHandler.TriggerCurrencyChangedEvent();
         return true;
+    }
+
+    private void OnDestroy()
+    {
+        MailEventHandler.OnMailChanged -= MailAnimation;
     }
 }

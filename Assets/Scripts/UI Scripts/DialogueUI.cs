@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Playables;
 using TMPro;
 
 public class DialogueUI : InteractUI
@@ -18,11 +19,19 @@ public class DialogueUI : InteractUI
     public GameObject portraitPanel;
     public Image portrait;
 
+    public PlayableDirector playableDirector;
+
+    private bool isTyping;
+
+    private string currText;
+    private Coroutine typingCoroutine;
+
     // private int currentTextLine;
 
     private void Start()
     {
         panel.SetActive(false);
+        playableDirector = FindObjectOfType<PlayableDirector>();
     }
 
     public override void ToggleUI()
@@ -32,7 +41,16 @@ public class DialogueUI : InteractUI
             panel.SetActive(true);
             Time.timeScale = 0f;
             GameManager.instance.PushActiveMenu(this.gameObject);
+            if (playableDirector != null)
+            {
+                playableDirector.Pause();
+            }
         }
+    }
+
+    public void StartDialogue()
+    {
+        Debug.Log("Wahoo Im starting a dialogue!!!!!");
     }
 
     private void Update()
@@ -45,8 +63,21 @@ public class DialogueUI : InteractUI
         {
             // PushText();
             // DialogueEventHandler.TriggerDialogueChangedEvent();
-            GameManager.instance.dialogueManager.PushText();
+            if (isTyping)
+            {
+                FinishTyping();
+            }
+            else
+            {
+                GameManager.instance.dialogueManager.PushText();
+            }
         }
+    }
+
+    public void HideNameAndPortrait()
+    {
+        namePanel.SetActive(false);
+        portraitPanel.SetActive(false);
     }
 
     public void UpdateDisplay(string newName, Sprite newPortrait)
@@ -71,18 +102,31 @@ public class DialogueUI : InteractUI
 
     public void UpdateDisplay(string newText)
     {
-        StartCoroutine(TypeText(newText));
+        currText = newText;
+        typingCoroutine = StartCoroutine(TypeText(newText));
     }
 
     public IEnumerator TypeText(string text)
     {
+        isTyping = true;
         textbox.text = "";
         var waitTimer = new WaitForSecondsRealtime(0.01f);
         foreach (char c in text)
         {
-            textbox.text = textbox.text + c;
+            textbox.text += c;
             yield return waitTimer;
         }
+        isTyping = false;
+    }
+
+    private void FinishTyping()
+    {
+        if (typingCoroutine != null)
+        {
+            StopCoroutine(typingCoroutine);
+        }
+        textbox.text = currText;
+        isTyping = false;
     }
 
     public void SetIndicator(bool isActive)
@@ -97,6 +141,10 @@ public class DialogueUI : InteractUI
         if (GameManager.instance.activeMenuCount == 0)
         {
             Time.timeScale = 1f;
+        }
+        if (playableDirector != null)
+        {
+            playableDirector.Resume();
         }
     }
 }

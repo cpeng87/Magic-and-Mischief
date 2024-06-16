@@ -185,6 +185,7 @@ MonoBehaviour:
   numHealth: 180
   numMana: 200
   currency: 0
+  mailCrow: {fileID: 5573720967565258233}
 --- !u!61 &5088619752715103857
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -395,7 +396,6 @@ GameObject:
   - component: {fileID: 7809735131849369968}
   - component: {fileID: 50270691971517799}
   - component: {fileID: 8292591346862070367}
-  - component: {fileID: 5607127102284562636}
   m_Layer: 0
   m_Name: Crow
   m_TagString: Untagged
@@ -491,18 +491,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &5607127102284562636
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5573720967565258233}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c60a61a17b6e0745ba8804d7e375adb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8909252912170869525
 GameObject:
   m_ObjectHideFlags: 0

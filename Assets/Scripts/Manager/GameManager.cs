@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public TileSave tileSave;
     public UIManager uiManager;
     public DialogueManager dialogueManager;
+    public MailManager mailManager;
 
     public Player player;
 
@@ -44,6 +45,7 @@ public class GameManager : MonoBehaviour
         tileSave = GetComponent<TileSave>();
         uiManager = GetComponent<UIManager>();
         dialogueManager = GetComponent<DialogueManager>();
+        mailManager = GetComponent<MailManager>();
 
         player = FindObjectOfType<Player>();
         savedHealth = -1;
@@ -63,7 +65,9 @@ public class GameManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        Time.timeScale = 1f;
         player = FindObjectOfType<Player>();
+
         MapManager mapManager = FindObjectOfType<MapManager>();
 
         if (savedHealth >= 0)
@@ -103,30 +107,36 @@ public class GameManager : MonoBehaviour
         }
 
         SpawnpointManager sm = FindObjectOfType<SpawnpointManager>();
-        sm.OrganizeSpawnpoint();
-        if (sm.CheckContainsKey(nextSpawnpoint))
+        if (sm != null)
         {
-            player.transform.position = sm.GetPositionByName(nextSpawnpoint);
+            sm.OrganizeSpawnpoint();
+            if (sm.CheckContainsKey(nextSpawnpoint))
+            {
+                player.transform.position = sm.GetPositionByName(nextSpawnpoint);
+            }
         }
     }
 
     public void SceneSwap(string sceneName, string spawnpointName)
     {
-        savedBackpack = player.inventory.GetInventory("Backpack");
-        savedToolbar = player.inventory.GetInventory("Toolbar");
-        savedHealth = player.health.currVal;
-        savedMana = player.mana.currVal;
+        if (player != null)
+        {
+            savedBackpack = player.inventory.GetInventory("Backpack");
+            savedToolbar = player.inventory.GetInventory("Toolbar");
+            savedHealth = player.health.currVal;
+            savedMana = player.mana.currVal;
+            tileSave.AddMapPlantables(SceneManager.GetActiveScene().name, player.ti.GetPlantableGrowthsDict());
+            if (savedChests.ContainsKey(SceneManager.GetActiveScene().name))
+            {
+                savedChests[SceneManager.GetActiveScene().name] = player.inventory.GetChests();
+            }
+            else
+            {
+                savedChests.Add(SceneManager.GetActiveScene().name, player.inventory.GetChests());
+            }
+        }
+        // tileSave.AddMapPlantables(SceneManager.GetActiveScene().name, player.ti.GetPlantableGrowthsDict());
         SceneManager.LoadScene(sceneName);
-        tileSave.AddMapPlantables(SceneManager.GetActiveScene().name, player.ti.GetPlantableGrowthsDict());
-        if (savedChests.ContainsKey(SceneManager.GetActiveScene().name))
-        {
-            savedChests[SceneManager.GetActiveScene().name] = player.inventory.GetChests();
-        }
-        else
-        {
-            savedChests.Add(SceneManager.GetActiveScene().name, player.inventory.GetChests());
-        }
-
         nextSpawnpoint = spawnpointName;
     }
 

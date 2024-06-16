@@ -1,0 +1,15 @@
+[BeginDialogue]
+I can't believe you'll be moving away so soon though.
+I still remember when you arrived at my doorstep all those years ago, tightly grasping your father's hand...
+And now look at you all grown up!
+I'll really miss you by my side, but I'll let you free to explore and learn on your own now,
+After all you're a fully fledged witch!
+Heading out now?
+You have the map right?
+And your staff and spellbook?
+Ah, alright, alright, I'll try to stop worrying so much. But you've never been outside the forest so I can't help but worry...
+Safe travels darling, and good luck!
+Feel free to visit me, if you can figure out teleportation on your own!
+And as your mother always said:
+Mysteries will find those who seek it!
+[EndDialogue]

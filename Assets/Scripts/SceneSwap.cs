@@ -16,7 +16,12 @@ public class SceneSwap : MonoBehaviour
         {
             // Load the specified scene
             // SceneManager.LoadScene(sceneToLoad);
-            GameManager.instance.SceneSwap(sceneToLoad, spawnpointName);
+            SwapScene();
         }
+    }
+
+    public void SwapScene()
+    {
+        GameManager.instance.SceneSwap(sceneToLoad, spawnpointName);
     }
 }

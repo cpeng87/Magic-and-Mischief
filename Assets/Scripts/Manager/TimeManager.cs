@@ -18,8 +18,14 @@ public class TimeManager : MonoBehaviour
     private string[] seasons = {"Spr", "Sum", "Fall", "Win"};
     public int seasonCounter;
 
+    private bool isPaused;
+
     void Update()
     {
+        if (isPaused)
+        {
+            return;
+        }
         elapsedTime += Time.deltaTime;
         if (elapsedTime >= minutesPerSecond)
         {
@@ -67,5 +73,16 @@ public class TimeManager : MonoBehaviour
     {
         this.date = new Date(seasonCounter, dayCounter, year);
     }
+
+    public void PauseTime()
+    {
+        isPaused = true;
+    }
+
+    public void ResumeTime()
+    {
+        isPaused = false;
+    }
+
 }
 

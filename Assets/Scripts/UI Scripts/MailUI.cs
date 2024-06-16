@@ -2,14 +2,39 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class MailUI : MonoBehaviour
 {
-    private MailData mailData;
+    // private MailData mailData;
     public GameObject mailPanel;
     public TextMeshProUGUI mailText;
     public TextMeshProUGUI senderText;
+    public TextMeshProUGUI noMailText;
+
+    public GameObject mailboxListingPrefab;
+    public GameObject mailboxPanel;
+    public GameObject mailboxDisplay;
+
+    public GameObject mailOpenedPanel;
     // Start is called before the first frame update
+
+    private void Start()
+    {
+        mailPanel.SetActive(false);
+        mailOpenedPanel.SetActive(false);
+        // mailboxPanel.SetActive(true);
+        mailboxDisplay.SetActive(true);
+        MailEventHandler.OnMailChanged += SetupMailbox;
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown("m"))
+        {
+            ToggleUI();
+        }
+    }
 
     public void ToggleUI()
     {
@@ -18,7 +43,7 @@ public class MailUI : MonoBehaviour
             mailPanel.SetActive(true);
             Time.timeScale = 0f;
             GameManager.instance.PushActiveMenu(this.gameObject);
-            SetupMail();
+            SetupMailbox();
         }
         else
         {   
@@ -28,18 +53,122 @@ public class MailUI : MonoBehaviour
             {
                 Time.timeScale = 1f;
             }
-            
         }
     }
 
-    private void SetupMail()
+    private void SetupMailbox()
+    {
+        mailboxPanel.SetActive(true);
+        ClearMailbox();
+
+        if (GameManager.instance.mailManager.activeMail.Count == 0)
+        {
+            noMailText.text = "No Mail";
+        }
+        else
+        {
+            noMailText.text = "";
+        }
+
+        int counter = 0;
+        foreach ((MailData, bool) mailInfo in GameManager.instance.mailManager.activeMail)
+        {
+            GameObject newMail = Instantiate(mailboxListingPrefab, mailboxPanel.transform);
+            MailboxListingUI mailboxListing = newMail.GetComponent<MailboxListingUI>();
+
+            mailboxListing.mailID = counter;
+
+            if (mailboxListing != null)
+            {
+                mailboxListing.SetMailStrings(mailInfo.Item1.date.ToString(), mailInfo.Item1.subject, mailInfo.Item1.sender);
+                if (mailInfo.Item2)
+                {
+                    mailboxListing.SetRead();
+                }
+
+                Button button = newMail.GetComponent<Button>();
+                if (button != null)
+                {
+                    button.onClick.AddListener(() => OpenMail(mailboxListing));
+                }
+            }
+            else
+            {
+                Debug.LogWarning("MailboxListing component not found on the instantiated prefab.");
+            }
+
+            counter += 1;
+        }
+    }
+
+    private void ClearMailbox()
+    {
+        foreach (Transform mail in mailboxPanel.transform)
+        {
+            Destroy(mail.gameObject);
+        }
+    }
+
+    private void SetupMail(MailData mailData)
     {
         mailText.text = mailData.content;
         senderText.text = mailData.sender;
     }
 
-    private void SetMailData(MailData newMailData)
+    // private void SetMailData(MailData newMailData)
+    // {
+    //     mailData = newMailData;
+    // }
+
+    private bool CollectMailItems(MailData mailData)
     {
-        mailData = newMailData;
+        bool giftResult = true;
+        bool moneyResult = true;
+        if (mailData.hasGift)
+        {
+            // giftResult = GameManager.instance.player.inventory.GetInventory("Backpack").Add(mailData.gift);
+            giftResult = GameManager.instance.player.inventory.Add("Backpack", mailData.gift);
+        }
+        if (mailData.hasMoney)
+        {
+            moneyResult = GameManager.instance.player.AddCurrency(mailData.money);
+        }
+        return (giftResult && moneyResult);
+    }
+
+    private void OnDestroy()
+    {
+        MailEventHandler.OnMailChanged -= SetupMailbox;
+    }
+
+    public void OpenMail(MailboxListingUI clickedMail)
+    {
+        //setup actual ui elements
+        mailboxDisplay.SetActive(false);
+
+        mailOpenedPanel.SetActive(true);
+
+        MailData mailData = GameManager.instance.mailManager.activeMail[clickedMail.mailID].Item1;
+        SetupMail(mailData);
+
+        bool success = false;
+        if (!GameManager.instance.mailManager.activeMail[clickedMail.mailID].Item2)
+        {
+            success = CollectMailItems(mailData);
+        }
+
+        //set mail as read
+        // GameManager.instance.mailManager.activeMail[clickedMail.mailID].Item2 = true;
+        if (success)
+        {
+            GameManager.instance.mailManager.activeMail[clickedMail.mailID] = (GameManager.instance.mailManager.activeMail[clickedMail.mailID].Item1, true);
+        }
+    }
+
+    public void ReturnToMailbox()
+    {
+        mailOpenedPanel.SetActive(false);
+        mailboxDisplay.SetActive(true);
+        SetupMailbox();
     }
 }

@@ -103,6 +103,10 @@ public class TileManager : MonoBehaviour
     }
     public void LoadPlantablesMap()
     {
+        if (GameManager.instance.player == null)
+        {
+            return;
+        }
         GameManager.instance.player.GetComponent<TileInteraction>().SetPlantableGrowthDict(GameManager.instance.tileSave.GetSavedMapTile(SceneManager.GetActiveScene().name));
     }
     public bool CheckPlaceable(Vector3Int position, Vector2 size)

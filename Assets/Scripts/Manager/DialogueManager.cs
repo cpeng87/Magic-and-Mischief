@@ -32,9 +32,10 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+    //for random npc talk
     public void Initialize(string newName, Sprite portrait, TextAsset dialogue)
     {
-        SelectDialogue(dialogue);
+        SelectRandomDialogue(dialogue);
         currentTextLine = 0;
 
         dialogueUI.UpdateDisplay(newName, portrait);
@@ -49,13 +50,59 @@ public class DialogueManager : MonoBehaviour
         isActive = true;
     }
 
+    public void Initialize(TextAsset dialogue)
+    {
+        SelectAllDialogue(dialogue);
+        dialogueUI.HideNameAndPortrait();
+        dialogueUI.UpdateDisplay(selectedDialogue[currentTextLine]);
+        if (selectedDialogue.Count - 1 == currentTextLine)
+        {
+            dialogueUI.SetIndicator(false);
+        }
+        else{
+            dialogueUI.SetIndicator(true);
+        }
+        isActive = true;
+    }
+
     private void Conclude()
     {
+        currentTextLine = 0;
         isActive = false;
         dialogueUI.EndDialogue();
     }
 
-    private void SelectDialogue(TextAsset dialogue)
+    private void SelectAllDialogue(TextAsset dialogue)
+    {
+        using (StringReader reader = new StringReader(dialogue.text))
+        {
+            List<string> currDialogue = new List<string>();
+            string line;
+            while ((line = reader.ReadLine()) != null)
+            {
+                line = line.Trim();
+                if (line.Contains("[BeginDialogue]"))
+                {
+                    currDialogue = new List<string>();
+                }
+                else if (line.Contains("[EndDialogue]"))
+                {
+                    selectedDialogue = currDialogue;
+                    return;
+                }
+                else if (line == "")
+                {
+                    continue;
+                }
+                else
+                {
+                    currDialogue.Add(line);
+                }
+            }
+        }
+    }
+
+    private void SelectRandomDialogue(TextAsset dialogue)
     {
         //parse through .txt file to select a line
         List<List<string>> possibleDialogue = new List<List<string>>();

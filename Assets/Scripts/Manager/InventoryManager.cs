@@ -30,12 +30,14 @@ public class InventoryManager : MonoBehaviour
         inventoryByName.Add("Toolbar", toolbar);
     }
 
-    public void Add(string inventoryName, Item item)
+    public bool Add(string inventoryName, Item item)
     {
         if (inventoryByName.ContainsKey(inventoryName))
         {
-            inventoryByName[inventoryName].Add(item);
+            return inventoryByName[inventoryName].Add(item);
         }
+
+        return false;
     }
 
     public Inventory GetInventory(string inventoryName)

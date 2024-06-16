@@ -90,8 +90,6 @@ public class MailManager : MonoBehaviour
         {
             Debug.Log("currDate is null");
         }
-        Debug.Log(currDate.ToString());
-        Debug.Log("Checking Mail");
         if (mailByDate.ContainsKey(currDate))
         {
             MailEventHandler.TriggerMailChangedEvent();
@@ -102,5 +100,11 @@ public class MailManager : MonoBehaviour
             }
             mailByDate.Remove(currDate);
         }
+    }
+
+    public void DeleteMail(int index)
+    {
+        activeMail.RemoveAt(index);
+        MailEventHandler.TriggerMailChangedEvent();
     }
 }

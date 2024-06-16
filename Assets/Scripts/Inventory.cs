@@ -112,19 +112,19 @@ public class Inventory
         }
     }
 
-    public void Add(Item item)
+    public bool Add(Item item)
     {
         if (item == null)
         {
             Debug.Log("Item to add is null in Inventory");
-            return;
+            return false;
         }
         foreach(Slot slot in slots)
         {
             if (slot.itemName == item.data.itemName && slot.CanAddItem(item.data.itemName))
             {
                 slot.AddItem(item);
-                return;
+                return true;
             }
         }
 
@@ -133,9 +133,11 @@ public class Inventory
             if(slot.itemName == "")
             {
                 slot.AddItem(item);
-                return;
+                return true;
             }
         }
+
+        return false;
     }
 
     public void Remove(int index)

@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd07cfd4f2b36d749aad6644e133eb12, type: 3}
   m_Name: Beginner Mail
   m_EditorClassIdentifier: 
-  day: 2
   season: 0
+  day: 2
   year: 1
-  sender: 
+  subject: Moving In
+  sender: Auntie
   content: 'Hello!
 
 

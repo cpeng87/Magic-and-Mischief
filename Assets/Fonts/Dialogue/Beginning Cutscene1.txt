@@ -1,0 +1,9 @@
+[BeginDialogue]
+I knew this day would come, but time really flies by so fast!
+Here.
+Your parents told me to give you this when you graduated from your apprenticeship and would leave the forest!
+The key is for the tower, but I haven't been told anything about the spellbook~
+Looks like that one's up to you to figure out!
+And for your trip, here's enough materials for one cast of Flight.
+He did tell me to let you take of yourself, so this is all you get from me!
+[EndDialogue]
