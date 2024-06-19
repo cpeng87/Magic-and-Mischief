@@ -12,8 +12,6 @@ public class StatusBarUI : MonoBehaviour
     {
         slider.maxValue = maxHealth;
         slider.value = maxHealth;
-
-        // gradient.Evaluate(1f)
     }
     public void SetHealth(int health)
     {

@@ -92,8 +92,8 @@ public class MailManager : MonoBehaviour
         }
         if (mailByDate.ContainsKey(currDate))
         {
+            MailEventHandler.TriggerNewMailEvent();
             MailEventHandler.TriggerMailChangedEvent();
-            Debug.Log("Mail changed event!");
             foreach (MailData mail in mailByDate[currDate])
             {
                 activeMail.Add((mail, false));

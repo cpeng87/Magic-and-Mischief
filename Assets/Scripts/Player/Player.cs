@@ -38,7 +38,7 @@ public class Player : MonoBehaviour
         health = new StatusBar(numHealth, healthbar);
         mana = new StatusBar(numMana, manabar);
 
-        MailEventHandler.OnMailChanged += MailAnimation;
+        MailEventHandler.OnNewMail += MailAnimation;
         mailCrowAnimator = mailCrow.GetComponent<Animator>();
     }
 
@@ -89,6 +89,7 @@ public class Player : MonoBehaviour
 
     private void OnDestroy()
     {
-        MailEventHandler.OnMailChanged -= MailAnimation;
+
+        MailEventHandler.OnNewMail -= MailAnimation;
     }
 }

@@ -7,7 +7,7 @@ public class Revelation : Spell
     public InvisibleMap invisibleMap;
     private float time = 5f;
     // Start is called before the first frame update
-    private void FindInvisibileMap()
+    private void FindInvisibleMap()
     {
         invisibleMap = FindObjectOfType<InvisibleMap>();
     }
@@ -19,12 +19,18 @@ public class Revelation : Spell
         bool result = GameManager.instance.player.ps.CastSpell((SpellData) data);
         if (result)
         {
+            bool buffResult = GameManager.instance.player.bm.StartUniqueBuff(time, data.icon, OnBuffEnd);
             if (invisibleMap == null)
             {
-                FindInvisibileMap();
+                FindInvisibleMap();
             } 
             invisibleMap.SetActiveAndFade(time);
         }
         return result;
+    }
+    
+    private void OnBuffEnd()
+    {
+        invisibleMap.EndFade();
     }
 }
