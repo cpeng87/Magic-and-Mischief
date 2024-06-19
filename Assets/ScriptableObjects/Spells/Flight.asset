@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d7e5de1ef8551e41a5b9915322be2be, type: 3}
+  m_Name: Flight
+  m_EditorClassIdentifier: 
+  itemName: Flight
+  description: A spell that allows you to fly using a broom. Lasts for one day.
+  icon: {fileID: 21300000, guid: a5b88e1376fe4ad43af7943914d66d1d, type: 3}
+  spellDamage: 0
+  spellManaCost: 30
+  ingredients:
+  - listingData: {fileID: 11400000, guid: dcbb45a6284fdc049acb865e24bd3fe0, type: 2}
+    quantity: 1
+  - listingData: {fileID: 11400000, guid: c3f96850ded38f046bb4f640c108516e, type: 2}
+    quantity: 3
+  - listingData: {fileID: 11400000, guid: 2e0199e0958ef22419fcd3ea6646d3f2, type: 2}
+    quantity: 2
+  spellType: 2

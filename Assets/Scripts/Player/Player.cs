@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     public PlayerMovement pm;
     public PlayerAnimation pa;
     public TileInteraction ti;
+    public BuffManager bm;
 
     public StatusBar health;
     public StatusBar mana;
@@ -33,6 +34,7 @@ public class Player : MonoBehaviour
         pm = GetComponent<PlayerMovement>();
         pa = GetComponent<PlayerAnimation>();
         ti = GetComponent<TileInteraction>();
+        bm = GetComponent<BuffManager>();
         health = new StatusBar(numHealth, healthbar);
         mana = new StatusBar(numMana, manabar);
 

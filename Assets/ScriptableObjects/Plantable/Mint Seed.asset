@@ -15,6 +15,7 @@ MonoBehaviour:
   itemName: Mint Seed
   description: 'A package of mint seeds. Takes 3 days to grow. '
   icon: {fileID: 21300000, guid: 2f56ccc4b39aaf740aee577ae986a00f, type: 3}
+  sellPrice: 10
   harvestItemName: Mint
   growthTime: 3
   growthTiles:

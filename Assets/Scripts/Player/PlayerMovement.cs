@@ -56,31 +56,6 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    // private void AnimateMovement()
-    // {
-    //     if (anim != null)
-    //     {
-    //         if (dir.magnitude > 0)
-    //         {
-    //             anim.SetBool("isMoving", true);
-    //             anim.SetFloat("Horizontal", dir.x);
-    //             anim.SetFloat("Vertical", dir.y);
-    //             currDirection = dir;
-    //         }
-    //         else
-    //         {
-    //             anim.SetBool("isMoving", false);
-    //         }
-    //     }
-    // }
-    // public void AnimateSpellcast()
-    // {
-    //     if (anim != null)
-    //     {
-    //         anim.SetTrigger("isSpellcasting");
-    //     }
-    // }
-
     public void SetNotMoving()
     {
         canMove = false;
@@ -95,5 +70,18 @@ public class PlayerMovement : MonoBehaviour
     public void DisableMovement()
     {
         canMove = false;
+    }
+
+    public void IncreaseSpeed(float amount)
+    {
+        moveSpeed += amount;
+    }
+    public void DecreaseSpeed(float amount)
+    {
+        moveSpeed -= amount;
+        if (moveSpeed < 0.1)
+        {
+            moveSpeed = 0.1f;
+        }
     }
 }

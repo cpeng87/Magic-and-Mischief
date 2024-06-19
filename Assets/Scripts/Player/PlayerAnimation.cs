@@ -35,4 +35,12 @@ public class PlayerAnimation : MonoBehaviour
             anim.SetTrigger("isSpellcasting");
         }
     }
+    public void AnimateFlight()
+    {
+        anim.SetBool("isFlying", true);
+    }
+    public void StopAnimateFlight()
+    {
+        anim.SetBool("isFlying", false);
+    }
 }
