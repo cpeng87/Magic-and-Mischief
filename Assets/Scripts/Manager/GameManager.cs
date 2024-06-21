@@ -25,6 +25,10 @@ public class GameManager : MonoBehaviour
     private int savedMana;
     public Dictionary<string, Dictionary<Vector3Int, Inventory>> savedChests = new Dictionary<string, Dictionary<Vector3Int, Inventory>>();
     private string nextSpawnpoint;
+    private Vector3 savedDir;
+
+    //remaining, total time
+    public List<Buff> savedBuffs = new List<Buff>();
 
     private void Awake()
     {
@@ -70,25 +74,30 @@ public class GameManager : MonoBehaviour
 
         MapManager mapManager = FindObjectOfType<MapManager>();
 
-        if (savedHealth >= 0)
+        if (player != null)
         {
-            player.health.SetVal(savedHealth);
-        }
-        if (savedMana >= 0)
-        {
-            player.mana.SetVal(savedMana);
+            player.bm.SetBuffs(savedBuffs);
+            if (savedHealth >= 0)
+            {
+                player.health.SetVal(savedHealth);
+            }
+            if (savedMana >= 0)
+            {
+                player.mana.SetVal(savedMana);
+            }
+            if (savedBackpack != null)
+            {
+                player.inventory.SetInventoryByName("Backpack", savedBackpack);
+            }
+            if (savedToolbar != null)
+            {
+                player.inventory.SetInventoryByName("Toolbar", savedToolbar);
+            }
+            player.pa.SetDirection(savedDir);
         }
         if (mapManager != null)
         {
             mapManager.SpawnCollectibles();
-        }
-        if (savedBackpack != null)
-        {
-            player.inventory.SetInventoryByName("Backpack", savedBackpack);
-        }
-        if (savedToolbar != null)
-        {
-            player.inventory.SetInventoryByName("Toolbar", savedToolbar);
         }
         if (tileManager != null)
         {
@@ -125,6 +134,7 @@ public class GameManager : MonoBehaviour
             savedToolbar = player.inventory.GetInventory("Toolbar");
             savedHealth = player.health.currVal;
             savedMana = player.mana.currVal;
+            savedDir = player.pm.GetCurrDirection();
             tileSave.AddMapPlantables(SceneManager.GetActiveScene().name, player.ti.GetPlantableGrowthsDict());
             if (savedChests.ContainsKey(SceneManager.GetActiveScene().name))
             {
@@ -134,6 +144,7 @@ public class GameManager : MonoBehaviour
             {
                 savedChests.Add(SceneManager.GetActiveScene().name, player.inventory.GetChests());
             }
+            savedBuffs = player.bm.activeBuffs;
         }
         // tileSave.AddMapPlantables(SceneManager.GetActiveScene().name, player.ti.GetPlantableGrowthsDict());
         SceneManager.LoadScene(sceneName);

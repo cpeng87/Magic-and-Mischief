@@ -33,6 +33,7 @@ public class Player : MonoBehaviour
         ps = GetComponent<PlayerSpell>();
         pm = GetComponent<PlayerMovement>();
         pa = GetComponent<PlayerAnimation>();
+        pa.Setup();
         ti = GetComponent<TileInteraction>();
         bm = GetComponent<BuffManager>();
         health = new StatusBar(numHealth, healthbar);

@@ -7,7 +7,7 @@ public class PlayerAnimation : MonoBehaviour
     private Animator anim;
     private Vector3 currDir;
 
-    private void Start()
+    public void Setup()
     {
         anim = GetComponent<Animator>();
     }
@@ -42,5 +42,10 @@ public class PlayerAnimation : MonoBehaviour
     public void StopAnimateFlight()
     {
         anim.SetBool("isFlying", false);
+    }
+    public void SetDirection(Vector3 dir)
+    {
+        anim.SetFloat("Horizontal", dir.x);
+        anim.SetFloat("Vertical", dir.y);
     }
 }

@@ -21,6 +21,10 @@ public class InvisibleMap : MonoBehaviour
         tilemapRenderer.enabled = true;
         fadeOut = StartCoroutine(FadeOut(time));
     }
+    public void SetActive()
+    {
+        tilemapRenderer.enabled = true;
+    }
 
     private IEnumerator FadeOut(float time)
     {
@@ -38,10 +42,17 @@ public class InvisibleMap : MonoBehaviour
         tilemap.color = targetColor;
         tilemapRenderer.enabled = false;
     }
+    public void End()
+    {
+        float time = 1f;
+        FadeOut(time);
+    }
+
     public void EndFade()
     {
         StopCoroutine(fadeOut);
         tilemap.color = originalColor;
         tilemapRenderer.enabled = false;
     }
+
 }

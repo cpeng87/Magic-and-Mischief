@@ -12,11 +12,7 @@ public class Flight : Spell
         bool result = GameManager.instance.player.ps.CastSpell((SpellData) data);
         if (result)
         {
-            bool buffResult = GameManager.instance.player.bm.StartSpeedBuff(3f, time, data.icon, OnBuffEnd);
-            if (buffResult)
-            {
-                GameManager.instance.player.pa.AnimateFlight();
-            }
+            GameManager.instance.player.bm.StartSpeedBuff(3f, time, data.icon, OnBuffBegin, OnBuffEnd);
         }
         return result;
     }
@@ -24,5 +20,10 @@ public class Flight : Spell
     private void OnBuffEnd()
     {
         GameManager.instance.player.pa.StopAnimateFlight();
+    }
+
+    private void OnBuffBegin()
+    {
+        GameManager.instance.player.pa.AnimateFlight();
     }
 }

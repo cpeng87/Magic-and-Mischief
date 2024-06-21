@@ -84,4 +84,12 @@ public class PlayerMovement : MonoBehaviour
             moveSpeed = 0.1f;
         }
     }
+    public void SetCurrDirection(Vector3 newDir)
+    {
+        currDirection = newDir;
+    }
+    public Vector3 GetCurrDirection()
+    {
+        return currDirection;
+    }
 }

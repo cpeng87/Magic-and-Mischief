@@ -7,12 +7,17 @@ public class BuffManager : MonoBehaviour
 {
     public List<Buff> activeBuffs = new List<Buff>();
     private Dictionary<Buff, Coroutine> buffCoroutines = new Dictionary<Buff, Coroutine>();
-    private PlayerMovement playerMovement;
+    public PlayerMovement playerMovement;
     private int maximumBuffs = 12;
 
-    private void Start()
+    public void Start()
     {
-        playerMovement = GameManager.instance.player.GetComponent<PlayerMovement>();
+        Debug.Log("Setting player movement");
+        playerMovement = this.gameObject.GetComponent<PlayerMovement>();
+        if (playerMovement == null)
+        {
+            Debug.Log("Player movement is null");
+        }
     }
 
     private Buff CheckDuplicateBuff(Sprite toBeChecked)
@@ -27,7 +32,7 @@ public class BuffManager : MonoBehaviour
         return null;
     }
 
-    public bool StartSpeedBuff(float speedIncrease, float duration, Sprite icon, Action onBuffEnd)
+    public bool StartSpeedBuff(float speedIncrease, float duration, Sprite icon, Action onBuffBegin, Action onBuffEnd)
     {
         if (activeBuffs.Count >= maximumBuffs)
         {
@@ -39,17 +44,18 @@ public class BuffManager : MonoBehaviour
             //refresh buff timer
             RemoveBuff(duplicate);
         }
-        Buff speedBuff = new Buff(Buff.BuffType.Speed, speedIncrease, duration, icon, onBuffEnd);
+        Buff speedBuff = new Buff(Buff.BuffType.Speed, speedIncrease, duration, icon, onBuffBegin, onBuffEnd);
         AddBuff(speedBuff);
         return true;
     }
-    public bool StartUniqueBuff(float duration, Sprite icon, Action onBuffEnd)
+    public bool StartUniqueBuff(float duration, Sprite icon, Action onBuffBegin, Action onBuffEnd)
     {
         if (activeBuffs.Count >= maximumBuffs)
         {
             return false;
         }
-        Buff uniqueBuff = new Buff(Buff.BuffType.Unique, 0, duration, icon, onBuffEnd);
+        Debug.Log(duration);
+        Buff uniqueBuff = new Buff(Buff.BuffType.Unique, 0, duration, icon, onBuffBegin, onBuffEnd);
         AddBuff(uniqueBuff);
         return true;
     }
@@ -64,11 +70,25 @@ public class BuffManager : MonoBehaviour
         BuffEventHandler.TriggerBuffChangedEvent();
     }
 
-    private void ApplyBuff(Buff buff)
+    public void ApplyBuff(Buff buff)
     {
+        Debug.Log("Applying buff");
+        buff.OnBuffBegin?.Invoke();
         if (buff.Type == Buff.BuffType.Speed)
         {
+            if (playerMovement == null)
+            {
+                playerMovement = this.gameObject.GetComponent<PlayerMovement>();
+            }
             playerMovement.IncreaseSpeed(buff.Value);
+        }
+    }
+
+    public void SetBuffs(List<Buff> buffs)
+    {
+        foreach (Buff buff in buffs)
+        {
+            AddBuff(buff);
         }
     }
 
