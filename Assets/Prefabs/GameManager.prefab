@@ -17,6 +17,8 @@ GameObject:
   - component: {fileID: 7575893812390883642}
   - component: {fileID: 5751654569210164471}
   - component: {fileID: 8850291174931374994}
+  - component: {fileID: 8898857797765201778}
+  - component: {fileID: 7327905467943757717}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -58,6 +60,7 @@ MonoBehaviour:
   uiManager: {fileID: 0}
   dialogueManager: {fileID: 0}
   mailManager: {fileID: 0}
+  sceneSwapManager: {fileID: 0}
   player: {fileID: 0}
   activeMenuCount: 0
 --- !u!114 &2403646835798976025
@@ -180,3 +183,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mails:
   - {fileID: 11400000, guid: fb7ad2d9dd191584284f2061e44fe258, type: 2}
+--- !u!114 &8898857797765201778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6290406138041701571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18ffa15ac2037584b8233edaa029e805, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mails:
+  - {fileID: 11400000, guid: fb7ad2d9dd191584284f2061e44fe258, type: 2}
+--- !u!114 &7327905467943757717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6290406138041701571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1839ac234b479d1439e7c18229a2d4ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

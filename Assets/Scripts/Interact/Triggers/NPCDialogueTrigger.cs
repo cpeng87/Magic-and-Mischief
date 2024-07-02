@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class NPCDialogueTrigger : InteractTriggerUI<DialogueUI>
 {
-    public NPCData npcData;
+    private NPCData npcData;
 
     protected override void Start()
     {
+        npcData = GetComponent<NPCCharacter>().npcData;
         ui = FindObjectOfType<DialogueUI>();
     }
     public override void Interact()
@@ -18,6 +19,5 @@ public class NPCDialogueTrigger : InteractTriggerUI<DialogueUI>
         }
         ui.ToggleUI();
         GameManager.instance.dialogueManager.Initialize(npcData.name, npcData.portrait, npcData.dialogue);
-        // ui.ToggleUI();
     }
 }

@@ -29,20 +29,20 @@ public class TimeUI : MonoBehaviour
 
     private void RefreshMinute()
     {
-        minuteText.text = tm.minutes.ToString("00");
+        minuteText.text = tm.gameTime.MinutesToString();
     }
 
     private void RefreshHour()
     {
-        hourText.text = tm.hours.ToString("00");
+        hourText.text = tm.gameTime.HoursToString();
     }
 
     private void RefreshDay()
     {
-        dayText.text = tm.currDay;
+        dayText.text = tm.date.DayToString();
     }
     private void RefreshSeason()
     {
-        seasonText.text = tm.currSeason;
+        seasonText.text = tm.date.SeasonToString();
     }
 }

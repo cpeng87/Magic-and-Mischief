@@ -29,7 +29,7 @@ public class RepairUI : InteractUI
             LoadRepairData();
             LoadMaterials();
             repairPanel.SetActive(true);
-            Time.timeScale = 0f;
+            UnityEngine.Time.timeScale = 0f;
             GameManager.instance.PushActiveMenu(this.gameObject);
         }
         else
@@ -38,7 +38,7 @@ public class RepairUI : InteractUI
             GameManager.instance.PopActiveMenu();
             if (GameManager.instance.activeMenuCount == 0)
             {
-                Time.timeScale = 1f;
+                UnityEngine.Time.timeScale = 1f;
             }
             
         }

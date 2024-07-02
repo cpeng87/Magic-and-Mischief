@@ -20,10 +20,10 @@ public class Projectile : MonoBehaviour
     void Update()
     {
         // Move the projectile forward
-        transform.position += direction * speed * Time.deltaTime;
+        transform.position += direction * speed * UnityEngine.Time.deltaTime;
 
         // Increment the timer
-        timer += Time.deltaTime;
+        timer += UnityEngine.Time.deltaTime;
 
         // Check if the projectile has expired
         if (timer >= duration)

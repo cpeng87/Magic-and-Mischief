@@ -42,7 +42,7 @@ public class SpellcraftUI : InteractUI
         if (!spellcraftPanel.activeSelf)
         {
             spellcraftPanel.SetActive(true);
-            Time.timeScale = 0f;
+            UnityEngine.Time.timeScale = 0f;
             GameManager.instance.PushActiveMenu(this.gameObject);
             LoadPage();
         }
@@ -52,7 +52,7 @@ public class SpellcraftUI : InteractUI
             GameManager.instance.PopActiveMenu();
             if (GameManager.instance.activeMenuCount == 0)
             {
-                Time.timeScale = 1f;
+                UnityEngine.Time.timeScale = 1f;
             }
             
         }

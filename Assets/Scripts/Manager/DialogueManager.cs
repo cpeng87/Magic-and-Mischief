@@ -6,7 +6,7 @@ using System.IO;
 public class DialogueManager : MonoBehaviour
 {
     private int currentTextLine;
-    private DialogueUI dialogueUI;
+    public DialogueUI dialogueUI;
     private List<string> selectedDialogue;
     public bool isActive;
 
@@ -62,6 +62,16 @@ public class DialogueManager : MonoBehaviour
         else{
             dialogueUI.SetIndicator(true);
         }
+        isActive = true;
+    }
+
+    public void Initialize(string dialogue)
+    {
+        dialogueUI.HideNameAndPortrait();
+        selectedDialogue = new List<string>();
+        selectedDialogue.Add(dialogue);
+        dialogueUI.UpdateDisplay(dialogue);
+        dialogueUI.SetIndicator(false);
         isActive = true;
     }
 

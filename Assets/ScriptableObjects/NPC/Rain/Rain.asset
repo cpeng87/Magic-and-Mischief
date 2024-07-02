@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cff5594760f06243aa2cdbd4a870901, type: 3}
+  m_Name: Rain
+  m_EditorClassIdentifier: 
+  npcName: Rain
+  portrait: {fileID: 21300000, guid: 92194366a1d18904a9e200f8b61f1589, type: 3}
+  dialogue: {fileID: 4900000, guid: d1a8784ad0c831b4d84bc58c177c7ac4, type: 3}
+  weeklySchedule:
+  - {fileID: 11400000, guid: e8cb354d493f7bd4b8ed36db70e0cbfc, type: 2}
+  - {fileID: 11400000, guid: 7c69223abbd64784a9746d9566254dec, type: 2}
+  - {fileID: 11400000, guid: 3f2c184dd5cb14d4ab89bb3ab2d376a9, type: 2}
+  - {fileID: 11400000, guid: 0e02155937debf54ea218fb2b9c38eec, type: 2}
+  - {fileID: 11400000, guid: daaef0ddc57af2347a251a0bda1daf7d, type: 2}
+  - {fileID: 11400000, guid: e36c315b012b94f4faef80584126bb9f, type: 2}
+  - {fileID: 11400000, guid: 0acee71ff38fd0142a7a1a9ba14035f7, type: 2}

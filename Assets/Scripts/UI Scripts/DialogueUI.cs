@@ -39,7 +39,7 @@ public class DialogueUI : InteractUI
         if (!panel.activeSelf)
         {
             panel.SetActive(true);
-            Time.timeScale = 0f;
+            UnityEngine.Time.timeScale = 0f;
             GameManager.instance.PushActiveMenu(this.gameObject);
             if (playableDirector != null)
             {
@@ -140,7 +140,7 @@ public class DialogueUI : InteractUI
         GameManager.instance.PopActiveMenu();
         if (GameManager.instance.activeMenuCount == 0)
         {
-            Time.timeScale = 1f;
+            UnityEngine.Time.timeScale = 1f;
         }
         if (playableDirector != null)
         {

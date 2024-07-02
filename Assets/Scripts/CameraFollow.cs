@@ -15,6 +15,6 @@ public class CameraFollow : MonoBehaviour
     }
     private void Update()
     {
-        transform.position = Vector3.Lerp(transform.position, target.position + camOffset, Time.deltaTime * 5f);
+        transform.position = Vector3.Lerp(transform.position, target.position + camOffset, UnityEngine.Time.deltaTime * 5f);
     }
 }

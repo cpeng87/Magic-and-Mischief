@@ -8,4 +8,6 @@ public class NPCData : ScriptableObject
     public string npcName;
     public Sprite portrait;
     public TextAsset dialogue;
+
+    public List<ScheduleData> weeklySchedule;
 }

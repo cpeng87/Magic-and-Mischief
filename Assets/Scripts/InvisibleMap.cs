@@ -34,7 +34,7 @@ public class InvisibleMap : MonoBehaviour
 
         while (elapsedTime < time)
         {
-            elapsedTime += Time.deltaTime;
+            elapsedTime += UnityEngine.Time.deltaTime;
             tilemap.color = Color.Lerp(originalColor, targetColor, elapsedTime / time);
             yield return null;
         }

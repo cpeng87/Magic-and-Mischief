@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DialogueTrigger : InteractTriggerUI<DialogueUI>
 {
-    public TextAsset dialogue;
+    public string dialogue;
 
     protected override void Start()
     {

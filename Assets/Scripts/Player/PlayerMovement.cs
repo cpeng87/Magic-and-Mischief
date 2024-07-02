@@ -52,7 +52,7 @@ public class PlayerMovement : MonoBehaviour
         if (canMove)
         {
             // Perform movement
-            rb.MovePosition(transform.position + dir * moveSpeed * Time.fixedDeltaTime);
+            rb.MovePosition(transform.position + dir * moveSpeed * UnityEngine.Time.fixedDeltaTime);
         }
     }
 

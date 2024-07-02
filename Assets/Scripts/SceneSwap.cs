@@ -22,6 +22,10 @@ public class SceneSwap : MonoBehaviour
 
     public void SwapScene()
     {
-        GameManager.instance.SceneSwap(sceneToLoad, spawnpointName);
+        if (GameManager.instance.sceneSwapManager == null)
+        {
+            Debug.Log("scene swap mananger is null");
+        }
+        GameManager.instance.sceneSwapManager.SceneSwap(sceneToLoad, spawnpointName);
     }
 }

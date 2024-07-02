@@ -13,7 +13,7 @@ public class Homeward : Spell
         bool result = GameManager.instance.player.ps.CastSpell((SpellData) data);
         if (result)
         {
-            GameManager.instance.SceneSwap(sceneToLoad, homeSpawn);
+            GameManager.instance.sceneSwapManager.SceneSwap(sceneToLoad, homeSpawn);
         }
         return result;
     }

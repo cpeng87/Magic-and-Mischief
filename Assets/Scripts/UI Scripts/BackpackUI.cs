@@ -31,7 +31,7 @@ public class BackpackUI : MonoBehaviour
         if (!inventoryUI.gameObject.activeSelf)
         {
             inventoryUI.gameObject.SetActive(true);
-            Time.timeScale = 0f;
+            UnityEngine.Time.timeScale = 0f;
             GameManager.instance.PushActiveMenu(this.gameObject);
         }
         else
@@ -40,7 +40,7 @@ public class BackpackUI : MonoBehaviour
             GameManager.instance.PopActiveMenu();
             if (GameManager.instance.activeMenuCount == 0)
             {
-                Time.timeScale = 1f;
+                UnityEngine.Time.timeScale = 1f;
             }
         }
     }

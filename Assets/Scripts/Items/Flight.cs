@@ -19,11 +19,15 @@ public class Flight : Spell
 
     private void OnBuffEnd()
     {
+        GameManager.instance.player.bm.SetIsFlying(false);
         GameManager.instance.player.pa.StopAnimateFlight();
+        BuffEventHandler.TriggerFlightChangedEvent();
     }
 
     private void OnBuffBegin()
     {
+        GameManager.instance.player.bm.SetIsFlying(true);
         GameManager.instance.player.pa.AnimateFlight();
+        BuffEventHandler.TriggerFlightChangedEvent();
     }
 }

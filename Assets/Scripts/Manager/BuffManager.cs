@@ -9,10 +9,10 @@ public class BuffManager : MonoBehaviour
     private Dictionary<Buff, Coroutine> buffCoroutines = new Dictionary<Buff, Coroutine>();
     public PlayerMovement playerMovement;
     private int maximumBuffs = 12;
+    public bool isFlying;
 
     public void Start()
     {
-        Debug.Log("Setting player movement");
         playerMovement = this.gameObject.GetComponent<PlayerMovement>();
         if (playerMovement == null)
         {
@@ -72,7 +72,6 @@ public class BuffManager : MonoBehaviour
 
     public void ApplyBuff(Buff buff)
     {
-        Debug.Log("Applying buff");
         buff.OnBuffBegin?.Invoke();
         if (buff.Type == Buff.BuffType.Speed)
         {
@@ -96,7 +95,7 @@ public class BuffManager : MonoBehaviour
     {
         while (buff.RemainingTime > 0f)
         {
-            buff.RemainingTime -= Time.deltaTime;
+            buff.RemainingTime -= UnityEngine.Time.deltaTime;
             yield return null;
         }
         RemoveBuff(buff);
@@ -123,5 +122,11 @@ public class BuffManager : MonoBehaviour
     public void RemoveBuff(int buffID)
     {
         RemoveBuff(activeBuffs[buffID]);
+    }
+
+    public void SetIsFlying(bool newVal)
+    {
+        Debug.Log("Setting isFlying");
+        isFlying = newVal;
     }
 }

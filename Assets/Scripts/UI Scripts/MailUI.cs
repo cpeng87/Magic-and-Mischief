@@ -41,7 +41,7 @@ public class MailUI : MonoBehaviour
         if (!mailPanel.activeSelf)
         {
             mailPanel.SetActive(true);
-            Time.timeScale = 0f;
+            UnityEngine.Time.timeScale = 0f;
             GameManager.instance.PushActiveMenu(this.gameObject);
             SetupMailbox();
         }
@@ -51,7 +51,7 @@ public class MailUI : MonoBehaviour
             GameManager.instance.PopActiveMenu();
             if (GameManager.instance.activeMenuCount == 0)
             {
-                Time.timeScale = 1f;
+                UnityEngine.Time.timeScale = 1f;
             }
         }
     }

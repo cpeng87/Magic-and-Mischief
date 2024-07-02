@@ -31,7 +31,6 @@ public class ToolbarUI : MonoBehaviour
         }
         else if (inventoryUI.GetInventory().slots[inventoryUI.selectorSlotID].itemName == "")
         {
-            Debug.Log("the item in selected slot itemname is blank");
             return;
         }
         bool result = GameManager.instance.itemManager.GetItemByName(inventoryUI.GetInventory().slots[inventoryUI.selectorSlotID].itemName).Use();
