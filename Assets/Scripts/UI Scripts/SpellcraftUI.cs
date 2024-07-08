@@ -88,7 +88,6 @@ public class SpellcraftUI : InteractUI
     {
         if (spells.Count - 1 > currIndex)
         {
-            Debug.Log("To the next page!!!");
             currIndex += 1;
             LoadPage();
         }

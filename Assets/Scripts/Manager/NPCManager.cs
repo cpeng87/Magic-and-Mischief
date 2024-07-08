@@ -63,6 +63,7 @@ public class NPCManager : MonoBehaviour
             int day = GameManager.instance.timeManager.date.day;
             npcCurrMap.Add(npcData, npcData.weeklySchedule[day].initialCheckpoint.mapName);
             npcGameObjs.Add(npcData, npc);
+            PlayerPrefs.SetInt(npcData.name, 0);
         }
     }
 

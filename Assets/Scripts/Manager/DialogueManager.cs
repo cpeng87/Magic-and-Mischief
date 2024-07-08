@@ -35,7 +35,15 @@ public class DialogueManager : MonoBehaviour
     //for random npc talk
     public void Initialize(string newName, Sprite portrait, TextAsset dialogue)
     {
-        SelectRandomDialogue(dialogue);
+        if (PlayerPrefs.GetInt(newName, 0) == 0)
+        {
+            SelectSpecificDialogue("Introduction", dialogue);
+            PlayerPrefs.SetInt(newName, 1);
+        }
+        else
+        {
+            SelectRandomDialogue(dialogue);
+        }
         currentTextLine = 0;
 
         dialogueUI.UpdateDisplay(newName, portrait);
@@ -132,7 +140,7 @@ public class DialogueManager : MonoBehaviour
                     possibleDialogue.Add(currDialogue);
                     currDialogue = null;
                 }
-                else if (line == "")
+                else if (line == "" || (line.Contains("[") && line.Contains("]")))
                 {
                     continue;
                 }
@@ -146,4 +154,31 @@ public class DialogueManager : MonoBehaviour
         selectedDialogue = possibleDialogue[randomIndex];
 
     }
+
+    public void SelectSpecificDialogue(string dialogueTag, TextAsset dialogue)
+    {
+        using (StringReader reader = new StringReader(dialogue.text))
+        {
+            string line;
+            List<string> currDialogue = null;
+            while ((line = reader.ReadLine()) != null)
+            {
+                line = line.Trim();
+                if (line.Contains("[" + dialogueTag + "]"))
+                {
+                    currDialogue = new List<string>();
+                }
+                else if (line.Contains("[EndDialogue]") && currDialogue != null)
+                {
+                    selectedDialogue = currDialogue;
+                    return;
+                }
+                else if (!string.IsNullOrEmpty(line) && currDialogue != null)
+                {
+                    currDialogue.Add(line);
+                }
+            }
+        }
+    }
+
 }

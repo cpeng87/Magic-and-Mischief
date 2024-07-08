@@ -1,3 +1,8 @@
+[Introduction]
+Pleased to make you acquaintance.
+I hope to be of use to you somehow.
+[EndDialogue]
+
 [BeginDialogue]
 How are you today? 
 [EndDialogue]
@@ -13,7 +18,7 @@ Would you care to join me?
 
 [BeginDialogue]
 Ah, the witch from the tower in the forest. How have you been faring?
-Me? Well, my family's being... difficult, but 
+Me? Well, 
 [EndDialogue]
 
 [BeginDialogue]
@@ -23,10 +28,9 @@ If you ever need any sort of assistance, feel free to ask me.
 
 [BeginDialogue]
 ...
-...
-...
 Ah!
-Sorry, I was communing with my familiar.
-Now if you would excuse me...
+Sorry I was a bit lost in thought.
+Oh, what was I thinking about? Well, family matters, as usual.
+It can be quite tedious, but I don't really have a choice in whether I'm involved really.
 [EndDialogue]
 
