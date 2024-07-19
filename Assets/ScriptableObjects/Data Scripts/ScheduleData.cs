@@ -7,5 +7,5 @@ public class ScheduleData : ScriptableObject
 {
     public int day;
     public Checkpoint initialCheckpoint;
-    public List<PathData> dailySchedule;
+    public List<ActivityData> dailySchedule;
 }

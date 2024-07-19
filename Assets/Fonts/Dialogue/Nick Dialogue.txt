@@ -1,0 +1,82 @@
+[Introduction]
+Oh hey! I haven't seen you around before, the name's Nick!
+Did you just move here?
+Well, see ya around!
+[EndDialogue]
+
+[BeginDialogue]
+Ugh... I'm so behind in work...
+My boss is making me write like ten articles a day. The dude doesn't even do anything and he's telling me to work overtime?
+I guess I should be grateful I even have a job though.
+[EndDialogue]
+
+[BeginDialogue]
+Ah, today's such a nice day. Time to bring out my camera!
+[EndDialogue]
+
+[BeginDialogue]
+You won't believe it! Yesterday I saw a log that moved all by itself near the entrance to the woods!
+Hallucinating? No no no, I saw it with my very eyes! It moved all by itself! I swear!
+It was shuffling towards the deeper part of the woods! Don't look at me like that, I know what I saw!
+Argh! If only I brought my camera!
+[EndDialogue]
+
+[BeginDialogue]
+Oh hey! How's it going?
+Me? Well I've been eating ramen for this past week, so uh, can't say I've been doing the best...
+My boss says I haven't been working enough so he slashed my pay.
+Hm? Is that legal? Uhhh maybe I should go read some law books or something, haha. I'll get back to you on that.
+[EndDialogue]
+
+[BeginDialogue]
+Heyo! Got any bits of juicy info for me? 
+Yeah, for my job, but I'm also just curious what happens in the woods. Like c'mon I've seen flashing lights and heard strange noises from the woods at night.
+Explore? Ahaha... maybe... in the future? I don't think I can win a fight against a bear yet.
+[EndDialogue]
+
+[BeginDialogue]
+My stomach is killing me...
+I finally got my paycheck yesterday, so I got like five plates of nachos to celebrate.
+Who knew nachos could be so lethal.
+[EndDialogue]
+
+[BeginDialogue]
+Hey, you got any hangover medicine? I went out yesterday and still haven't recovered.
+[EndDialogue]
+
+[BeginDialogue]
+Man, I hate this job.
+Do you think I could just quit and survive in the wilderness? Like surviving off of like nuts and berries?
+But I'd lose my gym membership. That'd be devastating.
+[EndDialogue]
+
+[BeginDialogue]
+Heyo, can I rant to you for a bit?
+My boss is "shifting gears" to the cooking industry and he wants me to write recipes. But he wants a thousand words? Like where is it all going?
+I guess I'll write my life story to make it up to the word count. Blah blah blah, this recipe brough me and my wife together, blah blah blah, it's been passed down my family, blah, blah, blah.
+What's the recipe for?
+Lemonade.
+Heat sugar and water. Squeeze lemon. Mix.
+It's not hard, who's even reading this stuff?!
+[EndDialogue]
+
+[BeginDialogue]
+What's up?
+[EndDialogue]
+
+[BeginDialogue]
+Man, I really wish I could leave this town and go and travel on my own. Like a solo backpack trip kinda thing. For a year at least I guess?
+I feel like I'm missing out on so much in the world.
+If only I had more saved up...
+[EndDialogue]
+
+[BeginDialogue]
+I finished up all my work early!
+Time to slack off. Want to join me?
+[EndDialogue]
+
+[BeginDialogue]
+I've been trying to learn how to cook lately. My protein meal of blended eggs and ground beef can't be beat!
+Spices? Nah, I prefer to keep it simple.
+[EndDialogue]
+

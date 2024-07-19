@@ -34,26 +34,49 @@ public class NPCMovement : MonoBehaviour
 
     private IEnumerator MoveToNextCheckpoint()
     {
-        // Debug.Log("Starting move to next checkpoint");
-        PathData path = currDailySchedule.dailySchedule[GameManager.instance.timeManager.gameTime.hour];
-
-        for (int i = currentCheckpointIndex + 1; i < path.pathpoints.Count; i++)
+        if (currDailySchedule.dailySchedule[GameManager.instance.timeManager.gameTime.hour] is IdleData)
         {
-            Vector3 pathpoint = path.pathpoints[i].position;
-            yield return StartCoroutine(MoveToPosition(pathpoint));
+            IdleData idle = (IdleData) currDailySchedule.dailySchedule[GameManager.instance.timeManager.gameTime.hour];
+            transform.position = idle.position;
+            isMoving = false;
+            anim.SetBool("isMoving", false);
+            anim.SetFloat("Horizontal", idle.direction.x);
+            anim.SetFloat("Vertical", idle.direction.y);
         }
-        // yield return StartCoroutine(MoveToPosition(path.pathpoints[path.pathpoints.Count - 1].position));
-        
-        isMoving = false;
-        anim.SetBool("isMoving", false);
-        // yield return new WaitForSeconds(path.pathpoints[path.pathpoints.Count - 1].stayTime);
+        else if (currDailySchedule.dailySchedule[GameManager.instance.timeManager.gameTime.hour] is PathData)
+        {
+            PathData path = (PathData) currDailySchedule.dailySchedule[GameManager.instance.timeManager.gameTime.hour];
 
-        currentCheckpointIndex++;
+            Debug.Log("Start printing");
+            foreach (Checkpoint checkpoint in path.pathpoints)
+            {
+                Debug.Log(checkpoint.position);
+            }
+            Debug.Log("End printing");
+
+            for (int i = currentCheckpointIndex; i < path.pathpoints.Count; i++)
+            {
+                Vector3 pathpoint = path.pathpoints[i].position;
+                if (pathpoint == new Vector3(0,0,0))
+                {
+                    Debug.Log("Index of (0,0,0)" + currentCheckpointIndex);
+                }
+
+                Debug.Log("Moving to this position: " +  pathpoint);
+                yield return StartCoroutine(MoveToPosition(pathpoint));
+            }
+            // yield return StartCoroutine(MoveToPosition(path.pathpoints[path.pathpoints.Count - 1].position));
+            
+            isMoving = false;
+            anim.SetBool("isMoving", false);
+            // yield return new WaitForSeconds(path.pathpoints[path.pathpoints.Count - 1].stayTime);
+
+            currentCheckpointIndex++;
+        }
     }
 
     private IEnumerator MoveToPosition(Vector3 targetPosition)
     {
-        
         isMoving = true;
         anim.SetBool("isMoving", true);
         Vector3 difference = (targetPosition - transform.position).normalized;
@@ -70,33 +93,42 @@ public class NPCMovement : MonoBehaviour
     {
         int day = GameManager.instance.timeManager.date.day;
         GameTime time = GameManager.instance.timeManager.gameTime;
+        currentCheckpointIndex = 0;
 
-        // Get the current hour schedule
-        PathData currHourSchedule = npcData.weeklySchedule[day].dailySchedule[time.hour];
-        float elapsedTimeMinutes = time.minute;
-        Vector3 finalPosition = currHourSchedule.pathpoints[0].position; // Start from the first point
-
-        for (int i = 0; i < currHourSchedule.pathpoints.Count - 1; i++)
+        ///moving if pathdata
+        if (npcData.weeklySchedule[day].dailySchedule[time.hour] is IdleData)
         {
-            Vector3 startPoint = currHourSchedule.pathpoints[i].position;
-            Vector3 endPoint = currHourSchedule.pathpoints[i + 1].position;
-
-            float distance = Vector3.Distance(startPoint, endPoint);
-            float timeToTravel = distance / movementSpeed;
-
-            if (elapsedTimeMinutes <= timeToTravel)
-            {
-                float t = elapsedTimeMinutes / timeToTravel;
-                finalPosition = Vector3.Lerp(startPoint, endPoint, t);
-                break;
-            }
-            else
-            {
-                elapsedTimeMinutes -= timeToTravel;
-                currentCheckpointIndex++;
-            }
+            IdleData currHourIdle = (IdleData) npcData.weeklySchedule[day].dailySchedule[time.hour];
         }
-        npcTransform.position = finalPosition;
+        else if (npcData.weeklySchedule[day].dailySchedule[time.hour] is PathData)
+        {
+            PathData currHourSchedule = (PathData) npcData.weeklySchedule[day].dailySchedule[time.hour];
+            float elapsedTimeMinutes = time.minute;
+            Vector3 finalPosition = currHourSchedule.pathpoints[0].position; // Start from the first point
+
+            for (int i = 0; i < currHourSchedule.pathpoints.Count - 1; i++)
+            {
+                Vector3 startPoint = currHourSchedule.pathpoints[i].position;
+                Vector3 endPoint = currHourSchedule.pathpoints[i + 1].position;
+
+                float distance = Vector3.Distance(startPoint, endPoint);
+                float timeToTravel = distance / movementSpeed;
+
+                if (elapsedTimeMinutes <= timeToTravel)
+                {
+                    float t = elapsedTimeMinutes / timeToTravel;
+                    finalPosition = Vector3.Lerp(startPoint, endPoint, t);
+                    break;
+                }
+                else
+                {
+                    Debug.Log("Incrementing current checkpoint index");
+                    elapsedTimeMinutes -= timeToTravel;
+                    currentCheckpointIndex++;
+                }
+            }
+            npcTransform.position = finalPosition;
+        }
     }
 
     private void OnDestroy()

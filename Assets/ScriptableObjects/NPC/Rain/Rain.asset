@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Rain
   m_EditorClassIdentifier: 
   npcName: Rain
-  portrait: {fileID: 21300000, guid: 92194366a1d18904a9e200f8b61f1589, type: 3}
+  portrait: {fileID: 87542637, guid: b3ae36829d2e11d4c9178865e7598cc9, type: 3}
   dialogue: {fileID: 4900000, guid: d1a8784ad0c831b4d84bc58c177c7ac4, type: 3}
   weeklySchedule:
   - {fileID: 11400000, guid: e8cb354d493f7bd4b8ed36db70e0cbfc, type: 2}

@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8819c7fd2d15a548b3f7b5be33d9a7c, type: 3}
+  m_Name: Bridge to hole look at
+  m_EditorClassIdentifier: 
+  pathpoints:
+  - mapName: Forest
+    isSwapScene: 0
+    newMap: 
+    position: {x: 17, y: -11, z: 0}
+  - mapName: Forest
+    isSwapScene: 0
+    newMap: 
+    position: {x: 22, y: -11, z: 0}
+  - mapName: Forest
+    isSwapScene: 0
+    newMap: 
+    position: {x: 22, y: -12, z: 0}
+  - mapName: Forest
+    isSwapScene: 0
+    newMap: 
+    position: {x: 23, y: -12, z: 0}
+  - mapName: Forest
+    isSwapScene: 0
+    newMap: 
+    position: {x: 23, y: -33, z: 0}
+  - mapName: Forest
+    isSwapScene: 0
+    newMap: 
+    position: {x: 25, y: -33, z: 0}

@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f5b3713ed8dfd441b0cb065920923b6, type: 3}
+  m_Name: Monday
+  m_EditorClassIdentifier: 
+  day: 0
+  initialCheckpoint:
+    mapName: Forest
+    isSwapScene: 0
+    newMap: 
+    position: {x: 1, y: 1, z: 1}
+  dailySchedule:
+  - {fileID: 11400000, guid: c12e1c8579ece5748a4086653fd6dcd0, type: 2}
+  - {fileID: 11400000, guid: eb265d1a90d51e14cb5a1452f24ced73, type: 2}
+  - {fileID: 11400000, guid: bf5ab1b827b59c14992a91866e04b542, type: 2}
+  - {fileID: 11400000, guid: c12e1c8579ece5748a4086653fd6dcd0, type: 2}
+  - {fileID: 11400000, guid: c12e1c8579ece5748a4086653fd6dcd0, type: 2}
+  - {fileID: 11400000, guid: c12e1c8579ece5748a4086653fd6dcd0, type: 2}
+  - {fileID: 11400000, guid: c12e1c8579ece5748a4086653fd6dcd0, type: 2}
+  - {fileID: 11400000, guid: c12e1c8579ece5748a4086653fd6dcd0, type: 2}
+  - {fileID: 11400000, guid: c12e1c8579ece5748a4086653fd6dcd0, type: 2}
+  - {fileID: 11400000, guid: c12e1c8579ece5748a4086653fd6dcd0, type: 2}
+  - {fileID: 11400000, guid: c12e1c8579ece5748a4086653fd6dcd0, type: 2}
+  - {fileID: 11400000, guid: c12e1c8579ece5748a4086653fd6dcd0, type: 2}
+  - {fileID: 11400000, guid: c12e1c8579ece5748a4086653fd6dcd0, type: 2}
+  - {fileID: 11400000, guid: c12e1c8579ece5748a4086653fd6dcd0, type: 2}
+  - {fileID: 11400000, guid: c12e1c8579ece5748a4086653fd6dcd0, type: 2}
+  - {fileID: 11400000, guid: c12e1c8579ece5748a4086653fd6dcd0, type: 2}
+  - {fileID: 11400000, guid: c12e1c8579ece5748a4086653fd6dcd0, type: 2}
+  - {fileID: 11400000, guid: c12e1c8579ece5748a4086653fd6dcd0, type: 2}
+  - {fileID: 11400000, guid: c12e1c8579ece5748a4086653fd6dcd0, type: 2}
+  - {fileID: 11400000, guid: c12e1c8579ece5748a4086653fd6dcd0, type: 2}
+  - {fileID: 11400000, guid: c12e1c8579ece5748a4086653fd6dcd0, type: 2}
+  - {fileID: 11400000, guid: c12e1c8579ece5748a4086653fd6dcd0, type: 2}
+  - {fileID: 11400000, guid: c12e1c8579ece5748a4086653fd6dcd0, type: 2}
+  - {fileID: 11400000, guid: c12e1c8579ece5748a4086653fd6dcd0, type: 2}

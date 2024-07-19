@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "PathData", menuName = "NPC/PathData", order = 2)]
-public class PathData : ScriptableObject
+public class PathData : ActivityData
 {
     // public Checkpoint start;
     // public Checkpoint end;

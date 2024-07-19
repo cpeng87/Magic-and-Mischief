@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 8850291174931374994}
   - component: {fileID: 8898857797765201778}
   - component: {fileID: 7327905467943757717}
+  - component: {fileID: 9106999347711524024}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -61,6 +62,7 @@ MonoBehaviour:
   dialogueManager: {fileID: 0}
   mailManager: {fileID: 0}
   sceneSwapManager: {fileID: 0}
+  npcManager: {fileID: 0}
   player: {fileID: 0}
   activeMenuCount: 0
 --- !u!114 &2403646835798976025
@@ -121,14 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae40287ed23389f4e9204196f81c8395, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minutes: 0
-  hours: 0
-  currDay: Mon
-  currSeason: Spr
-  year: 1
-  minutesPerSecond: 0.01
-  dayCounter: 0
-  seasonCounter: 0
+  minutesPerSecond: 0.5
 --- !u!114 &2496436673471304812
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,6 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74a484c614006d147b1ec5b4fa1a8e0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dialogueUI: {fileID: 0}
   isActive: 0
 --- !u!114 &8850291174931374994
 MonoBehaviour:
@@ -209,3 +205,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1839ac234b479d1439e7c18229a2d4ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &9106999347711524024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6290406138041701571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60d4e49805e48e7449f478934a14ca4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npcs:
+  - {fileID: 5030578676412267973, guid: b75566c665324744aa6db567d30c84ae, type: 3}
+  - {fileID: 1967615831103151035, guid: cc8c7778cb74c89469841fdab44e1fbc, type: 3}
