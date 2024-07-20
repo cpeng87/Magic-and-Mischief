@@ -61,3 +61,4 @@ MonoBehaviour:
     isSwapScene: 0
     newMap: 
     position: {x: 17, y: -11, z: 0}
+  endDirection: {x: 0, y: -1}

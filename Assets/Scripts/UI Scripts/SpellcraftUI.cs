@@ -117,8 +117,9 @@ public class SpellcraftUI : InteractUI
         ClearMaterials();
         foreach (IngredientListing material in spells[currIndex].ingredients)
         {
+            ItemData itemData = GameManager.instance.itemManager.GetItemDataByName(material.itemName);
             GameObject newMaterial = Instantiate(materialsListing, materialsPanel.transform);
-            newMaterial.GetComponent<MaterialListingUI>().SetMaterialListing(material.listingData.itemName, material.quantity, material.listingData.icon);
+            newMaterial.GetComponent<MaterialListingUI>().SetMaterialListing(itemData.itemName, material.quantity, itemData.icon);
         }
     }
 
@@ -135,9 +136,10 @@ public class SpellcraftUI : InteractUI
     {
         foreach (IngredientListing item in itemsNeeded)
         {
-            if (!inventory.CheckInventoryForItemAndQuantity(item.listingData.itemName, item.quantity))
+            ItemData itemData = GameManager.instance.itemManager.GetItemDataByName(item.itemName);
+            if (!inventory.CheckInventoryForItemAndQuantity(itemData.itemName, item.quantity))
             {
-                Debug.Log("Can't find: " + item.listingData.itemName);
+                Debug.Log("Can't find: " + itemData.itemName);
                 return false;
             }
         }
@@ -147,7 +149,8 @@ public class SpellcraftUI : InteractUI
     {
         foreach (IngredientListing item in itemsNeeded)
         {
-            inventory.SubtractItemAndQuantity(item.listingData.itemName, item.quantity);
+            ItemData itemData = GameManager.instance.itemManager.GetItemDataByName(item.itemName);
+            inventory.SubtractItemAndQuantity(itemData.itemName, item.quantity);
         }
         inventory.Add(GameManager.instance.itemManager.GetItemByName(spells[currIndex].itemName));
     }

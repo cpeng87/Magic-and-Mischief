@@ -57,3 +57,7 @@ MonoBehaviour:
     isSwapScene: 0
     newMap: 
     position: {x: -28, y: -33, z: 0}
+  - mapName: Forest
+    isSwapScene: 0
+    newMap: 
+    position: {x: -28, y: -33, z: 0}

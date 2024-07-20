@@ -77,7 +77,8 @@ public class ShopUI : MonoBehaviour
             // // Add event trigger for right-click (sell)
             // AddEventTrigger(newSlot, EventTriggerType.PointerClick, (eventData) => { if (((PointerEventData)eventData).button == PointerEventData.InputButton.Right) SellItem(newShopSlotUI.shopSlotID); });
 
-            newShopSlotUI.SetItemValues(item.listingData.name, item.quantity, item.listingData.icon);
+            ItemData itemData = GameManager.instance.itemManager.GetItemDataByName(item.itemName);
+            newShopSlotUI.SetItemValues(itemData.name, item.quantity, itemData.icon);
             slots.Add(newShopSlotUI);
             counter++;
         }
