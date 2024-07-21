@@ -17,14 +17,6 @@ public class NPCManager : MonoBehaviour
         // TimeEventHandler.OnHourChanged += UpdateLocations;
     }
 
-    // private void UpdateLocations()
-    // {
-    //     foreach (NPCData npc in npcCurrMap.Keys)
-    //     {
-
-    //     }
-    // }
-
     public void UpdateLocation(NPCData npc, string newLocation)
     {
         // also needs to check if new instantiation needed if player is on same scene
@@ -35,6 +27,7 @@ public class NPCManager : MonoBehaviour
             if (SceneManager.GetActiveScene().name == newLocation)
             {
                 GameObject newNPC = Instantiate(npcGameObjs[npc]);
+                newNPC.layer = LayerMask.NameToLayer("NPC");
             }
         }
     }

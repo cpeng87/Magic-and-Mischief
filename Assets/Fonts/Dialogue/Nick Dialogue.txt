@@ -80,3 +80,4 @@ I've been trying to learn how to cook lately. My protein meal of blended eggs an
 Spices? Nah, I prefer to keep it simple.
 [EndDialogue]
 
+
