@@ -3,5 +3,5 @@ using UnityEngine;
 
 public class ActivityData : ScriptableObject
 {
-    
+    public string map;
 }

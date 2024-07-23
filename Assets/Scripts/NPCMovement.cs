@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class NPCMovement : MonoBehaviour
 {
     public ScheduleData currDailySchedule;
-    public float movementSpeed = 2f;
+    public float movementSpeed;
     public bool isMoving;
 
     private Animator anim;
@@ -17,6 +18,7 @@ public class NPCMovement : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         npcData = GetComponent<NPCCharacter>().npcData;
+        movementSpeed = npcData.movementSpeed;
         npcTransform = GetComponent<Transform>();
         currDailySchedule = npcData.weeklySchedule[GameManager.instance.timeManager.date.day];
         StartActivity();
@@ -43,12 +45,15 @@ public class NPCMovement : MonoBehaviour
         else if (currDailySchedule.dailySchedule[GameManager.instance.timeManager.gameTime.hour] is PathData)
         {
             int index = PredictLocation();
+            Debug.Log(index);
             PathData path = (PathData) currDailySchedule.dailySchedule[GameManager.instance.timeManager.gameTime.hour];
-            npcTransform.position = path.pathpoints[index].position;
+            // what if it not on the map?
+            // npcTransform.position = path.pathpoints[index].position;
 
             //already at the end of path
             if (index >= path.pathpoints.Count - 1)
             {
+                npcTransform.position = path.pathpoints[path.pathpoints.Count - 1].position;
                 isMoving = false;
                 anim.SetBool("isMoving", false);
                 anim.SetFloat("Horizontal", path.endDirection.x);
@@ -56,6 +61,7 @@ public class NPCMovement : MonoBehaviour
             }
             else
             {
+                // npcTransform.position = path.pathpoints[index].position;
                 StartCoroutine(MoveToNextCheckpoint(index));
             }
         }
@@ -65,12 +71,23 @@ public class NPCMovement : MonoBehaviour
     {
         PathData path = (PathData) currDailySchedule.dailySchedule[GameManager.instance.timeManager.gameTime.hour];
 
-        Debug.Log(path.pathpoints.Count);
         for (int i = currentCheckpointIndex; i < path.pathpoints.Count; i++)
         {
             Vector3 pathpoint = path.pathpoints[i].position;
-
-            Debug.Log("Moving to this position: " +  pathpoint);
+            if (path.pathpoints[i].isSwapScene)
+            {
+                //check if has swapped or not
+                if (SceneManager.GetActiveScene().name != path.pathpoints[i].mapName)
+                {
+                    GameManager.instance.npcManager.UpdateLocation(npcData, path.pathpoints[currentCheckpointIndex].newMap);
+                    Destroy(this.gameObject);
+                    yield return null;
+                }
+                else
+                {
+                    npcTransform.position = path.pathpoints[currentCheckpointIndex].position;
+                }
+            }
             yield return StartCoroutine(MoveToPosition(pathpoint));
         }
         
@@ -114,21 +131,23 @@ public class NPCMovement : MonoBehaviour
 
                 float distance = Vector3.Distance(startPoint, endPoint);
                 float timeToTravel = distance / movementSpeed;
-
-                if (elapsedTimeMinutes <= timeToTravel)
+                float minutesForTravel = GameManager.instance.timeManager.ConvertRealTimeToMinutes(timeToTravel);
+                
+                if (elapsedTimeMinutes <= minutesForTravel)
                 {
-                    float t = elapsedTimeMinutes / timeToTravel;
+                    float t = elapsedTimeMinutes / minutesForTravel;
                     finalPosition = Vector3.Lerp(startPoint, endPoint, t);
+                    Debug.Log(finalPosition);
                     break;
                 }
                 else
                 {
-                    elapsedTimeMinutes -= timeToTravel;
+                    elapsedTimeMinutes -= minutesForTravel;
                     currentCheckpointIndex++;
                 }
             }
             npcTransform.position = finalPosition;
-            return currentCheckpointIndex;
+            return currentCheckpointIndex + 1;
         }
         return 0;
     }

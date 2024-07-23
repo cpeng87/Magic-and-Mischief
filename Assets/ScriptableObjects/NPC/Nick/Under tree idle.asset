@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08808c8f944d77b408fd3a37f186ac86, type: 3}
   m_Name: Under tree idle
   m_EditorClassIdentifier: 
+  map: Forest
   isAnimated: 0
   animationName: 
   position: {x: 25, y: -33, z: 0}

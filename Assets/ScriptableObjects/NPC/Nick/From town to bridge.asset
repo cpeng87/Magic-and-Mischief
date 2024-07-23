@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8819c7fd2d15a548b3f7b5be33d9a7c, type: 3}
   m_Name: From town to bridge
   m_EditorClassIdentifier: 
+  map: Forest
   pathpoints:
   - mapName: Forest
     isSwapScene: 0
@@ -62,3 +63,5 @@ MonoBehaviour:
     newMap: 
     position: {x: 17, y: -11, z: 0}
   endDirection: {x: 0, y: -1}
+  isSwapScene: 0
+  newMap: 

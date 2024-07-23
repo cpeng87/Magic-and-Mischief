@@ -129,7 +129,7 @@ public class TimeManager : MonoBehaviour
     public Date date;
     public GameTime gameTime;
 
-    public float minutesPerSecond = 1f;
+    public float secondsPerMinute = 1f;
 
     private float elapsedTime = 0.0f;
 
@@ -148,9 +148,9 @@ public class TimeManager : MonoBehaviour
             return;
         }
         elapsedTime += UnityEngine.Time.deltaTime;
-        if (elapsedTime >= minutesPerSecond)
+        if (elapsedTime >= secondsPerMinute)
         {
-            elapsedTime -= minutesPerSecond;
+            elapsedTime -= secondsPerMinute;
             UpdateTime();
         }
     }
@@ -177,6 +177,12 @@ public class TimeManager : MonoBehaviour
     public void ResumeTime()
     {
         isPaused = false;
+    }
+
+    // rounds up no matter what
+    public float ConvertRealTimeToMinutes(float realTime)
+    {
+        return realTime / secondsPerMinute;
     }
 }
 

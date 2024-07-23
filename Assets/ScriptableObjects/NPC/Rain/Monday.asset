@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   day: 0
   initialCheckpoint:
-    mapName: Forest
+    mapName: Tower
+    isSwapScene: 0
+    newMap: 
     position: {x: -3, y: -3, z: 0}
-    stayTime: 0
   dailySchedule:
   - {fileID: 11400000, guid: 8a35665d1148a5444a09d4caeca916d2, type: 2}
   - {fileID: 11400000, guid: 6aa29e867bdd90145a9e42e6e76273ba, type: 2}
