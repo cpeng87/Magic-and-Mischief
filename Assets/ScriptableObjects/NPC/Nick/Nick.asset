@@ -15,6 +15,7 @@ MonoBehaviour:
   npcName: Nick
   portrait: {fileID: -361447963, guid: d909186aced0aa14ea7bf632ab9b5a07, type: 3}
   dialogue: {fileID: 4900000, guid: 25db9ff7e6c20da46b2143cffcc38cb0, type: 3}
+  dialogueStorage: {fileID: 11400000, guid: 1085e11735dcc9c40955b882d60f5022, type: 2}
   movementSpeed: 2
   weeklySchedule:
   - {fileID: 11400000, guid: b27ed182fcdd1ad49862170328a28363, type: 2}

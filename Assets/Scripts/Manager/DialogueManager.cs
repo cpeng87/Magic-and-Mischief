@@ -33,35 +33,24 @@ public class DialogueManager : MonoBehaviour
     }
 
     //for random npc talk
-    public void Initialize(string newName, Sprite portrait, TextAsset dialogue)
+    public void Initialize(string newName, Sprite portrait, DialogueStorage dialogueStorage)
     {
         if (PlayerPrefs.GetInt(newName, 0) == 0)
         {
-            SelectSpecificDialogue("Introduction", dialogue);
+            // SelectSpecificDialogue("Introduction", dialogue);
+            selectedDialogue = dialogueStorage.introduction;
             PlayerPrefs.SetInt(newName, 1);
         }
         else
         {
-            SelectRandomDialogue(dialogue);
+            // SelectRandomDialogue(dialogue);
+            int rand = Random.Range(0, dialogueStorage.possibleDialogues.Count);
+            selectedDialogue = dialogueStorage.possibleDialogues[rand];
         }
+
         currentTextLine = 0;
 
         dialogueUI.UpdateDisplay(newName, portrait);
-        dialogueUI.UpdateDisplay(selectedDialogue[currentTextLine]);
-        if (selectedDialogue.Count - 1 == currentTextLine)
-        {
-            dialogueUI.SetIndicator(false);
-        }
-        else{
-            dialogueUI.SetIndicator(true);
-        }
-        isActive = true;
-    }
-
-    public void Initialize(TextAsset dialogue)
-    {
-        SelectAllDialogue(dialogue);
-        dialogueUI.HideNameAndPortrait();
         dialogueUI.UpdateDisplay(selectedDialogue[currentTextLine]);
         if (selectedDialogue.Count - 1 == currentTextLine)
         {
@@ -90,72 +79,7 @@ public class DialogueManager : MonoBehaviour
         dialogueUI.EndDialogue();
     }
 
-    private void SelectAllDialogue(TextAsset dialogue)
-    {
-        using (StringReader reader = new StringReader(dialogue.text))
-        {
-            List<string> currDialogue = new List<string>();
-            string line;
-            while ((line = reader.ReadLine()) != null)
-            {
-                line = line.Trim();
-                if (line.Contains("[BeginDialogue]"))
-                {
-                    currDialogue = new List<string>();
-                }
-                else if (line.Contains("[EndDialogue]"))
-                {
-                    selectedDialogue = currDialogue;
-                    return;
-                }
-                else if (line == "")
-                {
-                    continue;
-                }
-                else
-                {
-                    currDialogue.Add(line);
-                }
-            }
-        }
-    }
-
-    private void SelectRandomDialogue(TextAsset dialogue)
-    {
-        //parse through .txt file to select a line
-        List<List<string>> possibleDialogue = new List<List<string>>();
-        using (StringReader reader = new StringReader(dialogue.text))
-        {
-            List<string> currDialogue = new List<string>();
-            string line;
-            while ((line = reader.ReadLine()) != null)
-            {
-                line = line.Trim();
-                if (line.Contains("[BeginDialogue]"))
-                {
-                    currDialogue = new List<string>();
-                }
-                else if (line.Contains("[EndDialogue]"))
-                {
-                    possibleDialogue.Add(currDialogue);
-                    currDialogue = null;
-                }
-                else if (line == "" || (line.Contains("[") && line.Contains("]")))
-                {
-                    continue;
-                }
-                else
-                {
-                    currDialogue.Add(line);
-                }
-            }
-        }
-        int randomIndex = Random.Range(0, possibleDialogue.Count);
-        selectedDialogue = possibleDialogue[randomIndex];
-
-    }
-
-    public void SelectSpecificDialogue(string dialogueTag, TextAsset dialogue)
+    public List<string> ParseSpecificDialogue(string dialogueTag, TextAsset dialogue)
     {
         using (StringReader reader = new StringReader(dialogue.text))
         {
@@ -170,8 +94,7 @@ public class DialogueManager : MonoBehaviour
                 }
                 else if (line.Contains("[EndDialogue]") && currDialogue != null)
                 {
-                    selectedDialogue = currDialogue;
-                    return;
+                    return currDialogue;
                 }
                 else if (!string.IsNullOrEmpty(line) && currDialogue != null)
                 {
@@ -179,6 +102,44 @@ public class DialogueManager : MonoBehaviour
                 }
             }
         }
+        return null;
     }
 
+    public List<List<string>> ParseDialogue(TextAsset dialogue)
+    {
+        List<List<string>> possibleDialogue = new List<List<string>>();
+        using (StringReader reader = new StringReader(dialogue.text))
+        {
+            List<string> currDialogue = null;
+            string line;
+            while ((line = reader.ReadLine()) != null)
+            {
+                line = line.Trim();
+                if (line.Contains("[BeginDialogue]"))
+                {
+                    currDialogue = new List<string>();
+                }
+                else if (line.Contains("[EndDialogue]"))
+                {
+                    if (currDialogue != null)
+                    {
+                        possibleDialogue.Add(currDialogue);
+                        currDialogue = null;
+                    }
+                }
+                else if (line == "" || (line.Contains("[") && line.Contains("]")))
+                {
+                    continue;
+                }
+                else
+                {
+                    if (currDialogue != null)
+                    {
+                        currDialogue.Add(line);
+                    }
+                }
+            }
+        }
+        return possibleDialogue;
+    }
 }

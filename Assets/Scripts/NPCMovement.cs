@@ -45,7 +45,6 @@ public class NPCMovement : MonoBehaviour
         else if (currDailySchedule.dailySchedule[GameManager.instance.timeManager.gameTime.hour] is PathData)
         {
             int index = PredictLocation();
-            Debug.Log(index);
             PathData path = (PathData) currDailySchedule.dailySchedule[GameManager.instance.timeManager.gameTime.hour];
             // what if it not on the map?
             // npcTransform.position = path.pathpoints[index].position;
@@ -137,7 +136,6 @@ public class NPCMovement : MonoBehaviour
                 {
                     float t = elapsedTimeMinutes / minutesForTravel;
                     finalPosition = Vector3.Lerp(startPoint, endPoint, t);
-                    Debug.Log(finalPosition);
                     break;
                 }
                 else

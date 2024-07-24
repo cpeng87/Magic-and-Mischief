@@ -6,21 +6,22 @@ using UnityEngine.SceneManagement;
 
 public class NPCManager : MonoBehaviour
 {
-    // public List<NPCData> npcs = new List<NPCData>();
     public Dictionary<NPCData, string> npcCurrMap = new Dictionary<NPCData, string>();
     public Dictionary<NPCData, GameObject> npcGameObjs = new Dictionary<NPCData, GameObject>();
     public List<GameObject> npcs = new List<GameObject>();
     public Dictionary<int, List<(NPCData, string)>> npcCurrMapEntryDict = new Dictionary<int, List<(NPCData, string)>>();
-    // public Dictionary<int, (List<(NPCData, string)>)> npcCurrMapEntryDict = new Dictionary<int, (List<(NPCData, string)>)>();
+    public Dictionary<string, bool> npcTalkedDict = new Dictionary<string, bool>();
 
     // Start is called before the first frame update
     void Start()
     {
         SetupDictionary();
         LoadInNPCs();
+        LoadNPCDialogue();
         UpdateLocations();
         TimeEventHandler.OnHourChanged += UpdateLocations;
         TimeEventHandler.OnMinuteChanged += CheckEntryTimes;
+        TimeEventHandler.OnDayChanged += ResetTalked;
     }
 
     public void UpdateLocation(NPCData npc, string newLocation)
@@ -86,42 +87,8 @@ public class NPCManager : MonoBehaviour
 
                     npcCurrMapEntryDict[entryTime].Add((npc, pathData.newMap));
                 }
-                // if (pathData.newMap == SceneManager.GetActiveScene().name)
-                // {
-                //     int entryTime = CalculateTimeEntry();  // what about the others in diff maps -> calc change too?
-
-                //     if (!npcCurrMapEntryDict.ContainsKey(entryTime))
-                //     {
-                //         npcCurrMapEntryDict.Add(entryTime, new List<(NPCData, string)>());
-                //     }
-
-                //     npcCurrMapEntryDict[entryTime].Add((npc, pathData.newMap));
-                // }
-
-                // else
-                // {
-                //     int entryTime = CalculateTimeEntry();
-                // }
             }
         }
-
-        // foreach (NPCData npc in npcCurrMap.Keys)
-        // {
-        //     npcCurrMap[npc] = npc.weeklySchedule[GameManager.instance.timeManager.date.day].dailySchedule[GameManager.instance.timeManager.gameTime.hour].map;
-        //     if (npc.weeklySchedule[GameManager.instance.timeManager.date.day].dailySchedule[GameManager.instance.timeManager.gameTime.hour] is PathData)
-        //     {
-        //         PathData pathData = (PathData) npc.weeklySchedule[GameManager.instance.timeManager.date.day].dailySchedule[GameManager.instance.timeManager.gameTime.hour];
-        //         if (pathData.newMap == SceneManager.GetActiveScene().name)
-        //         {
-        //             int entryTime = CalculateTimeEntry();
-        //             if (npcCurrMapEntryDict.ContainsKey(entryTime) == false)
-        //             {
-        //                 npcCurrMapEntryDict.Add(entryTime, new List<NPCData>());
-        //                 npcCurrMapEntryDict[entryTime].Add(npc);
-        //             }
-        //         }
-        //     }
-        // }
     }
 
     public void LoadInNPCs()
@@ -141,10 +108,33 @@ public class NPCManager : MonoBehaviour
         }
     }
 
+    private void LoadNPCDialogue()
+    {
+        foreach (NPCData npc in npcCurrMap.Keys)
+        {
+            npc.dialogueStorage.introduction = GameManager.instance.dialogueManager.ParseSpecificDialogue("Introduction", npc.dialogue);
+            if (GameManager.instance.dialogueManager.ParseSpecificDialogue("Introduction", npc.dialogue) == null)
+            {
+                Debug.Log("Intro is null");
+            }
+            npc.dialogueStorage.possibleDialogues = GameManager.instance.dialogueManager.ParseDialogue(npc.dialogue);
+            if (GameManager.instance.dialogueManager.ParseDialogue(npc.dialogue) == null)
+            {
+                Debug.Log("dialogue is null");
+            }
+
+            foreach (string line in npc.dialogueStorage.possibleDialogues[0])
+            {
+                Debug.Log(line);
+            }
+        }
+    }
+
     private void OnDestroy()
     {
         TimeEventHandler.OnHourChanged -= UpdateLocations;
         TimeEventHandler.OnMinuteChanged -= CheckEntryTimes;
+        TimeEventHandler.OnDayChanged -= ResetTalked;
     }
 
     private void SetupDictionary()
@@ -155,6 +145,7 @@ public class NPCManager : MonoBehaviour
             int day = GameManager.instance.timeManager.date.day;
             npcCurrMap.Add(npcData, npcData.weeklySchedule[day].initialCheckpoint.mapName);
             npcGameObjs.Add(npcData, npc);
+            npcTalkedDict.Add(npcData.name, false);
             PlayerPrefs.SetInt(npcData.name, 0);
         }
     }
@@ -183,6 +174,34 @@ public class NPCManager : MonoBehaviour
         // did not find the swap scene
         Debug.Log("Did not find the swap scene.");
         return 0;
+    }
+
+    public bool CheckHasTalked(string name)
+    {
+        if (npcTalkedDict.ContainsKey(name))
+        {
+            return npcTalkedDict[name];
+        }
+        Debug.Log("Can't find " + name + " in dict");
+        return false;
+    }
+
+    private void ResetTalked()
+    {
+        foreach (string name in npcTalkedDict.Keys)
+        {
+            npcTalkedDict[name] = false;
+        }
+    }
+
+    public void SetTalked(string name)
+    {
+        if (npcTalkedDict.ContainsKey(name))
+        {
+            npcTalkedDict[name] = true;
+            return;
+        }
+        Debug.Log("Can't find " + name + " in dict");
     }
 
 }

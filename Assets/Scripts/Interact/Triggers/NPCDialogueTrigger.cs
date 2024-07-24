@@ -17,7 +17,12 @@ public class NPCDialogueTrigger : InteractTriggerUI<DialogueUI>
         {
             return;
         }
+        if (GameManager.instance.npcManager.CheckHasTalked(npcData.name))
+        {
+            return;
+        }
         ui.ToggleUI();
-        GameManager.instance.dialogueManager.Initialize(npcData.name, npcData.portrait, npcData.dialogue);
+        GameManager.instance.dialogueManager.Initialize(npcData.name, npcData.portrait, npcData.dialogueStorage);
+        GameManager.instance.npcManager.SetTalked(npcData.name);
     }
 }
