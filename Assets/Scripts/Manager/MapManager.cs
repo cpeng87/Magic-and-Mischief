@@ -15,7 +15,7 @@ public class MapManager : MonoBehaviour
     public List<MapSpawnable> mapCollectibles = new List<MapSpawnable>();
     public float probablityOfSpawn;
     public Tilemap spawnableTiles;
-    private GameObject[] spawnedItems;
+    public List<Item> spawnedItems = new List<Item>();
 
     public void SpawnCollectibles()
     {
@@ -34,9 +34,31 @@ public class MapManager : MonoBehaviour
                     Vector3 spawnPosition = spawnableTiles.GetCellCenterWorld(position);
                     Vector3 randomizedOffset = new Vector3(Random.Range(0f, 0.5f), Random.Range(0f, 0.5f), 0);
                     spawnPosition = spawnPosition + randomizedOffset;
-                    Instantiate(GameManager.instance.itemManager.GetItemByName(spawnedItem), spawnPosition, Quaternion.identity);
+                    Item newItem = Instantiate(GameManager.instance.itemManager.GetItemByName(spawnedItem), spawnPosition, Quaternion.identity);
+                    spawnedItems.Add(newItem);
                 }
             }
+        }
+    }
+
+    public List<(string, Vector3)> ExportSpawnedItems()
+    {
+        List<(string, Vector3)> rtn = new List<(string, Vector3)>();
+        foreach (Item item in spawnedItems)
+        {
+            if (item != null)
+            {
+                rtn.Add((item.GetComponent<Item>().data.itemName, item.transform.position));
+            }
+        }
+        return rtn;
+    }
+    public void SpawnCollectibles(List<(string, Vector3)> itemsImport)
+    {
+        foreach ((string, Vector3) item in itemsImport)
+        {
+            Item newItem = Instantiate(GameManager.instance.itemManager.GetItemByName(item.Item1), item.Item2, Quaternion.identity);
+            spawnedItems.Add(newItem);
         }
     }
 

@@ -12,6 +12,7 @@ public class SceneSwapManager : MonoBehaviour
     public Dictionary<string, Dictionary<Vector3Int, Inventory>> savedChests = new Dictionary<string, Dictionary<Vector3Int, Inventory>>();
     private string nextSpawnpoint;
     private Vector3 savedDir;
+    private Dictionary<string, List<(string, Vector3)>> savedMapSpawns = new Dictionary<string, List<(string, Vector3)>>();
     //remaining, total time
     public List<Buff> savedBuffs = new List<Buff>();
 
@@ -29,6 +30,7 @@ public class SceneSwapManager : MonoBehaviour
         MapManager mapManager = FindObjectOfType<MapManager>();
 
         player = GameManager.instance.player;
+        string sceneName = SceneManager.GetActiveScene().name;
 
         if (player != null)
         {
@@ -62,7 +64,14 @@ public class SceneSwapManager : MonoBehaviour
         }
         if (mapManager != null)
         {
-            mapManager.SpawnCollectibles();
+            if (savedMapSpawns.ContainsKey(sceneName))
+            {
+                mapManager.SpawnCollectibles(savedMapSpawns[sceneName]);
+            }
+            else
+            {
+                mapManager.SpawnCollectibles();
+            }
         }
         if (GameManager.instance.tileManager != null)
         {
@@ -70,9 +79,9 @@ public class SceneSwapManager : MonoBehaviour
             GameManager.instance.tileManager.SetDiggableTiles();
             GameManager.instance.tileManager.LoadPlantablesMap();
         }
-        if (savedChests != null && savedChests.ContainsKey(SceneManager.GetActiveScene().name))
+        if (savedChests != null && savedChests.ContainsKey(sceneName))
         {
-            player.inventory.chests = savedChests[SceneManager.GetActiveScene().name];
+            player.inventory.chests = savedChests[sceneName];
             player.inventory.LoadChests();
         }
         if (GameManager.instance.dialogueManager != null)
@@ -106,6 +115,19 @@ public class SceneSwapManager : MonoBehaviour
                 savedChests.Add(SceneManager.GetActiveScene().name, player.inventory.GetChests());
             }
             savedBuffs = player.bm.activeBuffs;
+            string currSceneName = SceneManager.GetActiveScene().name;
+            MapManager mapManager = FindObjectOfType<MapManager>();
+            if (mapManager != null)
+                {
+                if (savedMapSpawns.ContainsKey(currSceneName))
+                {
+                    savedMapSpawns[currSceneName] = mapManager.ExportSpawnedItems();
+                }
+                else
+                {
+                    savedMapSpawns.Add(currSceneName, mapManager.ExportSpawnedItems());
+            }
+            }
         }
         // tileSave.AddMapPlantables(SceneManager.GetActiveScene().name, player.ti.GetPlantableGrowthsDict());
         SceneManager.LoadScene(sceneName);

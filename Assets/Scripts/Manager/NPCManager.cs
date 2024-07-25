@@ -122,11 +122,6 @@ public class NPCManager : MonoBehaviour
             {
                 Debug.Log("dialogue is null");
             }
-
-            foreach (string line in npc.dialogueStorage.possibleDialogues[0])
-            {
-                Debug.Log(line);
-            }
         }
     }
 

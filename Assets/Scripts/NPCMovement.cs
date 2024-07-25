@@ -46,8 +46,6 @@ public class NPCMovement : MonoBehaviour
         {
             int index = PredictLocation();
             PathData path = (PathData) currDailySchedule.dailySchedule[GameManager.instance.timeManager.gameTime.hour];
-            // what if it not on the map?
-            // npcTransform.position = path.pathpoints[index].position;
 
             //already at the end of path
             if (index >= path.pathpoints.Count - 1)
