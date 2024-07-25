@@ -22,6 +22,11 @@ public class SceneSwapManager : MonoBehaviour
         savedMana = -1;
     }
 
+    private void Start()
+    {
+        TimeEventHandler.OnDayChanged += ResetMapSpawns;
+    }
+
     public void SceneLoad()
     {
         UnityEngine.Time.timeScale = 1f;
@@ -126,11 +131,24 @@ public class SceneSwapManager : MonoBehaviour
                 else
                 {
                     savedMapSpawns.Add(currSceneName, mapManager.ExportSpawnedItems());
-            }
+                }
             }
         }
         // tileSave.AddMapPlantables(SceneManager.GetActiveScene().name, player.ti.GetPlantableGrowthsDict());
         SceneManager.LoadScene(sceneName);
         nextSpawnpoint = spawnpointName;
+    }
+
+    private void ResetMapSpawns()
+    {
+        foreach (string map in savedMapSpawns.Keys)
+        {
+            savedMapSpawns.Remove(map);
+        }
+    }
+
+    private void OnDestroy()
+    {
+        TimeEventHandler.OnHourChanged -= ResetMapSpawns;
     }
 }

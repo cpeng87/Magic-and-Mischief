@@ -35,19 +35,19 @@ public class Date
     public void IncrementDate()
     {
         day += 1;
-        TimeEventHandler.TriggerDayChangedEvent();
         if (day > 30)
         {
             day = 0;
             season += 1;
-            TimeEventHandler.TriggerSeasonChangedEvent();
             if (season > 4)
             {
                 season = 0;
                 year += 1;
                 TimeEventHandler.TriggerYearChangedEvent();
             }
+            TimeEventHandler.TriggerSeasonChangedEvent();
         }
+        TimeEventHandler.TriggerDayChangedEvent();
     }
 
     public override bool Equals(object obj)
@@ -97,20 +97,21 @@ public class GameTime
 
     public bool IncrementTime()
     {
+        bool rtn = false;
         minute += 1;
-        TimeEventHandler.TriggerMinuteChangedEvent();
-        if (minute > 60)
+        if (minute > 59)
         {
             minute = 0;
             hour += 1;
-            TimeEventHandler.TriggerHourChangedEvent();
-            if (hour > 23)
+            if (hour >= 23)
             {
                 hour = 0;
-                return true;
+                rtn = true;
             }
+            TimeEventHandler.TriggerHourChangedEvent();
         }
-        return false;
+        TimeEventHandler.TriggerMinuteChangedEvent();
+        return rtn;
     }
 
     public string MinutesToString()

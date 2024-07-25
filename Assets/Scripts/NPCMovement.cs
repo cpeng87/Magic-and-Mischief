@@ -47,6 +47,11 @@ public class NPCMovement : MonoBehaviour
             int index = PredictLocation();
             PathData path = (PathData) currDailySchedule.dailySchedule[GameManager.instance.timeManager.gameTime.hour];
 
+            if (path.pathpoints[index].mapName != SceneManager.GetActiveScene().name)
+            {
+                Destroy(this.gameObject);
+            }
+
             //already at the end of path
             if (index >= path.pathpoints.Count - 1)
             {
