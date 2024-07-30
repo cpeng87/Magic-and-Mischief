@@ -4,13 +4,28 @@ using UnityEngine;
 using System;
 using UnityEngine.SceneManagement;
 
+public class NPCInfo
+{
+    public bool hasTalked;
+    public string currMap;
+    public GameObject npcGameObject;
+
+    public NPCInfo(string currMap, GameObject npcGameObject)
+    {
+        this.currMap = currMap;
+        this.npcGameObject = npcGameObject;
+        hasTalked = false;
+    }
+}
+
 public class NPCManager : MonoBehaviour
 {
-    public Dictionary<NPCData, string> npcCurrMap = new Dictionary<NPCData, string>();
-    public Dictionary<NPCData, GameObject> npcGameObjs = new Dictionary<NPCData, GameObject>();
+    // private Dictionary<NPCData, string> npcCurrMap = new Dictionary<NPCData, string>();
+    // private Dictionary<NPCData, GameObject> npcGameObjs = new Dictionary<NPCData, GameObject>();
     public List<GameObject> npcs = new List<GameObject>();
-    public Dictionary<int, List<(NPCData, string)>> npcCurrMapEntryDict = new Dictionary<int, List<(NPCData, string)>>();
-    public Dictionary<string, bool> npcTalkedDict = new Dictionary<string, bool>();
+    private Dictionary<int, List<(NPCData, string)>> npcCurrMapEntryDict = new Dictionary<int, List<(NPCData, string)>>();
+    private Dictionary<NPCData, NPCInfo> npcInfoDict = new Dictionary<NPCData, NPCInfo>();
+    // private Dictionary<string, bool> npcTalkedDict = new Dictionary<string, bool>();
 
     // Start is called before the first frame update
     void Start()
@@ -26,13 +41,13 @@ public class NPCManager : MonoBehaviour
 
     public void UpdateLocation(NPCData npc, string newLocation)
     {
-        if (npcCurrMap.ContainsKey(npc))
+        if (npcInfoDict.ContainsKey(npc))
         {
-            npcCurrMap[npc] = newLocation;
+            npcInfoDict[npc].currMap = newLocation;
 
             if (SceneManager.GetActiveScene().name == newLocation)
             {
-                GameObject newNPC = Instantiate(npcGameObjs[npc]);
+                GameObject newNPC = Instantiate(npcInfoDict[npc].npcGameObject);
                 newNPC.layer = LayerMask.NameToLayer("Interactables");
                 Renderer npcRenderer = newNPC.GetComponent<Renderer>();
                 if (npcRenderer != null)
@@ -51,14 +66,14 @@ public class NPCManager : MonoBehaviour
             {
                 if (npcMap.Item2 == SceneManager.GetActiveScene().name)
                 {
-                    GameObject newNPC = Instantiate(npcGameObjs[npcMap.Item1]);
+                    GameObject newNPC = Instantiate(npcInfoDict[npcMap.Item1].npcGameObject);
                     newNPC.layer = LayerMask.NameToLayer("Interactables");
                     Renderer npcRenderer = newNPC.GetComponent<Renderer>();
                     if (npcRenderer != null)
                     {
                         npcRenderer.sortingLayerName = "NPC"; // Set the sorting layer name to "NPC"
                     }
-                    npcCurrMap[npcMap.Item1] = SceneManager.GetActiveScene().name;
+                    npcInfoDict[npcMap.Item1].currMap = SceneManager.GetActiveScene().name;
                 }
             }
         }
@@ -66,12 +81,12 @@ public class NPCManager : MonoBehaviour
 
     private void UpdateLocations()
     {
-        List<NPCData> npcKeys = new List<NPCData>(npcCurrMap.Keys);
+        List<NPCData> npcKeys = new List<NPCData>(npcInfoDict.Keys);
 
         for (int i = 0; i < npcKeys.Count; i++)
         {
             NPCData npc = npcKeys[i];
-            npcCurrMap[npc] = npc.weeklySchedule[GameManager.instance.timeManager.date.day].dailySchedule[GameManager.instance.timeManager.gameTime.hour].map;
+            npcInfoDict[npc].currMap = npc.weeklySchedule[GameManager.instance.timeManager.date.day].dailySchedule[GameManager.instance.timeManager.gameTime.hour].map;
 
             if (npc.weeklySchedule[GameManager.instance.timeManager.date.day].dailySchedule[GameManager.instance.timeManager.gameTime.hour] is PathData)
             {
@@ -93,11 +108,11 @@ public class NPCManager : MonoBehaviour
 
     public void LoadInNPCs()
     {
-        foreach (NPCData npc in npcCurrMap.Keys)
+        foreach (NPCData npc in npcInfoDict.Keys)
         {
-            if (npcCurrMap[npc] == SceneManager.GetActiveScene().name)
+            if (npcInfoDict[npc].currMap == SceneManager.GetActiveScene().name)
             {
-                GameObject newNPC = Instantiate(npcGameObjs[npc]);
+                GameObject newNPC = Instantiate(npcInfoDict[npc].npcGameObject);
                 newNPC.layer = LayerMask.NameToLayer("Interactables");
                 Renderer npcRenderer = newNPC.GetComponent<Renderer>();
                 if (npcRenderer != null)
@@ -110,7 +125,7 @@ public class NPCManager : MonoBehaviour
 
     private void LoadNPCDialogue()
     {
-        foreach (NPCData npc in npcCurrMap.Keys)
+        foreach (NPCData npc in npcInfoDict.Keys)
         {
             npc.dialogueStorage.introduction = GameManager.instance.dialogueManager.ParseSpecificDialogue("Introduction", npc.dialogue);
             if (GameManager.instance.dialogueManager.ParseSpecificDialogue("Introduction", npc.dialogue) == null)
@@ -138,9 +153,11 @@ public class NPCManager : MonoBehaviour
         {
             NPCData npcData = npc.GetComponent<NPCCharacter>().npcData;
             int day = GameManager.instance.timeManager.date.day;
-            npcCurrMap.Add(npcData, npcData.weeklySchedule[day].initialCheckpoint.mapName);
-            npcGameObjs.Add(npcData, npc);
-            npcTalkedDict.Add(npcData.name, false);
+            NPCInfo newInfo = new NPCInfo(npcData.weeklySchedule[day].initialCheckpoint.mapName, npc);
+            npcInfoDict.Add(npcData, newInfo);
+            // npcCurrMap.Add(npcData, npcData.weeklySchedule[day].initialCheckpoint.mapName);
+            // npcGameObjs.Add(npcData, npc);
+            // npcTalkedDict.Add(npcData.name, false);
             PlayerPrefs.SetInt(npcData.name, 0);
         }
     }
@@ -171,11 +188,11 @@ public class NPCManager : MonoBehaviour
         return 0;
     }
 
-    public bool CheckHasTalked(string name)
+    public bool CheckHasTalked(NPCData npc)
     {
-        if (npcTalkedDict.ContainsKey(name))
+        if (npcInfoDict.ContainsKey(npc))
         {
-            return npcTalkedDict[name];
+            return npcInfoDict[npc].hasTalked;
         }
         Debug.Log("Can't find " + name + " in dict");
         return false;
@@ -183,20 +200,25 @@ public class NPCManager : MonoBehaviour
 
     private void ResetTalked()
     {
-        foreach (string name in npcTalkedDict.Keys)
+        foreach (NPCData npc in npcInfoDict.Keys)
         {
-            npcTalkedDict[name] = false;
+            npcInfoDict[npc].hasTalked = false;
         }
     }
 
-    public void SetTalked(string name)
+    public void SetTalked(NPCData npc)
     {
-        if (npcTalkedDict.ContainsKey(name))
+        if (npcInfoDict.ContainsKey(npc))
         {
-            npcTalkedDict[name] = true;
+            npcInfoDict[npc].hasTalked = true;
             return;
         }
         Debug.Log("Can't find " + name + " in dict");
+    }
+
+    public Dictionary<NPCData, NPCInfo> GetInfoDict()
+    {
+        return npcInfoDict;
     }
 
 }

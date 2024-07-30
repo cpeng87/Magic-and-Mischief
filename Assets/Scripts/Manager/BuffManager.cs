@@ -9,7 +9,7 @@ public class BuffManager : MonoBehaviour
     private Dictionary<Buff, Coroutine> buffCoroutines = new Dictionary<Buff, Coroutine>();
     public PlayerMovement playerMovement;
     private int maximumBuffs = 12;
-    public bool isFlying;
+    private bool isFlying;
 
     public void Start()
     {
@@ -126,7 +126,10 @@ public class BuffManager : MonoBehaviour
 
     public void SetIsFlying(bool newVal)
     {
-        Debug.Log("Setting isFlying");
         isFlying = newVal;
+    }
+    public bool GetIsFlying()
+    {
+        return isFlying;
     }
 }

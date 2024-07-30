@@ -15,7 +15,7 @@ public class MapManager : MonoBehaviour
     public List<MapSpawnable> mapCollectibles = new List<MapSpawnable>();
     public float probablityOfSpawn;
     public Tilemap spawnableTiles;
-    public List<Item> spawnedItems = new List<Item>();
+    private List<Item> spawnedItems = new List<Item>();
 
     public void SpawnCollectibles()
     {

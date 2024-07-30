@@ -61,7 +61,9 @@ public class MailUI : MonoBehaviour
         mailboxPanel.SetActive(true);
         ClearMailbox();
 
-        if (GameManager.instance.mailManager.activeMail.Count == 0)
+        List<(MailData, bool)> activeMail = GameManager.instance.mailManager.GetActiveMail();
+
+        if (activeMail.Count == 0)
         {
             noMailText.text = "No Mail";
         }
@@ -71,7 +73,7 @@ public class MailUI : MonoBehaviour
         }
 
         int counter = 0;
-        foreach ((MailData, bool) mailInfo in GameManager.instance.mailManager.activeMail)
+        foreach ((MailData, bool) mailInfo in activeMail)
         {
             GameObject newMail = Instantiate(mailboxListingPrefab, mailboxPanel.transform);
             MailboxListingUI mailboxListing = newMail.GetComponent<MailboxListingUI>();
@@ -148,20 +150,21 @@ public class MailUI : MonoBehaviour
 
         mailOpenedPanel.SetActive(true);
 
-        MailData mailData = GameManager.instance.mailManager.activeMail[clickedMail.mailID].Item1;
+        List<(MailData, bool)> activeMail = GameManager.instance.mailManager.GetActiveMail();
+        MailData mailData = activeMail[clickedMail.mailID].Item1;
         SetupMail(mailData);
 
         bool success = false;
-        if (!GameManager.instance.mailManager.activeMail[clickedMail.mailID].Item2)
+        if (!activeMail[clickedMail.mailID].Item2)
         {
             success = CollectMailItems(mailData);
         }
 
         //set mail as read
-        // GameManager.instance.mailManager.activeMail[clickedMail.mailID].Item2 = true;
         if (success)
         {
-            GameManager.instance.mailManager.activeMail[clickedMail.mailID] = (GameManager.instance.mailManager.activeMail[clickedMail.mailID].Item1, true);
+            // activeMail[clickedMail.mailID] = (activeMail[clickedMail.mailID].Item1, true);
+            GameManager.instance.mailManager.SetMailReadStatus(clickedMail.mailID, true);
         }
     }
 

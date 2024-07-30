@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
-    public Dictionary<string, Inventory> inventoryByName = new Dictionary<string, Inventory>();
-    public Dictionary<Vector3Int, Inventory> chests;
+    private Dictionary<string, Inventory> inventoryByName = new Dictionary<string, Inventory>();
+    private Dictionary<Vector3Int, Inventory> chests;
     public GameObject chestPrefab;
 
     [Header("Backpack")]
-    public Inventory backpack;
+    private Inventory backpack;
     public int backpackSlotCount;
 
     [Header("Toolbar")]
-    public Inventory toolbar;
+    private Inventory toolbar;
     public int toolbarSlotCount;
 
     private void Awake()
@@ -83,5 +83,9 @@ public class InventoryManager : MonoBehaviour
     public Dictionary<Vector3Int, Inventory> GetChests()
     {
         return chests;
+    }
+    public void SetChests(Dictionary<Vector3Int, Inventory> newChests)
+    {
+        chests = newChests;
     }
 }

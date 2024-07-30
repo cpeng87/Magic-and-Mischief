@@ -38,7 +38,6 @@ public class ItemManager : MonoBehaviour
         {
             return nameToItemsDict[name];
         }
-        Debug.Log("Cannot find item " + name + " in dictionary");
         return null;
     }
     public ItemData GetItemDataByName(string name)
@@ -47,7 +46,6 @@ public class ItemManager : MonoBehaviour
         {
             return nameToItemDataDict[name];
         }
-        Debug.Log("Cannot find item " + name + " in dictionary");
         return null;
     }
 }

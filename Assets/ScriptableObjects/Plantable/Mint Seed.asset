@@ -19,6 +19,6 @@ MonoBehaviour:
   harvestItemName: Mint
   growthTime: 3
   growthTiles:
-  - {fileID: 11400000, guid: 547b0a26fa6d97a4aa5452348b3490b3, type: 2}
-  - {fileID: 11400000, guid: 248e938e84b28414ab2402e8bedbc0b9, type: 2}
-  - {fileID: 11400000, guid: 6a29b396700a6cd4a9472323826a9f09, type: 2}
+  - {fileID: 11400000, guid: 3d99e312767a56b4b95c80e2d5e6a07b, type: 2}
+  - {fileID: 11400000, guid: a7ec910712f52824b97f23192f994571, type: 2}
+  - {fileID: 11400000, guid: 2a62bffa8556ddb4eb2cb8b4543f137d, type: 2}

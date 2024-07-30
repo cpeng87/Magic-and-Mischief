@@ -53,7 +53,7 @@ public class TileInteraction : MonoBehaviour
     {
         if (plantableGrowthDict.ContainsKey(tilePos))
         {
-            if (plantableGrowthDict[tilePos].isFullyGrown)
+            if (plantableGrowthDict[tilePos].GetIsFullyGrown())
             {
                 HarvestCrop(plantableGrowthDict[tilePos]);
                 plantableGrowthDict.Remove(tilePos);
@@ -93,7 +93,7 @@ public class TileInteraction : MonoBehaviour
                 tileManager.SetWateredTile(tilePos);
                 if (plantableGrowthDict.ContainsKey(tilePos))
                 {
-                    plantableGrowthDict[tilePos].isWatered = true;
+                    plantableGrowthDict[tilePos].SetIsWatered(true);
                 }
             }
 
@@ -105,7 +105,7 @@ public class TileInteraction : MonoBehaviour
             PlantableGrowth newPlant = new PlantableGrowth(tilePos, selectedItem.data.itemName, castedPlantableData.growthTiles, castedPlantableData.growthTime, castedPlantableData.harvestItemName);
             if (!plantableGrowthDict.ContainsKey(tilePos))
             {
-                newPlant.isWatered = true;
+                newPlant.SetIsWatered(true);
                 plantableGrowthDict.Add(tilePos, newPlant);
                 inventory.GetInventory("Toolbar").selectedSlot.RemoveItem();
             }
@@ -152,8 +152,8 @@ public class TileInteraction : MonoBehaviour
 
     private void HarvestCrop(PlantableGrowth plantableGrowth)
     {
-        Item plant = GameManager.instance.itemManager.GetItemByName(plantableGrowth.harvestItemName);
-        Item harvestItem = Instantiate(plant, plantableGrowth.position, Quaternion.identity);
+        Item plant = GameManager.instance.itemManager.GetItemByName(plantableGrowth.GetHarvestItemName());
+        Item harvestItem = Instantiate(plant, plantableGrowth.GetPosition(), Quaternion.identity);
     }
 
     void OnDestroy() {

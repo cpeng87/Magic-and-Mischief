@@ -6,9 +6,9 @@ using System.IO;
 public class DialogueManager : MonoBehaviour
 {
     private int currentTextLine;
-    public DialogueUI dialogueUI;
+    private DialogueUI dialogueUI;
     private List<string> selectedDialogue;
-    public bool isActive;
+    private bool isActive;
 
     public void Load()
     {
@@ -141,5 +141,10 @@ public class DialogueManager : MonoBehaviour
             }
         }
         return possibleDialogue;
+    }
+
+    public bool GetIsActive()
+    {
+        return isActive;
     }
 }

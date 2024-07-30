@@ -9,12 +9,12 @@ public class SceneSwapManager : MonoBehaviour
     private Inventory savedToolbar;
     private int savedHealth;
     private int savedMana;
-    public Dictionary<string, Dictionary<Vector3Int, Inventory>> savedChests = new Dictionary<string, Dictionary<Vector3Int, Inventory>>();
+    private Dictionary<string, Dictionary<Vector3Int, Inventory>> savedChests = new Dictionary<string, Dictionary<Vector3Int, Inventory>>();
     private string nextSpawnpoint;
     private Vector3 savedDir;
     private Dictionary<string, List<(string, Vector3)>> savedMapSpawns = new Dictionary<string, List<(string, Vector3)>>();
     //remaining, total time
-    public List<Buff> savedBuffs = new List<Buff>();
+    private List<Buff> savedBuffs = new List<Buff>();
 
     private void Awake()
     {
@@ -86,7 +86,7 @@ public class SceneSwapManager : MonoBehaviour
         }
         if (savedChests != null && savedChests.ContainsKey(sceneName))
         {
-            player.inventory.chests = savedChests[sceneName];
+            player.inventory.SetChests(savedChests[sceneName]);
             player.inventory.LoadChests();
         }
         if (GameManager.instance.dialogueManager != null)
@@ -141,7 +141,9 @@ public class SceneSwapManager : MonoBehaviour
 
     private void ResetMapSpawns()
     {
-        foreach (string map in savedMapSpawns.Keys)
+        List<string> keys = new List<string>(savedMapSpawns.Keys);
+
+        foreach (string map in keys)
         {
             savedMapSpawns.Remove(map);
         }

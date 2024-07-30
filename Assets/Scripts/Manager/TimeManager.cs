@@ -103,7 +103,7 @@ public class GameTime
         {
             minute = 0;
             hour += 1;
-            if (hour >= 23)
+            if (hour > 23)
             {
                 hour = 0;
                 rtn = true;
