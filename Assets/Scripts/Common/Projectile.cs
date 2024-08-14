@@ -32,9 +32,17 @@ public class Projectile : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
     public void SetDirection(Vector3 mousePos)
     {
         transform.position = GameManager.instance.player.transform.position;
-        direction = (mousePos - transform.position).normalized;
+        direction = mousePos - transform.position;
+        direction = new Vector3(direction.x, direction.y, 0).normalized;
+
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+        // Rotate the GameObject to face the direction
+        transform.rotation = Quaternion.Euler(0, 0, angle);
     }
+
 }

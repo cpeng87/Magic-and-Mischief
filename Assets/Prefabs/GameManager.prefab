@@ -96,6 +96,10 @@ MonoBehaviour:
   - {fileID: 7916935206510812392, guid: 7c17fb69217552a478ae32fb81f7bea5, type: 3}
   - {fileID: 6800602978498021203, guid: ef2fffac44ddf49438048ef7b158e44a, type: 3}
   - {fileID: 4959118277155003029, guid: 2555c68d251a0d54da029e7d80dc2d1f, type: 3}
+  - {fileID: 159690391506326403, guid: 04ed33f02da61574694da9b12e7fb0cb, type: 3}
+  - {fileID: 5667297654307461389, guid: 314718da52b3d8b4faf57895a24fc99b, type: 3}
+  - {fileID: 4957440983507448489, guid: adf76035cc1725140b90ac943bcaf3d5, type: 3}
+  - {fileID: 4520178317438257529, guid: bf3a0b31123807b41a1846bcceeb7179, type: 3}
 --- !u!114 &6832150540631673449
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123,7 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae40287ed23389f4e9204196f81c8395, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minutesPerSecond: 0.5
+  secondsPerMinute: 0.5
 --- !u!114 &2496436673471304812
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,8 +167,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74a484c614006d147b1ec5b4fa1a8e0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueUI: {fileID: 0}
-  isActive: 0
 --- !u!114 &8850291174931374994
 MonoBehaviour:
   m_ObjectHideFlags: 0

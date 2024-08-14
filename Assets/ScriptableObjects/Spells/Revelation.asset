@@ -18,8 +18,8 @@ MonoBehaviour:
   spellDamage: 0
   spellManaCost: 20
   ingredients:
-  - listingData: {fileID: 11400000, guid: cb83ba5f3029dd74c8ed81aa4f6a8d1c, type: 2}
+  - itemName: Eyeball
     quantity: 1
-  - listingData: {fileID: 11400000, guid: 478a06e04b46ef3478c15d7fab64a4d5, type: 2}
+  - itemName: Holy Water
     quantity: 3
   spellType: 2

@@ -15,6 +15,7 @@ public class SceneSwapManager : MonoBehaviour
     private Dictionary<string, List<(string, Vector3)>> savedMapSpawns = new Dictionary<string, List<(string, Vector3)>>();
     //remaining, total time
     private List<Buff> savedBuffs = new List<Buff>();
+    private GameObject loadScreen;
 
     private void Awake()
     {
@@ -98,10 +99,21 @@ public class SceneSwapManager : MonoBehaviour
         {
             GameManager.instance.npcManager.LoadInNPCs();
         }
+        loadScreen = GameObject.Find("Load Screen");
+        if (loadScreen != null)
+        {
+            loadScreen.GetComponent<FadeImage>().FadeScreen(false, 0.5f);
+        }
     }
 
     public void SceneSwap(string sceneName, string spawnpointName)
     {
+        // if (loadScreen != null)
+        // {
+        //     loadScreen.SetActive(true);
+        //     loadScreen.GetComponent<FadeImage>().FadeScreen(true, 0.01f);
+        // }
+
         Player player = GameManager.instance.player;
         if (player != null)
         {

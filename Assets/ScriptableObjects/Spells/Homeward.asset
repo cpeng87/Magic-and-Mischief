@@ -18,10 +18,6 @@ MonoBehaviour:
   spellDamage: 0
   spellManaCost: 10
   ingredients:
-  - listingData: {fileID: 11400000, guid: 801c24eb7cafdd74ba7c76270c360bec, type: 2}
+  - itemName: Hydrangea
     quantity: 1
-  - listingData: {fileID: 11400000, guid: b1913b2204142d54a9bd76ebe9a9d348, type: 2}
-    quantity: 3
-  - listingData: {fileID: 11400000, guid: fbd8d4aee04d47d4ea5ecea64bd337a0, type: 2}
-    quantity: 2
   spellType: 2

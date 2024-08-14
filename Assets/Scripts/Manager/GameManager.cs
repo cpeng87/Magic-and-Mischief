@@ -15,21 +15,12 @@ public class GameManager : MonoBehaviour
     public MailManager mailManager;
     public SceneSwapManager sceneSwapManager;
     public NPCManager npcManager;
+    public NotebookManager notebookManager;
 
     public Player player;
 
     public int activeMenuCount;
     private Stack<GameObject> activeMenus = new Stack<GameObject>();
-
-    // private Inventory savedBackpack;
-    // private Inventory savedToolbar;
-    // private int savedHealth;
-    // private int savedMana;
-    // public Dictionary<string, Dictionary<Vector3Int, Inventory>> savedChests = new Dictionary<string, Dictionary<Vector3Int, Inventory>>();
-    // private string nextSpawnpoint;
-    // private Vector3 savedDir;
-    // //remaining, total time
-    // public List<Buff> savedBuffs = new List<Buff>();
 
     private void Awake()
     {
@@ -54,6 +45,7 @@ public class GameManager : MonoBehaviour
         mailManager = GetComponent<MailManager>();
         sceneSwapManager = GetComponent<SceneSwapManager>();
         npcManager = GetComponent<NPCManager>();
+        notebookManager = GetComponent<NotebookManager>();
 
         player = FindObjectOfType<Player>();
         // savedHealth = -1;

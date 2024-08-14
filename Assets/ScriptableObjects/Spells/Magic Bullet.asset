@@ -18,7 +18,8 @@ MonoBehaviour:
   spellDamage: 10
   spellManaCost: 10
   ingredients:
-  - listingData: {fileID: 11400000, guid: 2e0199e0958ef22419fcd3ea6646d3f2, type: 2}
-    quantity: 1
-  - listingData: {fileID: 11400000, guid: b1913b2204142d54a9bd76ebe9a9d348, type: 2}
+  - itemName: Mushroom
     quantity: 3
+  - itemName: Bird Feather
+    quantity: 1
+  spellType: 0

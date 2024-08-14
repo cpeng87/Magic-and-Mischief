@@ -18,10 +18,10 @@ MonoBehaviour:
   spellDamage: 0
   spellManaCost: 30
   ingredients:
-  - listingData: {fileID: 11400000, guid: dcbb45a6284fdc049acb865e24bd3fe0, type: 2}
+  - itemName: Wind Sprite
     quantity: 1
-  - listingData: {fileID: 11400000, guid: c3f96850ded38f046bb4f640c108516e, type: 2}
+  - itemName: Mushroom
     quantity: 3
-  - listingData: {fileID: 11400000, guid: 2e0199e0958ef22419fcd3ea6646d3f2, type: 2}
+  - itemName: Fern
     quantity: 2
   spellType: 2
