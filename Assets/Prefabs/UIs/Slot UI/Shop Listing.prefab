@@ -54,6 +54,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveBorder: {fileID: 4755051681469982039}
   shopSlotID: 0
+  itemName: 
+  price: 0
   nameText: {fileID: 4691339995507615389}
   priceText: {fileID: 4337432756191584059}
   image: {fileID: 8819454343138724247}
@@ -122,8 +124,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d68de02581674c54e869b67aae7cd079, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: 4a87317157bf67c4cae434672341fece, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
