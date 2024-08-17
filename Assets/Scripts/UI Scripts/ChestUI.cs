@@ -19,7 +19,6 @@ public class ChestUI : InteractUI
     {
         if (!display.activeSelf)
         {
-            // display.SetActive(true);
             LoadChest();
             // if (chestUI.inventory == null)
             // {

@@ -45,14 +45,23 @@ TagManager:
   - name: Water
     uniqueID: 1237302037
     locked: 0
+  - name: Ground Border
+    uniqueID: 610043089
+    locked: 0
   - name: Grass
     uniqueID: 1888404365
     locked: 0
   - name: Wall
     uniqueID: 1114688265
     locked: 0
-  - name: Terrain Decorations
+  - name: Bridges
     uniqueID: 3273328783
+    locked: 0
+  - name: Spawned Items
+    uniqueID: 3388536175
+    locked: 0
+  - name: Terrain Decorations
+    uniqueID: 973687601
     locked: 0
   - name: NPC
     uniqueID: 139123939

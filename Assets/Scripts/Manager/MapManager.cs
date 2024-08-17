@@ -35,6 +35,11 @@ public class MapManager : MonoBehaviour
                     Vector3 randomizedOffset = new Vector3(Random.Range(0f, 0.5f), Random.Range(0f, 0.5f), 0);
                     spawnPosition = spawnPosition + randomizedOffset;
                     Item newItem = Instantiate(GameManager.instance.itemManager.GetItemByName(spawnedItem), spawnPosition, Quaternion.identity);
+                    SpriteRenderer spriteRenderer = newItem.GetComponent<SpriteRenderer>();
+                    if (spriteRenderer != null)
+                    {
+                        spriteRenderer.sortingLayerName = "Spawned Items"; // Set the sorting layer name
+                    }
                     spawnedItems.Add(newItem);
                 }
             }
