@@ -4,12 +4,7 @@ using UnityEngine;
 
 public class ToolbarUI : MonoBehaviour
 {
-    // public GameObject slotParent;
-    // public GameObject selector;
-    // private Inventory inventory;
-    // public string inventoryName;
     public InventoryUI inventoryUI;
-    // public SlotUI selectedSlot;
 
     private void Update()
     {
@@ -18,7 +13,7 @@ public class ToolbarUI : MonoBehaviour
 
     public void UseItemSelectedInToolbar()
     {
-        if (GameManager.instance.PeekActiveMenu() != null)
+        if (GameManager.instance.uiManager.PeekActiveMenu() != null)
         {
             // Debug.Log("another menu active");
             return;

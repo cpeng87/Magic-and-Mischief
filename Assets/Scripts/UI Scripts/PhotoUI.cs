@@ -4,42 +4,42 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class PhotoUI : InteractUI
+public class PhotoUI : Toggleable
 {
     public Image photo;
     public TextMeshProUGUI text;
     public List<PhotoData> photos;
-    public GameObject photoPanel;
+    // public GameObject photoPanel;
     private int index;
 
     private void Start()
     {
-        photoPanel.SetActive(false);
+        toggledDisplay.SetActive(false);
         index = 0;
     }
 
     // Update is called once per frame
-    public override void ToggleUI()
-    {
-        if (!photoPanel.activeSelf)
-        {
-            photoPanel.SetActive(true);
-            UnityEngine.Time.timeScale = 0f;
-            GameManager.instance.PushActiveMenu(this.gameObject);
-            LoadPage();
-        }
-        else
-        {   
-            photoPanel.SetActive(false);
-            GameManager.instance.PopActiveMenu();
-            if (GameManager.instance.activeMenuCount == 0)
-            {
-                UnityEngine.Time.timeScale = 1f;
-            }
-            
-        }
-    }
-    private void LoadPage()
+    // public override void ToggleUI()
+    // {
+    //     if (!photoPanel.activeSelf)
+    //     {
+    //         photoPanel.SetActive(true);
+    //         UnityEngine.Time.timeScale = 0f;
+    //         GameManager.instance.uiManager.PushActiveMenu(this);
+    //         LoadPage();
+    //     }
+    //     else
+    //     {   
+    //         photoPanel.SetActive(false);
+    //         GameManager.instance.uiManager.PopActiveMenu();
+    //         if (GameManager.instance.uiManager.GetActiveMenuCount() == 0)
+    //         {
+    //             UnityEngine.Time.timeScale = 1f;
+    //         }
+    //     }
+    // }
+
+    public override void Setup()
     {
         if (photos.Count > index)
         {
@@ -57,7 +57,7 @@ public class PhotoUI : InteractUI
         if (photos.Count > index)
         {
             index += 1;
-            LoadPage();
+            Setup();
         }
     }
     public void PreviousPage()
@@ -65,7 +65,7 @@ public class PhotoUI : InteractUI
         if (index > 0)
         {
             index -= 1;
-            LoadPage();
+            Setup();
         }
     }
 }

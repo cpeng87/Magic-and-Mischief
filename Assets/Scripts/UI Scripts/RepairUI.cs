@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class RepairUI : InteractUI
+public class RepairUI : Toggleable
 {
     public Repairable toBeChanged;
     private RepairableData repairData;
     public GameObject materialsPanel;
-    public GameObject repairPanel;
+    // public GameObject repairPanel;
     public TextMeshProUGUI questionText;
     public GameObject materialsListing;
 
@@ -18,37 +18,43 @@ public class RepairUI : InteractUI
     // Start is called before the first frame update
     void Start()
     {
-        repairPanel.SetActive(false);
+        toggledDisplay.SetActive(false);
         inventory = GameManager.instance.player.inventory.GetInventory("Backpack");
     }
 
-    public override void ToggleUI()
-    {
-        if (!repairPanel.activeSelf)
-        {
-            LoadRepairData();
-            LoadMaterials();
-            repairPanel.SetActive(true);
-            UnityEngine.Time.timeScale = 0f;
-            GameManager.instance.PushActiveMenu(this.gameObject);
-        }
-        else
-        {   
-            repairPanel.SetActive(false);
-            GameManager.instance.PopActiveMenu();
-            if (GameManager.instance.activeMenuCount == 0)
-            {
-                UnityEngine.Time.timeScale = 1f;
-            }
+    // public override void ToggleUI()
+    // {
+    //     if (!repairPanel.activeSelf)
+    //     {
+    //         LoadRepairData();
+    //         LoadMaterials();
+    //         repairPanel.SetActive(true);
+    //         UnityEngine.Time.timeScale = 0f;
+    //         GameManager.instance.PushActiveMenu(this.gameObject);
+    //     }
+    //     else
+    //     {   
+    //         repairPanel.SetActive(false);
+    //         GameManager.instance.PopActiveMenu();
+    //         if (GameManager.instance.activeMenuCount == 0)
+    //         {
+    //             UnityEngine.Time.timeScale = 1f;
+    //         }
             
-        }
-    }
+    //     }
+    // }
 
     public void SetToBeChanged(GameObject interactedRepairable)
     {
 
         toBeChanged = interactedRepairable.GetComponent<Repairable>();
         LoadRepairData();
+    }
+
+    public override void Setup()
+    {
+        LoadRepairData();
+        LoadMaterials();
     }
 
     public void LoadRepairData()

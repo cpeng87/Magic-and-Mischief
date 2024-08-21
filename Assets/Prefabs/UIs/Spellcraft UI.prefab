@@ -494,7 +494,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24bae98e0c696f24bb31c9248662d733, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spellcraftPanel: {fileID: 7335802983984999684}
+  sortingOrder: 0
+  toggledDisplay: {fileID: 7335802983984999684}
   materialsPanel: {fileID: 2284136875871956316}
   materialsListing: {fileID: 7712322492803461151, guid: 2a10569554457f14db0aa4518cbf905e, type: 3}
   spellnameText: {fileID: 8943702981705719539}
@@ -540,7 +541,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -1196,7 +1197,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8414873467865730619
 RectTransform:
   m_ObjectHideFlags: 0

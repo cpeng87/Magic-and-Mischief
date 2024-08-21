@@ -17,8 +17,7 @@ public class DialogueTrigger : InteractTriggerUI<DialogueUI>
         {
             return;
         }
-        ui.ToggleUI();
+        ui.OpenDialogue();
         GameManager.instance.dialogueManager.Initialize(dialogue);
-        // ui.ToggleUI();
     }
 }

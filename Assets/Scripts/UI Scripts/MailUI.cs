@@ -4,10 +4,8 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-public class MailUI : MonoBehaviour
+public class MailUI : Toggleable
 {
-    // private MailData mailData;
-    public GameObject mailPanel;
     public TextMeshProUGUI mailText;
     public TextMeshProUGUI senderText;
     public TextMeshProUGUI noMailText;
@@ -21,11 +19,10 @@ public class MailUI : MonoBehaviour
 
     private void Start()
     {
-        mailPanel.SetActive(false);
+        toggledDisplay.SetActive(false);
         mailOpenedPanel.SetActive(false);
-        // mailboxPanel.SetActive(true);
         mailboxDisplay.SetActive(true);
-        MailEventHandler.OnMailChanged += SetupMailbox;
+        MailEventHandler.OnMailChanged += Setup;
     }
 
     private void Update()
@@ -36,27 +33,7 @@ public class MailUI : MonoBehaviour
         }
     }
 
-    public void ToggleUI()
-    {
-        if (!mailPanel.activeSelf)
-        {
-            mailPanel.SetActive(true);
-            UnityEngine.Time.timeScale = 0f;
-            GameManager.instance.PushActiveMenu(this.gameObject);
-            SetupMailbox();
-        }
-        else
-        {   
-            mailPanel.SetActive(false);
-            GameManager.instance.PopActiveMenu();
-            if (GameManager.instance.activeMenuCount == 0)
-            {
-                UnityEngine.Time.timeScale = 1f;
-            }
-        }
-    }
-
-    private void SetupMailbox()
+    public override void Setup()
     {
         mailboxPanel.SetActive(true);
         ClearMailbox();
@@ -117,11 +94,6 @@ public class MailUI : MonoBehaviour
         senderText.text = mailData.sender;
     }
 
-    // private void SetMailData(MailData newMailData)
-    // {
-    //     mailData = newMailData;
-    // }
-
     private bool CollectMailItems(MailData mailData)
     {
         bool giftResult = true;
@@ -140,7 +112,7 @@ public class MailUI : MonoBehaviour
 
     private void OnDestroy()
     {
-        MailEventHandler.OnMailChanged -= SetupMailbox;
+        MailEventHandler.OnMailChanged -= Setup;
     }
 
     public void OpenMail(MailboxListingUI clickedMail)
@@ -172,6 +144,6 @@ public class MailUI : MonoBehaviour
     {
         mailOpenedPanel.SetActive(false);
         mailboxDisplay.SetActive(true);
-        SetupMailbox();
+        Setup();
     }
 }

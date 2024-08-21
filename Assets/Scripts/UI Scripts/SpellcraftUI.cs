@@ -4,9 +4,9 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-public class SpellcraftUI : InteractUI
+public class SpellcraftUI : Toggleable
 {
-    public GameObject spellcraftPanel;
+    // public GameObject spellcraftPanel;
     public GameObject materialsPanel;
     public GameObject materialsListing;
     public TextMeshProUGUI spellnameText;
@@ -23,7 +23,7 @@ public class SpellcraftUI : InteractUI
 
     private void Awake()
     {
-        spellcraftPanel.SetActive(false);
+        toggledDisplay.SetActive(false);
     }
     private void Start()
     {
@@ -37,46 +37,27 @@ public class SpellcraftUI : InteractUI
     }
 
     // Start is called before the first frame update
-    public override void ToggleUI()
-    {
-        if (!spellcraftPanel.activeSelf)
-        {
-            spellcraftPanel.SetActive(true);
-            UnityEngine.Time.timeScale = 0f;
-            GameManager.instance.PushActiveMenu(this.gameObject);
-            LoadPage();
-        }
-        else
-        {   
-            spellcraftPanel.SetActive(false);
-            GameManager.instance.PopActiveMenu();
-            if (GameManager.instance.activeMenuCount == 0)
-            {
-                UnityEngine.Time.timeScale = 1f;
-            }
+    // public override void ToggleUI()
+    // {
+    //     if (!spellcraftPanel.activeSelf)
+    //     {
+    //         spellcraftPanel.SetActive(true);
+    //         UnityEngine.Time.timeScale = 0f;
+    //         GameManager.instance.PushActiveMenu(this.gameObject);
+    //         LoadPage();
+    //     }
+    //     else
+    //     {   
+    //         spellcraftPanel.SetActive(false);
+    //         GameManager.instance.PopActiveMenu();
+    //         if (GameManager.instance.activeMenuCount == 0)
+    //         {
+    //             UnityEngine.Time.timeScale = 1f;
+    //         }
             
-        }
-    }
+    //     }
+    // }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (!spellcraftPanel.activeSelf || this.gameObject != GameManager.instance.PeekActiveMenu())
-        {
-            return;
-        }
-        else if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            ToggleUI();
-        }
-        // else if (Input.GetMouseButtonDown(0))
-        // {
-        //     if (CheckNecessaryMaterials(spells[currIndex].ingredients))
-        //     {
-        //         CraftSpell(spells[currIndex].ingredients);
-        //     }
-        // }
-    }
     public void Craft()
     {
         if (CheckNecessaryMaterials(spells[currIndex].ingredients))
@@ -89,7 +70,7 @@ public class SpellcraftUI : InteractUI
         if (spells.Count - 1 > currIndex)
         {
             currIndex += 1;
-            LoadPage();
+            Setup();
         }
     }
     public void PreviousPage()
@@ -97,10 +78,10 @@ public class SpellcraftUI : InteractUI
         if (currIndex > 0)
         {
             currIndex -= 1;
-            LoadPage();
+            Setup();
         }
     }
-    private void LoadPage()
+    public override void Setup()
     {
         if (spells.Count > 0)
         {

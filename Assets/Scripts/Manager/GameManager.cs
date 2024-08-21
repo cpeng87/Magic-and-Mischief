@@ -19,8 +19,8 @@ public class GameManager : MonoBehaviour
 
     public Player player;
 
-    public int activeMenuCount;
-    private Stack<GameObject> activeMenus = new Stack<GameObject>();
+    // public int activeMenuCount;
+    // private Stack<GameObject> activeMenus = new Stack<GameObject>();
 
     private void Awake()
     {
@@ -48,10 +48,6 @@ public class GameManager : MonoBehaviour
         notebookManager = GetComponent<NotebookManager>();
 
         player = FindObjectOfType<Player>();
-        // savedHealth = -1;
-        // savedMana = -1;
-
-        // SceneManager.sceneLoaded += OnSceneLoaded;
     }
     private void OnEnable()
     {
@@ -72,110 +68,26 @@ public class GameManager : MonoBehaviour
         sceneSwapManager.SceneLoad();
     }
 
-    // private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    // public void PushActiveMenu(GameObject newMenu)
     // {
-    //     Time.timeScale = 1f;
-    //     player = FindObjectOfType<Player>();
-
-    //     MapManager mapManager = FindObjectOfType<MapManager>();
-
-    //     if (player != null)
+    //     activeMenus.Push(newMenu);
+    //     activeMenuCount += 1;
+    // }
+    // public void PopActiveMenu()
+    // {
+    //     activeMenus.Pop();
+    //     activeMenuCount -= 1;
+    //     if (activeMenuCount < 0)
     //     {
-    //         player.bm.SetBuffs(savedBuffs);
-    //         if (savedHealth >= 0)
-    //         {
-    //             player.health.SetVal(savedHealth);
-    //         }
-    //         if (savedMana >= 0)
-    //         {
-    //             player.mana.SetVal(savedMana);
-    //         }
-    //         if (savedBackpack != null)
-    //         {
-    //             player.inventory.SetInventoryByName("Backpack", savedBackpack);
-    //         }
-    //         if (savedToolbar != null)
-    //         {
-    //             player.inventory.SetInventoryByName("Toolbar", savedToolbar);
-    //         }
-    //         player.pa.SetDirection(savedDir);
-    //     }
-    //     if (mapManager != null)
-    //     {
-    //         mapManager.SpawnCollectibles();
-    //     }
-    //     if (tileManager != null)
-    //     {
-    //         tileManager.SetMaps();
-    //         tileManager.SetDiggableTiles();
-    //         tileManager.LoadPlantablesMap();
-    //     }
-    //     if (savedChests != null && savedChests.ContainsKey(SceneManager.GetActiveScene().name))
-    //     {
-    //         player.inventory.chests = savedChests[SceneManager.GetActiveScene().name];
-    //         player.inventory.LoadChests();
-    //     }
-    //     if (dialogueManager != null)
-    //     {
-    //         dialogueManager.Load();
-    //     }
-
-    //     SpawnpointManager sm = FindObjectOfType<SpawnpointManager>();
-    //     if (sm != null)
-    //     {
-    //         sm.OrganizeSpawnpoint();
-    //         if (sm.CheckContainsKey(nextSpawnpoint))
-    //         {
-    //             player.transform.position = sm.GetPositionByName(nextSpawnpoint);
-    //         }
+    //         activeMenuCount = 0;
     //     }
     // }
-
-    // public void SceneSwap(string sceneName, string spawnpointName)
+    // public GameObject PeekActiveMenu()
     // {
-    //     if (player != null)
+    //     if (activeMenuCount == 0)
     //     {
-    //         savedBackpack = player.inventory.GetInventory("Backpack");
-    //         savedToolbar = player.inventory.GetInventory("Toolbar");
-    //         savedHealth = player.health.currVal;
-    //         savedMana = player.mana.currVal;
-    //         savedDir = player.pm.GetCurrDirection();
-    //         tileSave.AddMapPlantables(SceneManager.GetActiveScene().name, player.ti.GetPlantableGrowthsDict());
-    //         if (savedChests.ContainsKey(SceneManager.GetActiveScene().name))
-    //         {
-    //             savedChests[SceneManager.GetActiveScene().name] = player.inventory.GetChests();
-    //         }
-    //         else
-    //         {
-    //             savedChests.Add(SceneManager.GetActiveScene().name, player.inventory.GetChests());
-    //         }
-    //         savedBuffs = player.bm.activeBuffs;
+    //         return null;
     //     }
-    //     // tileSave.AddMapPlantables(SceneManager.GetActiveScene().name, player.ti.GetPlantableGrowthsDict());
-    //     SceneManager.LoadScene(sceneName);
-    //     nextSpawnpoint = spawnpointName;
+    //     return activeMenus.Peek();
     // }
-
-    public void PushActiveMenu(GameObject newMenu)
-    {
-        activeMenus.Push(newMenu);
-        activeMenuCount += 1;
-    }
-    public void PopActiveMenu()
-    {
-        activeMenus.Pop();
-        activeMenuCount -= 1;
-        if (activeMenuCount < 0)
-        {
-            activeMenuCount = 0;
-        }
-    }
-    public GameObject PeekActiveMenu()
-    {
-        if (activeMenuCount == 0)
-        {
-            return null;
-        }
-        return activeMenus.Peek();
-    }
 }

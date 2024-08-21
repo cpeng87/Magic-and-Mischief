@@ -4,9 +4,9 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-public class NotebookUI : MonoBehaviour
+public class NotebookUI : Toggleable
 {
-    public GameObject notebookBackground;
+    // public GameObject notebookBackground;
 
     public GameObject notebookPanel;
     public GameObject notebookListingPrefab;
@@ -19,7 +19,7 @@ public class NotebookUI : MonoBehaviour
     {
         notebookDisplay.SetActive(true);
         notebookOpenedPanel.SetActive(false);
-        notebookBackground.SetActive(false);
+        toggledDisplay.SetActive(false);
     }
 
     private void OpenNotebook()
@@ -27,27 +27,27 @@ public class NotebookUI : MonoBehaviour
         ToggleUI();
     }
 
-    public void ToggleUI()
-    {
-        if (!notebookBackground.activeSelf)
-        {
-            notebookBackground.SetActive(true);
-            UnityEngine.Time.timeScale = 0f;
-            GameManager.instance.PushActiveMenu(this.gameObject);
-            SetupNotebook();
-        }
-        else
-        {   
-            notebookBackground.SetActive(false);
-            GameManager.instance.PopActiveMenu();
-            if (GameManager.instance.activeMenuCount == 0)
-            {
-                UnityEngine.Time.timeScale = 1f;
-            }
-        }
-    }
+    // public override void ToggleUI()
+    // {
+    //     if (!notebookBackground.activeSelf)
+    //     {
+    //         notebookBackground.SetActive(true);
+    //         UnityEngine.Time.timeScale = 0f;
+    //         GameManager.instance.uiManager.PushActiveMenu(this);
+    //         Setup();
+    //     }
+    //     else
+    //     {   
+    //         notebookBackground.SetActive(false);
+    //         GameManager.instance.uiManager.PopActiveMenu();
+    //         if (GameManager.instance.uiManager.GetActiveMenuCount() == 0)
+    //         {
+    //             UnityEngine.Time.timeScale = 1f;
+    //         }
+    //     }
+    // }
 
-    private void SetupNotebook()
+    public override void Setup()
     {
         notebookDisplay.SetActive(true);
         notebookPanel.SetActive(true);
@@ -124,6 +124,6 @@ public class NotebookUI : MonoBehaviour
     {
         notebookOpenedPanel.SetActive(false);
         notebookDisplay.SetActive(true);
-        SetupNotebook();
+        Setup();
     }
 }

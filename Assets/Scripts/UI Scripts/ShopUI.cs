@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class ShopUI : MonoBehaviour
+public class ShopUI : Toggleable
 {
-    public GameObject display;
+    // public GameObject display;
     private ShopData shopData;
     public List<ShopSlotUI> slots = new List<ShopSlotUI>();
     public GameObject slotParent;
@@ -14,29 +14,35 @@ public class ShopUI : MonoBehaviour
 
     void Start()
     {
-        display.SetActive(false);
+        toggledDisplay.SetActive(false);
         SetupInventorySlots();
     }
 
-    public void ToggleUI()
+    // public void ToggleUI()
+    // {
+    //     if (!display.activeSelf)
+    //     {
+    //         SetupSlots();
+    //         SelectSlot(0);
+    //         display.SetActive(true);
+    //         UnityEngine.Time.timeScale = 0f;
+    //         GameManager.instance.PushActiveMenu(this.gameObject);
+    //     }
+    //     else
+    //     {
+    //         display.SetActive(false);
+    //         GameManager.instance.PopActiveMenu();
+    //         if (GameManager.instance.activeMenuCount == 0)
+    //         {
+    //             UnityEngine.Time.timeScale = 1f;
+    //         }
+    //     }
+    // }
+
+    public override void Setup()
     {
-        if (!display.activeSelf)
-        {
-            SetupSlots();
-            SelectSlot(0);
-            display.SetActive(true);
-            UnityEngine.Time.timeScale = 0f;
-            GameManager.instance.PushActiveMenu(this.gameObject);
-        }
-        else
-        {
-            display.SetActive(false);
-            GameManager.instance.PopActiveMenu();
-            if (GameManager.instance.activeMenuCount == 0)
-            {
-                UnityEngine.Time.timeScale = 1f;
-            }
-        }
+        SetupSlots();
+        SelectSlot(0);
     }
 
     public void SelectSlot(int slotID)

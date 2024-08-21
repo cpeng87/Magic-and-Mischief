@@ -52,14 +52,9 @@ public class InventoryUI : MonoBehaviour
         inventory = GameManager.instance.player.inventory.GetInventory(inventoryName);
 
         SetupSlots();
-        // selectorSlotID = 0;
         Refresh();
         SetAllMoveBorderInactive();
 
-        // if (inventory != null)
-        // {
-        //     SlotSelect(slots[0]);
-        // }
         InventoryEventHandler.OnInventoryChanged += Refresh;
     }
 

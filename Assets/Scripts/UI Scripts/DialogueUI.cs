@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.Playables;
 using TMPro;
 
-public class DialogueUI : InteractUI
+public class DialogueUI : MonoBehaviour
 {
     public bool isNpc;
     public GameObject panel;
@@ -34,23 +34,18 @@ public class DialogueUI : InteractUI
         playableDirector = FindObjectOfType<PlayableDirector>();
     }
 
-    public override void ToggleUI()
+    public void OpenDialogue()
     {
         if (!panel.activeSelf)
         {
             panel.SetActive(true);
-            UnityEngine.Time.timeScale = 0f;
-            GameManager.instance.PushActiveMenu(this.gameObject);
+            // UnityEngine.Time.timeScale = 0f;
+            GameManager.instance.uiManager.StartDialogue();
             if (playableDirector != null)
             {
                 playableDirector.Pause();
             }
         }
-    }
-
-    public void StartDialogue()
-    {
-        Debug.Log("Wahoo Im starting a dialogue!!!!!");
     }
 
     private void Update()
@@ -137,11 +132,11 @@ public class DialogueUI : InteractUI
     public void EndDialogue()
     {
         panel.SetActive(false);
-        GameManager.instance.PopActiveMenu();
-        if (GameManager.instance.activeMenuCount == 0)
-        {
-            UnityEngine.Time.timeScale = 1f;
-        }
+        GameManager.instance.uiManager.EndDialogue();
+        // if (GameManager.instance.uiManager.activeMenuCount == 0)
+        // {
+        //     UnityEngine.Time.timeScale = 1f;
+        // }
         if (playableDirector != null)
         {
             playableDirector.Resume();
