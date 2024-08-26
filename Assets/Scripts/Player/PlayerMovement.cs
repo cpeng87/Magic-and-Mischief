@@ -42,18 +42,6 @@ public class PlayerMovement : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                // if (hit.collider == null)
-                // {
-                //     Debug.Log("Dialogue is null");
-                // }
-                // if (hit.collider.gameObject == null)
-                // {
-                //     Debug.Log("Game object is null");
-                // }
-                // if (hit.collider.gameObject.GetComponent<Interactable>() == null)
-                // {
-                //     Debug.Log("Interactable is null");
-                // }
                 hit.collider.gameObject.GetComponent<Interactable>().Interact();
             }
         }

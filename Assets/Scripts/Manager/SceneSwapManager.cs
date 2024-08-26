@@ -34,6 +34,7 @@ public class SceneSwapManager : MonoBehaviour
         Player player = FindObjectOfType<Player>();
 
         MapManager mapManager = FindObjectOfType<MapManager>();
+        GameManager.instance.uiManager.Setup();
 
         player = GameManager.instance.player;
         string sceneName = SceneManager.GetActiveScene().name;

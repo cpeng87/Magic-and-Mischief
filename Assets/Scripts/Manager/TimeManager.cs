@@ -24,7 +24,7 @@ public class Date
 
     public string DayToString()
     {
-        return days[day];
+        return days[day % 7];
     }
 
     public string SeasonToString()

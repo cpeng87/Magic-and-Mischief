@@ -8,6 +8,10 @@ public abstract class Toggleable : MonoBehaviour
 
     public virtual void ToggleUI()
     {
+        if (GameManager.instance.uiManager.isDialogue)
+        {
+            return;
+        }
         if (!toggledDisplay.gameObject.activeSelf)
         {
             toggledDisplay.gameObject.SetActive(true);

@@ -9,15 +9,38 @@ public class UIManager : MonoBehaviour
     public Image draggedIcon;
     public bool dragSingle;
     
-    // private Stack<GameObject> activeMenus = new Stack<GameObject>();
     private Stack<Toggleable> activeMenus = new Stack<Toggleable>();
     private int activeMenuCount = 0;
 
-    private bool isDialogue = false;
+    public Toggleable pauseMenu;
+    public bool isDialogue;
+
+    //0 for outer basic uis
+    //100 for mouse items
+    public int currSortingOrder = 0;
+
+    public void Setup()
+    {
+        pauseMenu = GameObject.Find("Pause Menu").GetComponent<Toggleable>();
+    }
 
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (activeMenuCount > 0)
+            {
+                activeMenus.Peek().ToggleUI();
+            }
+            else
+            {
+                if (pauseMenu != null)
+                {
+                    pauseMenu.ToggleUI();
+                }
+            }
+        }
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             dragSingle = true;
@@ -37,12 +60,15 @@ public class UIManager : MonoBehaviour
     public void PushActiveMenu(Toggleable newMenu)
     {
         activeMenus.Push(newMenu);
+        currSortingOrder += 1;
+        newMenu.gameObject.GetComponent<Canvas>().sortingOrder = currSortingOrder;
         activeMenuCount += 1;
     }
     public void PopActiveMenu()
     {
         activeMenus.Pop();
         activeMenuCount -= 1;
+        currSortingOrder -= 1;
     }
     public Toggleable PeekActiveMenu()
     {
@@ -63,7 +89,7 @@ public class UIManager : MonoBehaviour
         UnityEngine.Time.timeScale = 0f;
         foreach (Toggleable menu in activeMenus)
         {
-            PopActiveMenu();
+            menu.ToggleUI();
         }
         isDialogue = true;
     }

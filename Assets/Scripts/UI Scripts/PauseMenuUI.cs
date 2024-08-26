@@ -12,13 +12,13 @@ public class PauseMenuUI : Toggleable
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            ToggleUI();
-        }
-    }
+    // void Update()
+    // {
+    //     if (Input.GetKeyDown(KeyCode.Escape))
+    //     {
+    //         ToggleUI();
+    //     }
+    // }
 
     // public void ToggleUI()
     // {

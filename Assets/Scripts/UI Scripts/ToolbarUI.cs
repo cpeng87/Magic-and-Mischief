@@ -9,6 +9,11 @@ public class ToolbarUI : MonoBehaviour
     private void Update()
     {
         CheckAlphaNumericKeys();
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            UseItemSelectedInToolbar();
+        }
     }
 
     public void UseItemSelectedInToolbar()

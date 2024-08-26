@@ -34,7 +34,8 @@ public class InventoryUI : MonoBehaviour
 
         while (current != null)
         {
-            Canvas canvas = current.GetComponent<Canvas>();
+            // Canvas canvas = current.GetComponent<Canvas>();
+            Canvas canvas = GameObject.Find("Mouse Items").GetComponent<Canvas>();
             if (canvas != null)
             {
                 return canvas;

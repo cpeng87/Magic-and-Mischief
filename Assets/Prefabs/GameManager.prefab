@@ -20,6 +20,7 @@ GameObject:
   - component: {fileID: 8898857797765201778}
   - component: {fileID: 7327905467943757717}
   - component: {fileID: 9106999347711524024}
+  - component: {fileID: 2368938070074001114}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -63,8 +64,8 @@ MonoBehaviour:
   mailManager: {fileID: 0}
   sceneSwapManager: {fileID: 0}
   npcManager: {fileID: 0}
+  notebookManager: {fileID: 0}
   player: {fileID: 0}
-  activeMenuCount: 0
 --- !u!114 &2403646835798976025
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155,6 +156,9 @@ MonoBehaviour:
   draggedSlot: {fileID: 0}
   draggedIcon: {fileID: 0}
   dragSingle: 0
+  pauseMenu: {fileID: 0}
+  isDialogue: 0
+  currSortingOrder: 0
 --- !u!114 &5751654569210164471
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -222,3 +226,17 @@ MonoBehaviour:
   npcs:
   - {fileID: 1967615831103151035, guid: cc8c7778cb74c89469841fdab44e1fbc, type: 3}
   - {fileID: 5030578676412267973, guid: b75566c665324744aa6db567d30c84ae, type: 3}
+--- !u!114 &2368938070074001114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6290406138041701571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4efed414d8305544eaef3b021afb33fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  notebookEntries:
+  - {fileID: 11400000, guid: 0c0692560a21b5c4f96d69d84fd33fd0, type: 2}

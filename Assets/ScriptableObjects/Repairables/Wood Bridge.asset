@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   repairableName: Wood Bridge
   ingredients:
-  - listingData: {fileID: 11400000, guid: b1913b2204142d54a9bd76ebe9a9d348, type: 2}
+  - itemName: Mushroom
     quantity: 1
-  - listingData: {fileID: 11400000, guid: b89abc83b4486c5499206f61e54a3dbf, type: 2}
+  - itemName: Fern
     quantity: 1
-  - listingData: {fileID: 11400000, guid: 856de03963bd23747a29407b2482f64b, type: 2}
+  - itemName: Dandelion
     quantity: 1
