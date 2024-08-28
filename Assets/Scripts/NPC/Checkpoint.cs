@@ -7,6 +7,6 @@ public class Checkpoint
 {
     public string mapName;
     public bool isSwapScene;
-    public string newMap;
+    // public string newMap;
     public Vector3 position;
 }

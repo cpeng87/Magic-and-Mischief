@@ -108,10 +108,13 @@ public class NPCManager : MonoBehaviour
 
     public void LoadInNPCs()
     {
+        Debug.Log("Trying to load in npcs");
         foreach (NPCData npc in npcInfoDict.Keys)
         {
+            Debug.Log(npcInfoDict[npc].currMap);
             if (npcInfoDict[npc].currMap == SceneManager.GetActiveScene().name)
             {
+                Debug.Log("Loading one in");
                 GameObject newNPC = Instantiate(npcInfoDict[npc].npcGameObject);
                 newNPC.layer = LayerMask.NameToLayer("Interactables");
                 Renderer npcRenderer = newNPC.GetComponent<Renderer>();
