@@ -18,26 +18,30 @@ public class PhotoUI : Toggleable
         index = 0;
     }
 
-    // Update is called once per frame
-    // public override void ToggleUI()
-    // {
-    //     if (!photoPanel.activeSelf)
-    //     {
-    //         photoPanel.SetActive(true);
-    //         UnityEngine.Time.timeScale = 0f;
-    //         GameManager.instance.uiManager.PushActiveMenu(this);
-    //         LoadPage();
-    //     }
-    //     else
-    //     {   
-    //         photoPanel.SetActive(false);
-    //         GameManager.instance.uiManager.PopActiveMenu();
-    //         if (GameManager.instance.uiManager.GetActiveMenuCount() == 0)
-    //         {
-    //             UnityEngine.Time.timeScale = 1f;
-    //         }
-    //     }
-    // }
+    public override void ToggleUI()
+    {
+        if (GameManager.instance.uiManager.isDialogue)
+        {
+            return;
+        }
+        if (!toggledDisplay.gameObject.activeSelf)
+        {
+            toggledDisplay.gameObject.SetActive(true);
+            UnityEngine.Time.timeScale = 0f;
+            GameManager.instance.uiManager.PushActiveMenu(this);
+            Setup();
+            CheckStartedNotebook();
+        }
+        else
+        {   
+            toggledDisplay.gameObject.SetActive(false);
+            GameManager.instance.uiManager.PopActiveMenu();
+            if (GameManager.instance.uiManager.GetActiveMenuCount() == 0)
+            {
+                UnityEngine.Time.timeScale = 1f;
+            }
+        }
+    }
 
     public override void Setup()
     {
@@ -67,5 +71,17 @@ public class PhotoUI : Toggleable
             index -= 1;
             Setup();
         }
+    }
+
+    public void CheckStartedNotebook()
+    {
+        foreach (var entry in GameManager.instance.notebookManager.GetActiveEntries())
+        {
+            if (entry.Item1 == photos[index].notebookEntry)
+            {
+                return;
+            }
+        }
+        GameManager.instance.notebookManager.ActivateQuest(photos[index].notebookEntry.title);
     }
 }

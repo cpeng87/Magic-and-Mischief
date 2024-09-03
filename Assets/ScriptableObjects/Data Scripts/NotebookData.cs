@@ -24,5 +24,5 @@ public class NotebookData : ScriptableObject
 {
     public string title;
     public List<NotebookStage> stages = new List<NotebookStage>();
-    public int index;
+    // public int index;
 }

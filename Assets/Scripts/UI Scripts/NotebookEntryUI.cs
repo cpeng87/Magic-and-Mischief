@@ -11,6 +11,7 @@ public class NotebookEntryUI : MonoBehaviour
     public TextMeshProUGUI title;
 
     public Image display;
+    public Image completedStamp;
 
     public void SetTitle(string newTitle)
     {
@@ -19,6 +20,7 @@ public class NotebookEntryUI : MonoBehaviour
     public void SetComplete()
     {
         display.color = new Color(0,0,0,150);
+        completedStamp.enabled = true;
     }
     public void SetEntryID(int newEntryID)
     {

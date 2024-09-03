@@ -7,4 +7,5 @@ public class PhotoData : ScriptableObject
 {
     public Sprite photo;
     public string description;
+    public NotebookData notebookEntry;
 }

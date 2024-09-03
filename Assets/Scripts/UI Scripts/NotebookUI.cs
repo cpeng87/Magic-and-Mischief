@@ -27,32 +27,11 @@ public class NotebookUI : Toggleable
         ToggleUI();
     }
 
-    // public override void ToggleUI()
-    // {
-    //     if (!notebookBackground.activeSelf)
-    //     {
-    //         notebookBackground.SetActive(true);
-    //         UnityEngine.Time.timeScale = 0f;
-    //         GameManager.instance.uiManager.PushActiveMenu(this);
-    //         Setup();
-    //     }
-    //     else
-    //     {   
-    //         notebookBackground.SetActive(false);
-    //         GameManager.instance.uiManager.PopActiveMenu();
-    //         if (GameManager.instance.uiManager.GetActiveMenuCount() == 0)
-    //         {
-    //             UnityEngine.Time.timeScale = 1f;
-    //         }
-    //     }
-    // }
-
     public override void Setup()
     {
         notebookDisplay.SetActive(true);
         notebookPanel.SetActive(true);
         ClearEntries();
-        Debug.Log("Setting up notebook");
 
         List<(NotebookData, bool)> notebookEntries = GameManager.instance.notebookManager.GetActiveEntries();
 
@@ -104,20 +83,18 @@ public class NotebookUI : Toggleable
 
     public void OpenEntry(NotebookEntryUI clickedEntry)
     {
-        Debug.Log("Opening entry");
-        // notebookDisplay.SetActive(false);
 
         notebookOpenedPanel.SetActive(true);
         notebookDisplay.SetActive(false);
 
         List<(NotebookData, bool)> activeEntries = GameManager.instance.notebookManager.GetActiveEntries();
         NotebookData notebookData = activeEntries[clickedEntry.GetEntryID()].Item1;
-        SetupEntry(notebookData);
+        SetupEntry(notebookData.title);
     }
 
-    public void SetupEntry(NotebookData data)
+    public void SetupEntry(string title)
     {
-        entryText.text = data.stages[data.index].text;
+        entryText.text = GameManager.instance.notebookManager.GetNotebookStage(title).text;
     }
 
     public void ReturnToNotebook()
