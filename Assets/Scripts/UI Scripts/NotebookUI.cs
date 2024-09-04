@@ -13,18 +13,20 @@ public class NotebookUI : Toggleable
     public GameObject notebookDisplay;
 
     public GameObject notebookOpenedPanel;
-    public TextMeshProUGUI entryText;
+
+    public GameObject plainTextBox;
+    public GameObject imageBasedBox;
+    public TextMeshProUGUI imageText;
+    public Image image;
+
+    //
+    public TextMeshProUGUI plainText;
 
     private void Start()
     {
         notebookDisplay.SetActive(true);
         notebookOpenedPanel.SetActive(false);
         toggledDisplay.SetActive(false);
-    }
-
-    private void OpenNotebook()
-    {
-        ToggleUI();
     }
 
     public override void Setup()
@@ -94,7 +96,20 @@ public class NotebookUI : Toggleable
 
     public void SetupEntry(string title)
     {
-        entryText.text = GameManager.instance.notebookManager.GetNotebookStage(title).text;
+        if (GameManager.instance.notebookManager.GetNotebookStage(title).entryType == EntryType.Image)
+        {
+            imageBasedBox.SetActive(true);
+            plainTextBox.SetActive(false);
+            imageText.text = GameManager.instance.notebookManager.GetNotebookStage(title).text;
+            image.sprite = GameManager.instance.notebookManager.GetNotebookStage(title).image;
+        }
+        else if (GameManager.instance.notebookManager.GetNotebookStage(title).entryType == EntryType.PlainText)
+        {
+            imageBasedBox.SetActive(false);
+            plainTextBox.SetActive(true);
+
+            plainText.text = GameManager.instance.notebookManager.GetNotebookStage(title).text;
+        }
     }
 
     public void ReturnToNotebook()

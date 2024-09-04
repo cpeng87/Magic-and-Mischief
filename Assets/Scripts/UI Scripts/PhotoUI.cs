@@ -62,6 +62,7 @@ public class PhotoUI : Toggleable
         {
             index += 1;
             Setup();
+            CheckStartedNotebook();
         }
     }
     public void PreviousPage()
@@ -75,13 +76,13 @@ public class PhotoUI : Toggleable
 
     public void CheckStartedNotebook()
     {
-        foreach (var entry in GameManager.instance.notebookManager.GetActiveEntries())
+        foreach ((NotebookData, bool) entry in GameManager.instance.notebookManager.GetActiveEntries())
         {
-            if (entry.Item1 == photos[index].notebookEntry)
+            if (GameManager.instance.notebookManager.CheckIfActive(photos[index].notebookEntryName))
             {
                 return;
             }
         }
-        GameManager.instance.notebookManager.ActivateQuest(photos[index].notebookEntry.title);
+        GameManager.instance.notebookManager.ActivateQuest(photos[index].notebookEntryName);
     }
 }

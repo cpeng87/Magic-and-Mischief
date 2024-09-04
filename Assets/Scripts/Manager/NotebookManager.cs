@@ -88,6 +88,15 @@ public class NotebookManager : MonoBehaviour
         return activeEntries;
     }
 
+    public bool CheckIfActive(string title)
+    {
+        if (activeNotebookEntries.ContainsKey(title))
+        {
+            return activeNotebookEntries[title].isActive;
+        }
+        return false;
+    }
+
     // Get the current stage of a specific quest
     public int GetNotebookIndex(string title)
     {
@@ -114,63 +123,5 @@ public class NotebookManager : MonoBehaviour
             return null;
         }
     }
+
 }
-
-
-// using System.Collections;
-// using System.Collections.Generic;
-// using UnityEngine;
-
-// public class NotebookEntryInfo
-// {
-//     public NotebookData notebookData;
-//     public bool isCompleted;
-//     public int index;
-//     public bool isFavorited;
-
-//     public NotebookEntryInfo(NotebookData notebookData)
-//     {
-//         this.notebookData = notebookData;
-//         isCompleted = false;
-//         isFavorited = false;
-//         isActive = false;
-//         index = 0;
-//     }
-// }
-
-// public class NotebookManager : MonoBehaviour
-// {
-//     public List<NotebookData> notebookEntries = new List<NotebookData>();
-//     public Dictionary<string, NotebookEntryInfo> notebookStringToEntryInfoDict = new Dictionary<string, NotebookEntryInfo>();
-//     public Dictionary<string, NotebookEntryInfo> activeNotebookEntries = new Dictionary<string, NotebookEntryInfo>();
-
-//     void Start()
-//     {
-//         foreach(NotebookData entry in notebookEntries)
-//         {
-//             notebookStringToEntryInfoDict.Add(entry.title, new NotebookEntryInfo(entry));
-//         }
-//     }
-
-//     public void IncrementNotebookEntryIndex(string toBeUpdated)
-//     {
-//         if (activeNotebookEntries.ContainsKey(toBeUpdated))
-//         {
-//             activeNotebookEntries[toBeUpdated].index += 1;
-//             if (activeNotebookEntries[toBeUpdated].index > activeNotebookEntries[toBeUpdated].notebookData.stages.Count)
-//             {
-//                 activeNotebookEntries[toBeUpdated].isCompleted = true;
-//             }
-//         }
-//     }
-
-//     public List<(NotebookData, bool)> GetActiveEntries()
-//     {
-//         List<(NotebookData, bool)> rtn = new List<(NotebookData, bool)>();
-//         foreach (string entry in activeNotebookEntries.Keys)
-//         {
-//             rtn.Add((activeNotebookEntries[entry].notebookData, activeNotebookEntries[entry].isCompleted));
-//         }
-//         return rtn;
-//     }
-// }

@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   photo: {fileID: -1743382019, guid: 15f8c730ccb91a245ac6704aa8271099, type: 3}
   description: im tester2
+  notebookEntryName: Warding the Inner Forest

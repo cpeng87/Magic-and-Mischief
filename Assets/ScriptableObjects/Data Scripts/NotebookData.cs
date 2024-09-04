@@ -6,7 +6,6 @@ public enum EntryType
 {
     Image,
     PlainText,
-    ItemList
 }
 
 [System.Serializable]
