@@ -58,7 +58,7 @@ public class PhotoUI : Toggleable
 
     public void NextPage()
     {
-        if (photos.Count > index)
+        if (photos.Count - 1 > index)
         {
             index += 1;
             Setup();

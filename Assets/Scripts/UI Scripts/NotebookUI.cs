@@ -29,9 +29,35 @@ public class NotebookUI : Toggleable
         toggledDisplay.SetActive(false);
     }
 
+    public override void ToggleUI()
+    {
+        if (GameManager.instance.uiManager.isDialogue)
+        {
+            return;
+        }
+        if (!toggledDisplay.gameObject.activeSelf)
+        {
+            toggledDisplay.gameObject.SetActive(true);
+            UnityEngine.Time.timeScale = 0f;
+            GameManager.instance.uiManager.PushActiveMenu(this);
+            Setup();
+        }
+        else
+        {   ReturnToNotebook();
+            toggledDisplay.gameObject.SetActive(false);
+            GameManager.instance.uiManager.PopActiveMenu();
+            if (GameManager.instance.uiManager.GetActiveMenuCount() == 0)
+            {
+                UnityEngine.Time.timeScale = 1f;
+            }
+        }
+    }
+
     public override void Setup()
     {
         notebookDisplay.SetActive(true);
+        imageBasedBox.SetActive(false);
+        plainTextBox.SetActive(false);
         notebookPanel.SetActive(true);
         ClearEntries();
 
@@ -76,11 +102,6 @@ public class NotebookUI : Toggleable
         {
             Destroy(entry.gameObject);
         }
-    }
-
-    private void OnDestroy()
-    {
-        // MailEventHandler.OnMailChanged -= SetupMailbox;
     }
 
     public void OpenEntry(NotebookEntryUI clickedEntry)

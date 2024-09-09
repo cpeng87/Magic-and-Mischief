@@ -42,9 +42,21 @@ public class PlayerMovement : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                hit.collider.gameObject.GetComponent<Interactable>().Interact();
+                Interacting(hit.collider.gameObject);
+                // hit.collider.gameObject.GetComponent<Interactable>().Interact();
             }
         }
+    }
+
+    private void Interacting(GameObject interactedObj)
+    {
+        NPCCharacter npcCharacter = interactedObj.GetComponent<NPCCharacter>();
+        if (npcCharacter != null)
+        {   InventoryManager inventory = GetComponent<InventoryManager>();
+            Item item = GameManager.instance.itemManager.GetItemByName(inventory.GetInventory("Toolbar").selectedSlot.itemName);
+            npcCharacter.GiveGift(item);
+        }
+        interactedObj.GetComponent<Interactable>().Interact();
     }
 
     private void FixedUpdate()

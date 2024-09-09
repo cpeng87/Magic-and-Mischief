@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class Spell : Item
 {
-    // public SpellData spellData;
-    // private void Awake()
-    // {
-    //     base.data = spellData;
-    // }
     public override bool Use()
     {
         // return GameManager.instance.player.ps.CastSpell(((SpellData) data).spellManaCost);
