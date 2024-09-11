@@ -15,7 +15,6 @@ public class PlayerSpell : MonoBehaviour
 
     public bool CastSpell(SpellData spellData)
     {
-        throw new Exception("Dirty exception");
         if (GameManager.instance.player.mana.currVal < spellData.spellManaCost)
         {
             return false;

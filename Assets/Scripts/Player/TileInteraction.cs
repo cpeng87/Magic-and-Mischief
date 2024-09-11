@@ -34,6 +34,7 @@ public class TileInteraction : MonoBehaviour
         tileSelector.transform.position = tilePos;
     }
 
+    // 
     public void UseItemOnTile()
     {
         if (tileManager != null)
@@ -42,7 +43,6 @@ public class TileInteraction : MonoBehaviour
             string tileName = tileManager.GetTileName(tilePos);
             if (!string.IsNullOrWhiteSpace(tileName) && inventory.GetInventory("Toolbar").selectedSlot != null)
             {
-                // CheckItemSelected(tileName, inventory.toolbar.selectedSlot.itemName);
                 Debug.Log(inventory.GetInventory("Toolbar").selectedSlot.itemName);
                 CheckItemSelected(tileName, GameManager.instance.itemManager.GetItemByName(inventory.GetInventory("Toolbar").selectedSlot.itemName));
             }
@@ -62,17 +62,17 @@ public class TileInteraction : MonoBehaviour
         }
     }
 
-    private void CheckItemSelected(string tileName, Item selectedItem)
+    private bool CheckItemSelected(string tileName, Item selectedItem)
     {
         if (selectedItem == null)
         {
             Debug.Log("Selected Item is null");
-            return;
+            return false;
         }
         if (tileName == "Interactable" && selectedItem.data.itemName == "Shovel")
         {
             tileManager.SetDigTile(tilePos);
-            return;
+            return false;
         }
         if ((tileName == "dugTile"))   //get item type
         {
@@ -86,6 +86,7 @@ public class TileInteraction : MonoBehaviour
                 {
                     plantableGrowthDict.Add(tilePos, newPlant);
                     inventory.GetInventory("Toolbar").selectedSlot.RemoveItem();
+                    return true;
                 }
             }
             else if (selectedItem.data.itemName == "Watering Can")
@@ -94,6 +95,7 @@ public class TileInteraction : MonoBehaviour
                 if (plantableGrowthDict.ContainsKey(tilePos))
                 {
                     plantableGrowthDict[tilePos].SetIsWatered(true);
+                    return true;
                 }
             }
 
@@ -108,8 +110,10 @@ public class TileInteraction : MonoBehaviour
                 newPlant.SetIsWatered(true);
                 plantableGrowthDict.Add(tilePos, newPlant);
                 inventory.GetInventory("Toolbar").selectedSlot.RemoveItem();
+                return true;
             }
         }
+        return false;
     }
 
     private void UpdateTileSelectorPos()
@@ -119,14 +123,12 @@ public class TileInteraction : MonoBehaviour
         if (inventory.GetInventory("Toolbar").selectedSlot == null)
         {
             tileSelector.SetActive(false);
-            return;
         }
         Item selectedItem = GameManager.instance.itemManager.GetItemByName(inventory.GetInventory("Toolbar").selectedSlot.itemName);
         if (inventory.GetInventory("Toolbar").selectedSlot.itemName == "Shovel" || inventory.GetInventory("Toolbar").selectedSlot.itemName == "Watering Can" || selectedItem is Plantable)
         {
             tileSelector.transform.localScale = new Vector2(1,1);
             tileSelector.SetActive(true);
-            return;
         }
         else if (selectedItem is Placeable)
         {
@@ -136,7 +138,6 @@ public class TileInteraction : MonoBehaviour
         else
         {
             tileSelector.SetActive(false);
-            return;
         }
     }
 

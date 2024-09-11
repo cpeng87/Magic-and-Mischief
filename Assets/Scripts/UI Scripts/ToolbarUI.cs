@@ -20,7 +20,6 @@ public class ToolbarUI : MonoBehaviour
     {
         if (GameManager.instance.uiManager.PeekActiveMenu() != null)
         {
-            // Debug.Log("another menu active");
             return;
         }
         GameManager.instance.player.ti.CheckHarvestable();
@@ -33,15 +32,7 @@ public class ToolbarUI : MonoBehaviour
         {
             return;
         }
-        bool result = GameManager.instance.itemManager.GetItemByName(inventoryUI.GetInventory().slots[inventoryUI.selectorSlotID].itemName).Use();
-        GameManager.instance.player.ti.UseItemOnTile();
-
-        //true if item is consumed on usage
-        if (result)
-        {
-            inventoryUI.slots[inventoryUI.selectorSlotID].inventory.Remove(inventoryUI.selectorSlotID);
-            InventoryEventHandler.TriggerSelectedSlotChangedEvent();
-        }
+        GameManager.instance.itemManager.UseItem(inventoryUI.GetInventory().slots[inventoryUI.selectorSlotID].itemName, inventoryUI.selectorSlotID);
     }
 
     private void CheckAlphaNumericKeys()
@@ -79,34 +70,4 @@ public class ToolbarUI : MonoBehaviour
             inventoryUI.SlotSelect(7);
         }
     }
-
-    // private void MoveSelector(int index)
-    // {
-    //     selector.transform.position = toolbarSlots[index].transform.position;
-    // }
-
-    // public void Refresh()
-    // {
-    //     for (int i = 0; i < toolbarSlots.Count; i++)
-    //     {
-    //         if (inventory.slots[i].itemName != "")
-    //         {
-    //             toolbarSlots[i].SetItem(inventory.slots[i]);
-    //         }
-    //         else
-    //         {
-    //             toolbarSlots[i].SetEmpty();
-    //         }
-    //     }
-    // }
-    // void SetupSlots()
-    // {
-    //     int counter = 0;
-    //     foreach (SlotUI slot in toolbarSlots)
-    //     {
-    //         slot.slotID = counter;
-    //         counter++;
-    //         slot.inventory = inventory;
-    //     }
-    // }
 }
