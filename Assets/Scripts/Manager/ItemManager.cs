@@ -52,8 +52,6 @@ public class ItemManager : MonoBehaviour
     public void UseItem(string name, int slotID)
     {
         bool result = GameManager.instance.itemManager.GetItemByName(name).Use();
-        //change to pass in the name instead?
-        GameManager.instance.player.ti.UseItemOnTile();
 
         if (result)
         {

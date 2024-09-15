@@ -34,19 +34,29 @@ public class TileInteraction : MonoBehaviour
         tileSelector.transform.position = tilePos;
     }
 
-    // 
-    public void UseItemOnTile()
+    public bool UseItemOnTile(string name)
     {
+        // if (tileManager != null)
+        // {
+        //     Vector3Int position = tilePos;
+        //     string tileName = tileManager.GetTileName(tilePos);
+        //     if (!string.IsNullOrWhiteSpace(tileName) && inventory.GetInventory("Toolbar").selectedSlot != null)
+        //     {
+        //         Debug.Log(inventory.GetInventory("Toolbar").selectedSlot.itemName);
+        //         CheckItemSelected(tileName, GameManager.instance.itemManager.GetItemByName(inventory.GetInventory("Toolbar").selectedSlot.itemName));
+        //     }
+        // }
         if (tileManager != null)
         {
             Vector3Int position = tilePos;
             string tileName = tileManager.GetTileName(tilePos);
-            if (!string.IsNullOrWhiteSpace(tileName) && inventory.GetInventory("Toolbar").selectedSlot != null)
+            if (!string.IsNullOrWhiteSpace(tileName))
             {
-                Debug.Log(inventory.GetInventory("Toolbar").selectedSlot.itemName);
-                CheckItemSelected(tileName, GameManager.instance.itemManager.GetItemByName(inventory.GetInventory("Toolbar").selectedSlot.itemName));
+                Debug.Log(name);
+                return CheckItemSelected(tileName, GameManager.instance.itemManager.GetItemByName(name));
             }
         }
+        return false;
     }
 
     public void CheckHarvestable()
@@ -85,7 +95,6 @@ public class TileInteraction : MonoBehaviour
                 if (!plantableGrowthDict.ContainsKey(tilePos))
                 {
                     plantableGrowthDict.Add(tilePos, newPlant);
-                    inventory.GetInventory("Toolbar").selectedSlot.RemoveItem();
                     return true;
                 }
             }
@@ -123,6 +132,7 @@ public class TileInteraction : MonoBehaviour
         if (inventory.GetInventory("Toolbar").selectedSlot == null)
         {
             tileSelector.SetActive(false);
+            return;
         }
         Item selectedItem = GameManager.instance.itemManager.GetItemByName(inventory.GetInventory("Toolbar").selectedSlot.itemName);
         if (inventory.GetInventory("Toolbar").selectedSlot.itemName == "Shovel" || inventory.GetInventory("Toolbar").selectedSlot.itemName == "Watering Can" || selectedItem is Plantable)

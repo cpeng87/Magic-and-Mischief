@@ -37,25 +37,53 @@ public class PlayerMovement : MonoBehaviour
             }
             GameManager.instance.player.pa.AnimateMovement(dir);
         }
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, currDirection, 64f, layerMask);
-        if (hit)
+        GameObject raycastResult = CheckRaycast();
+        if (raycastResult != null)
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                Interacting(hit.collider.gameObject);
-                // hit.collider.gameObject.GetComponent<Interactable>().Interact();
+                Interacting(raycastResult);
             }
         }
+        // RaycastHit2D hit = Physics2D.Raycast(transform.position, currDirection, 64f, layerMask);
+        // if (hit)
+        // {
+        //     if (Input.GetKeyDown(KeyCode.Space))
+        //     {
+        //         Interacting(hit.collider.gameObject);
+        //         // hit.collider.gameObject.GetComponent<Interactable>().Interact();
+        //     }
+        // }
+    }
+
+    public GameObject CheckRaycast()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, currDirection, 64f, layerMask);
+        if (hit)
+        {
+            return hit.collider.gameObject;
+        }
+        return null;
     }
 
     private void Interacting(GameObject interactedObj)
     {
         NPCCharacter npcCharacter = interactedObj.GetComponent<NPCCharacter>();
-        if (npcCharacter != null)
-        {   InventoryManager inventory = GetComponent<InventoryManager>();
-            Item item = GameManager.instance.itemManager.GetItemByName(inventory.GetInventory("Toolbar").selectedSlot.itemName);
-            npcCharacter.GiveGift(item);
-        }
+        // if (npcCharacter != null)
+        // {   InventoryManager inventory = GetComponent<InventoryManager>();
+        //     if (inventory.GetInventory("Toolbar").selectedSlot != null)
+        //     {
+        //         Item item = GameManager.instance.itemManager.GetItemByName(inventory.GetInventory("Toolbar").selectedSlot.itemName);
+        //         bool result = npcCharacter.GiveGift(item);
+        //         if (result)
+        //         {
+
+        //             GameManager.instance.itemManager.UseItem(inventory.GetInventory("Toolbar").selectedSlot.itemName, inventory.GetInventory("Toolbar").selectedSlot);
+        //         }
+        //         Debug.Log(npcCharacter.GetAffectionLevel());
+        //         return;
+        //     }
+        // }
         interactedObj.GetComponent<Interactable>().Interact();
     }
 

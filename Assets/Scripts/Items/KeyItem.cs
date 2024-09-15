@@ -12,4 +12,8 @@ public class KeyItem : Item
     {
         rb = GetComponent<Rigidbody2D>();
     }
+    public override bool Use()
+    {
+        return GameManager.instance.player.ti.UseItemOnTile(data.itemName);
+    }
 }

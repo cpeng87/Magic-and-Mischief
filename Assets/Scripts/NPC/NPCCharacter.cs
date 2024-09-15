@@ -7,9 +7,9 @@ public class NPCCharacter : MonoBehaviour
     public NPCData npcData;
     private float affectionLevel;
 
-    public float GetAffectionLevel()
+    public int GetAffectionLevel()
     {
-        return affectionLevel;
+        return (int) affectionLevel;
     }
 
     public void SetAffectionLevel(float newLevel)
@@ -19,6 +19,8 @@ public class NPCCharacter : MonoBehaviour
 
     public bool GiveGift(Item item)
     {
+        affectionLevel = affectionLevel + 1;
+        return true;
         return false;
     }
 }
