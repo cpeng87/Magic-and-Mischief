@@ -11,7 +11,7 @@ How are you today?
 Oh, hello. Out gathering materials for your spellcrafting? If you have any questions about the arcane, feel free to ask my anytime.
 [EndDialogue]
 
-[BeginDialogue=1heart]
+[BeginDialogue=1Heart]
 Greetings. I am on a walk to recharge my mana.
 Would you care to join me? There is a nice breeze today and the spirits are out frolicking about.
 [EndDialogue]
@@ -20,7 +20,7 @@ Would you care to join me? There is a nice breeze today and the spirits are out 
 Ah, the witch from the tower in the forest. How have you been faring?
 [EndDialogue]
 
-[BeginDialogue=2heart]
+[BeginDialogue=2Heart]
 ...
 Ah!
 Sorry I was a bit lost in thought.

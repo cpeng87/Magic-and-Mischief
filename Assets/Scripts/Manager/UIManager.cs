@@ -100,4 +100,13 @@ public class UIManager : MonoBehaviour
         UnityEngine.Time.timeScale = 1f;
         isDialogue = false;
     }
+
+    public bool CheckNoMenusOpen()
+    {
+        if (isDialogue || activeMenuCount > 0)
+        {
+            return false;
+        }
+        return true;
+    }
 }

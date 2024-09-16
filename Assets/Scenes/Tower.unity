@@ -604,19 +604,19 @@ Tilemap:
     m_Data:
       e00: 1.5e-44
       e01: 1.5e-44
-      e02: 3.4896776e+25
+      e02: 9.4677375e+36
       e03: 0
       e10: 0
       e11: 0
       e12: 4.5904e-41
       e13: 0
       e20: 4.5e-44
-      e21: -18234.467
+      e21: 5.406679e-31
       e22: 9.7e-44
-      e23: 1.250892e+24
+      e23: 3.3605413e+35
       e30: 0
-      e31: 4.5914e-41
-      e32: 3e-43
+      e31: 4.5915e-41
+      e32: 2.62e-43
       e33: 4.5904e-41
   - m_RefCount: 36
     m_Data:
@@ -7271,6 +7271,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 9106999347711524024, guid: 17b8a2f098c7c1647a8799f2ace0607d, type: 3}
+      propertyPath: npcs.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9106999347711524024, guid: 17b8a2f098c7c1647a8799f2ace0607d, type: 3}
+      propertyPath: npcs.Array.data[2]
+      value: 
+      objectReference: {fileID: 5192073366793529838, guid: 8afaef34233961f4d90a274e7349c23d, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cff5594760f06243aa2cdbd4a870901, type: 3}
+  m_Name: MarisaNPCData
+  m_EditorClassIdentifier: 
+  npcName: Marisa
+  portrait: {fileID: 151501563, guid: 3fb3c59f0e684be4dab934e73a7bac7b, type: 3}
+  dialogue: {fileID: 4900000, guid: ef6f5e50794ae6d42911118bec7f7a7c, type: 3}
+  dialogueStorage: {fileID: 11400000, guid: 2ba3fb67e264c994cb72fe37681ca74f, type: 2}
+  movementSpeed: 0
+  weeklySchedule: []

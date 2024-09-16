@@ -1,0 +1,35 @@
+[Introduction]
+Hello! I heard you just moved here, I'm Marisa!
+I'm a college student studying Art and Animation.
+[EndDialogue]
+
+[BeginDialogue]
+The sky is so beautiful today...
+[EndDialogue]
+
+[BeginDialogue=1Heart]
+Oh hi! Sorry, I'm kind of busy with my classes right now, talk to you later!
+[EndDialogue]
+
+[BeginDialogue=2Heart]
+...Ah! You scared me.
+Just kind of lost in thought for my assignment...
+Creativity can be so hard sometimes, but I don't really have a choice when it's due tomorrow.
+[EndDialogue]
+
+[Gift=Love]
+This is for me? I love it, you're the best!
+[EndDialogue]
+
+[Gift=Like]
+Aww, you're giving this to me? Thanks!
+[EndDialogue]
+
+[Gift=Neutral]
+Oh, thanks!
+[EndDialogue]
+
+[Gift=Dislike]
+Hm, what is this? Oh, for me? I'm really not sure what I'm supposed to do with this though...
+[EndDialogue]
+

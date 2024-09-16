@@ -5,10 +5,12 @@ using UnityEngine;
 public class NPCDialogueTrigger : InteractTriggerUI<DialogueUI>
 {
     private NPCData npcData;
+    public NPCCharacter npcChar;
 
     protected override void Start()
     {
-        npcData = GetComponent<NPCCharacter>().npcData;
+        npcChar = GetComponent<NPCCharacter>();
+        npcData = npcChar.npcData;
         ui = FindObjectOfType<DialogueUI>();
     }
     public override void Interact()
@@ -22,7 +24,20 @@ public class NPCDialogueTrigger : InteractTriggerUI<DialogueUI>
             return;
         }
         ui.OpenDialogue();
-        GameManager.instance.dialogueManager.Initialize(npcData.name, npcData.portrait, npcData.dialogueStorage);
-        GameManager.instance.npcManager.SetTalked(npcData);
+        if (npcChar == null)
+        {
+            Debug.Log("npc char is null");
+        }
+        GameManager.instance.dialogueManager.Initialize(npcChar);
+        // GameManager.instance.npcManager.SetTalked(npcData);
+    }
+    public void GiftDialogue(string tag)
+    {
+        if (GameManager.instance.dialogueManager.GetIsActive())
+        {
+            return;
+        }
+        ui.OpenDialogue();
+        GameManager.instance.dialogueManager.Initialize(npcChar, tag);
     }
 }

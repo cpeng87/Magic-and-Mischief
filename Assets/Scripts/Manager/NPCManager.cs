@@ -127,16 +127,7 @@ public class NPCManager : MonoBehaviour
     {
         foreach (NPCData npc in npcInfoDict.Keys)
         {
-            npc.dialogueStorage.introduction = GameManager.instance.dialogueManager.ParseSpecificDialogue("Introduction", npc.dialogue);
-            if (GameManager.instance.dialogueManager.ParseSpecificDialogue("Introduction", npc.dialogue) == null)
-            {
-                Debug.Log("Intro is null");
-            }
             npc.dialogueStorage.possibleDialogues = GameManager.instance.dialogueManager.ParseDialogue(npc.dialogue);
-            if (GameManager.instance.dialogueManager.ParseDialogue(npc.dialogue) == null)
-            {
-                Debug.Log("dialogue is null");
-            }
         }
     }
 
