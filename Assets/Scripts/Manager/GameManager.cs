@@ -61,7 +61,6 @@ public class GameManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        UnityEngine.Time.timeScale = 1f;
         player = FindObjectOfType<Player>();
         MapManager mapManager = FindObjectOfType<MapManager>();
 

@@ -95,6 +95,7 @@ public class InventoryUI : MonoBehaviour
         }
         for (int i = 0; i < slots.Count; i++)
         {
+            Debug.Log(i);
             if (inventory.slots[i].itemName != "")
             {
                 slots[i].SetItem(inventory.slots[i]);

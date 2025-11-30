@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Town.unity
     guid: 0a94d4eca6480c04789d41422a3f4855
+  - enabled: 1
+    path: Assets/Scenes/Magic System.unity
+    guid: 2cee252660939be498a016920446035e
   m_configObjects: {}

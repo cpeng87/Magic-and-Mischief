@@ -38,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -604,20 +603,20 @@ Tilemap:
     m_Data:
       e00: 1.5e-44
       e01: 1.5e-44
-      e02: 9.4677375e+36
-      e03: 0
+      e02: -2.5208389e+19
+      e03: -6.380588e+19
       e10: 0
       e11: 0
       e12: 4.5904e-41
-      e13: 0
+      e13: 9.57e-43
       e20: 4.5e-44
-      e21: 5.406679e-31
-      e22: 9.7e-44
-      e23: 3.3605413e+35
+      e21: 9.054098e-27
+      e22: 1.01e-43
+      e23: 0
       e30: 0
       e31: 4.5915e-41
-      e32: 2.62e-43
-      e33: 4.5904e-41
+      e32: 4.5904e-41
+      e33: 0
   - m_RefCount: 36
     m_Data:
       e00: 1
@@ -745,11 +744,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5444270692065791350, guid: d2402585d4aee6643bc4465c9c4d1e34, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.04
+      value: -1.46
       objectReference: {fileID: 0}
     - target: {fileID: 5444270692065791350, guid: d2402585d4aee6643bc4465c9c4d1e34, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -3.88
       objectReference: {fileID: 0}
     - target: {fileID: 5444270692065791350, guid: d2402585d4aee6643bc4465c9c4d1e34, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7099,8 +7098,46 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3197669748010888581, guid: e11d6aea9e9f7784ebbe291dca8afbdf, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1924200375518255307}
+    - targetCorrespondingSourceObject: {fileID: 3197669748010888581, guid: e11d6aea9e9f7784ebbe291dca8afbdf, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1924200375518255306}
   m_SourcePrefab: {fileID: 100100000, guid: e11d6aea9e9f7784ebbe291dca8afbdf, type: 3}
+--- !u!1 &1924200375518255305 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3197669748010888581, guid: e11d6aea9e9f7784ebbe291dca8afbdf, type: 3}
+  m_PrefabInstance: {fileID: 1924200375518255304}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1924200375518255306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1924200375518255305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b97729fce3331584c89129f293b592e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneToLoad: Magic System
+  spawnpointName: Abyss
+--- !u!114 &1924200375518255307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1924200375518255305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f4e504191b19bb459f57ac25c9601d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneSwap: {fileID: 1924200375518255306}
 --- !u!1001 &5004380305604470795
 PrefabInstance:
   m_ObjectHideFlags: 0

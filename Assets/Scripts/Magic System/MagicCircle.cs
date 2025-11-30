@@ -11,8 +11,11 @@ public class MagicCircle : MonoBehaviour
     public List<GameObject> innerCircles;
 
     public int numMaterials;
+    [SerializeField] private GameObject slotUI;
+    [SerializeField] private GameObject slotHolder;
     public Color color;
     public float innerCircleDiameter;
+    public Inventory circle;
 
     public void Start()
     {
@@ -54,6 +57,8 @@ public class MagicCircle : MonoBehaviour
             rect.anchoredPosition = new Vector2(x, y);
 
             innerCircles.Add(miniObj);
+            GameObject slot = Instantiate(slotUI, new Vector2(x,y), Quaternion.identity);
+            slot.transform.SetParent(slotHolder.transform, false);
         }
 
         if (innerCircles.Count <= 4)
@@ -113,7 +118,14 @@ public class MagicCircle : MonoBehaviour
 
     public void Add()
     {
-        numMaterials += 1;
+        if (numMaterials >= 8)
+        {
+            numMaterials = 8;
+        }
+        else
+        {
+            numMaterials += 1;
+        }
         Make();
     }
 
